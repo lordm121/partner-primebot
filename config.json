@@ -4,7 +4,7 @@
     "clientId": "850106591051382784",
     "clientSecret": "o2Fevgiie3oXjQ-3PA2bi_WvjENTZd7l",
     "scopes": ["identify", "guilds"],
-    "redirectUri": "https://glossy-shared-pressure.glitch.me/authorize/callback",
+    "redirectUri": "https://glossy-shared-pressure.glitch.me/",
     "token":"ODUwMTA2NTkxMDUxMzgyNzg0.YLk5dQ.Ocfk5tcgFFoUdazdd1vqzwuQ68U",
-    "inviteurl":""
+    "inviteurl":"https://discord.com/api/oauth2/authorize?client_id=850106591051382784&redirect_uri=https%3A%2F%2Fglossy-shared-pressure.glitch.me%2Fauthorize%2Fcallback&response_type=code&scope=guilds%20email"
 }
