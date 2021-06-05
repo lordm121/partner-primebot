@@ -1,0 +1,10 @@
+{
+    "port": 3000,
+
+    "clientId": "850106591051382784",
+    "clientSecret": "o2Fevgiie3oXjQ-3PA2bi_WvjENTZd7l",
+    "scopes": ["identify", "guilds"],
+    "redirectUri": "https://glossy-shared-pressure.glitch.me/authorize/callback",
+    "token":"ODUwMTA2NTkxMDUxMzgyNzg0.YLk5dQ.Ocfk5tcgFFoUdazdd1vqzwuQ68U",
+    "inviteurl":""
+}
