@@ -1,4 +1,5 @@
 const Discord = require('discord.js')
+const ms1 = require("ms");
 
 
 const x73db = require("x73db")
@@ -18,7 +19,21 @@ module.exports = {
   guilOwnerOnly: true,
   cooldown: 3000,
   run: async (bot, message, args) => {
-    let timeshare = 7200000; 
+   
+  let bl = db.get(`bl_${message.guild.id}`);
+
+  let timeout = 1000; 
+
+                let time = dba.get(`cool_${message.author.id}`);
+
+                if(!time) time = 0;
+
+                let r = ms1(timeout - (Date.now() - time), { long: true })
+
+                let messagecool = `**you must wating for \`${r.replace(`seconds`)}\`**`;
+
+    
+    //let timeshare = 7200000; 
 
 let times = db.get(`coolshare_${message.guild.id}`);
 

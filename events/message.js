@@ -1,5 +1,15 @@
 const Discord = require("discord.js")
-const schema = require ('../data/guild.js')
+
+const x73db = require("x73db")
+
+      const ms1 = require("ms");
+
+const db = new x73db("coolshare")
+
+const dba = new x73db("cooldown")
+
+      const moment = require("moment");
+
 /**/
 const data = {};
 module.exports = class {

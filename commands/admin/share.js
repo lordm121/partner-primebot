@@ -19,24 +19,95 @@ module.exports = {
   cooldown: 3000,
   run: async (bot, message, args) => {
     
-    const data = await schema.findOne({
-    guildID: message.guild.id
-})
-if (data) {
+    
 
             var invite = await message.channel.createInvite();
 
   bot.guilds.cache.forEach(c =>{
+    
+    let rooms = db.get(`shareroom_${c.id}`);
 
-let rooms = bot.channels.cache.get(data.channelID)
-  const embed = new Discord.MessageEmbed()
-.setFooter(`Executor ID:  `)
-.setColor('#36393f')
-.addFields(
-    {name: `Executor`, value: ``, inline: true},
-    {name: 'Channel Made', value: `Name: ${rooms.name} (<#${rooms.id}>)`}
-)
+if(!rooms){
 
-rooms.send(embed)
-}) 
-  }}}
+ c.channels
+
+            .create("Partners", {
+
+              //optional
+
+              type: "text" //optional
+
+            }).then(r=>{
+
+      r.createOverwrite(message.guild.id,{
+
+        SEND_MESSAGES: false
+
+    })
+
+          db.set(`shareroom_${c.id}`, r.id);
+
+          rooms = r.id;
+
+                      let room = c.channels.cache.get(rooms);
+
+            room.send(`**Server Name : ${message.guild.name}** \n **Server Description : ${"Pls Join To Our Server"}**\n **MemberCount : ${message.guild.memberCount}** \n **Invite : ${invite} ** `);
+
+            })
+
+            return;
+
+}
+let room = c.channels.cache.get(rooms);
+
+if(!room) {
+
+  c.channels
+
+            .create("Partners", {
+
+              //optional
+
+              type: "text" //optional
+
+            }).then(r=>{
+
+      db.set(`shareroom_${c.id}`, r.id)
+
+      r.createOverwrite(message.guild.id,{
+
+        SEND_MESSAGES: false
+
+    })
+
+    db.get(`bl_${message.guild.id}`,"on");
+
+    r.send(`**Server Name : ${message.guild.name}** \n **Server Description : ${ "Pls Join To Our Server"}**\n **MemberCount : ${message.guild.memberCount}** \n **Invite : ${invite} ** `);
+
+      db.set(`bl_${message.guild.id}`, "on");
+
+    })
+
+}else{
+
+room.send(`**Server Name : ${message.guild.name}** \n **Server Description : ${"Pls Join To Our Server"}**\n **MemberCount : ${message.guild.memberCount}** \n **Invite : ${invite} ** `);
+
+}
+
+  })
+
+  message.channel.send(`**you server shared to${bot.guilds.cache.size}guilds**`);
+
+  db.set(`coolshare_${message.guild.id}`, Date.now());
+
+
+
+            dba.set(`cool_${message.author.id}`, Date.now());
+
+  }} 
+
+
+    
+
+
+  
