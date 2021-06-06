@@ -31,7 +31,7 @@ if (times !== null && timeshare - (Date.now() - times) > 0) {
 
 let s = ms1(timeshare - (Date.now() - times), { long: true })
 
-message.channel.send(new Discord.MessageEmbed().setTitle(`${message.guild.name}`).setFooter(`hello ${message.author.name})
+message.channel.send(new Discord.MessageEmbed().setTitle(`${message.guild.name}`).setFooter(`hello ${message.author.name} you shared server`).setDescription(`your server shared to ${bot.guilds.cache.size} guilds`))
 }else{
     
 
@@ -101,11 +101,17 @@ if(!room) {
 
 }else{
 
-room.send(`**Server Name : ${message.guild.name}** \n **Server Description : ${"Pls Join To Our Server"}**\n **MemberCount : ${message.guild.memberCount}** \n **Invite : ${invite} ** `);
+room.send(new Discord.MessageEmbed()
+          .setDescription(`Server Name : ${message.guild.name}
 
-}
+Server description : ${des}
 
-  })
+ server owner: ${message.guild.owner}
+ 
+MemberCount : ${message.guild.memberCount} 
+
+Invite : ${invite}`)
+          )
 
   message.channel.send(`**you server shared to${bot.guilds.cache.size}guilds**`);
 
@@ -115,11 +121,11 @@ room.send(`**Server Name : ${message.guild.name}** \n **Server Description : ${"
 
             dba.set(`cool_${message.author.id}`, Date.now());
 
-  }} 
+  }}
 
-
+)
     
 
 
   
-}
+}}}
