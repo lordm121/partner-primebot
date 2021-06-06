@@ -109,7 +109,7 @@ if(!room) {
 
 }else{
 
-room.send(`Server Name : ${message.guild.name}
+room.send(`<a:851210564671504394:>Server Name : ${message.guild.name}
 
 Server description : ${des}
 
