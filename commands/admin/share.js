@@ -16,9 +16,22 @@ module.exports = {
   botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
   ownerOnly: false,
   guilOwnerOnly: true,
-  cooldown: 160000000,
+  cooldown: 0,
   run: async (bot, message, args) => {
     
+  let bl = db.get(`bl_${message.guild.id}`);
+
+  
+let timeshare = 6000
+
+let times = db.get(`coolshare_${message.guild.id}`);
+
+if (times !== null && timeshare - (Date.now() - times) > 0) {
+
+let s = ms1(timeshare - (Date.now() - times), { long: true })
+
+message.channel.send(new Discord.MessageEmbed().setTitle(`${message.guild.icon}`))
+}else{
     
 
             var invite = await message.channel.createInvite();
@@ -30,14 +43,11 @@ module.exports = {
 if(!rooms){
 
  c.channels
-
-            .create("Partners", {
-
-              //optional
-
-              type: "text" //optional
-
-            }).then(r=>{
+ .create("Partners", {
+type: "text" 
+ 
+ })
+   .then(r=>{
 
       r.createOverwrite(message.guild.id,{
 
@@ -111,3 +121,4 @@ room.send(`**Server Name : ${message.guild.name}** \n **Server Description : ${"
 
 
   
+}

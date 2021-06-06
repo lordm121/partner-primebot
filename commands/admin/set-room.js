@@ -1,7 +1,6 @@
 const Discord = require('discord.js')
 const ms1 = require("ms");
 
-
 const x73db = require("x73db")
 const db = new x73db("coolshare")
 const dba = new x73db("cooldown")
@@ -20,23 +19,7 @@ module.exports = {
   cooldown: 3000,
   run: async (bot, message, args) => {
    
-  let bl = db.get(`bl_${message.guild.id}`);
 
-  let timeout = 1000; 
-
-                let time = dba.get(`cool_${message.author.id}`);
-
-                if(!time) time = 0;
-
-                let r = ms1(timeout - (Date.now() - time), { long: tru         let messagecool = `**you must wating for \`${r.replace(`second
-    
-    //let timeshare = 7200000; 
-
-let times = db.get(`coolshare_${message.guild.id}`);
-
-    if (time !== null && timeout - (Date.now() - time) > 0) {
-
-message.channel.send(`> ${messagecool}`);
 
     
 let room = message.mentions.channels.first();
@@ -52,4 +35,4 @@ let room = message.mentions.channels.first();
             dba.set(`cool_${message.author.id}`, Date.now());
 
           }
-  }}
+  }
