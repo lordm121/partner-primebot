@@ -109,15 +109,11 @@ if(!room) {
 
 }else{
 
-room.send(`<a:announcement:851210564671504394> Server Name : ${message.guild.name}
-
-Server description : ${des}
-
- server owner: ${message.guild.owner}
- 
-MemberCount : ${message.guild.memberCount} 
-
-Invite : ${invite}`)
+room.send(`<a:settings:851218323379191819> SERVER NAME :\` ${message.guild.name}\`
+SERVER DESCRIPTION: \`${des || "null"}\`
+SERVER OWNER: ${message.guild.owner}
+SERVER COUNT:\`${message.guild.memberCount}\`
+SERVER LINK: ${invite}`)
           
 
   message.channel.send(new Discord.MessageEmbed().setDescription(`Your Server Shared to ${bot.guilds.cache.size} Guilds`))
