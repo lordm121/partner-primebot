@@ -18,6 +18,7 @@ module.exports = {
   guilOwnerOnly: true,
   cooldown: 0,
   run: async (bot, message, args) => {
+    let guild = await Guild.findOne({guildId: message.guild.id, guildName: message.guild.name});
     
   let bl = db.get(`bl_${message.guild.id}`);
 
