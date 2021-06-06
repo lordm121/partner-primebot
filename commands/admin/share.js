@@ -16,7 +16,7 @@ module.exports = {
   botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
   ownerOnly: false,
   guilOwnerOnly: true,
-  cooldown: 3000,
+  cooldown: 160000000,
   run: async (bot, message, args) => {
     
     

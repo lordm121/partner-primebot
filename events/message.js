@@ -15,17 +15,7 @@ const data = {};
 module.exports = class {
 async run(message,bot) {
   //const data = {};
-    let bl = db.get(`bl_${message.guild.id}`);
-
-  let timeout = 1000; 
-
-                let time = dba.get(`cool_${message.author.id}`);
-
-                if(!time) time = 0;
-
-                let r = ms1(timeout - (Date.now() - time), { long: true })
-
-                let messagecool = `**you must wating for \`${r.replace(`seconds`)}\`**`;
+  
 
   if (message.author.bot) return;
   if (message.channel.type === "dm") return;
