@@ -1,4 +1,5 @@
 const Discord = require('discord.js')
+const schema = require ('../../data/guild.is')
 const ms1 = require("ms");
 const x73db = require("x73db")
 const db = new x73db("coolshare")
@@ -18,6 +19,10 @@ module.exports = {
   cooldown: 3000,
   run: async (bot, message, args) => {
     
-    
+    const data = await schema.findOne({
+    uildID: guild.id
+})
+if (data) {
+
     
   }}

@@ -15,7 +15,7 @@ const cmd = require("node-cmd");
 
 global.logChannel = bot.channels.cache.get("835968578699264011")
 global.mongoose = require('mongoose')
-mongoose.connect("mongodb+srv://solin:hama1234@cluster0.prbzz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
+mongoose.connect("mongodb+srv://solin:hama1234@cluster0.abbas.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
   console.log("Connected to the Mongodb database.");
 }).catch((err) => {
   console.log("Unable to connect to the Mongodb database. Error:" + err);

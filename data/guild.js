@@ -1,10 +1,9 @@
 const mongoose = require ('mongoose')
 
 const Schema = new mongoose.Schema({
-    GuildName: String,
-    GuildID: String,
-    ChannelID: String,
-  prefix: String
+    guildID: String,
+    channelID: String,
+     prefix: { type: String, default: "!"},
 })
 
-module.exports = mongoose.model ('Bot-Mod-Logs-Channels', Schema)
+module.exports = mongoose.model ('Guild', Schema)
