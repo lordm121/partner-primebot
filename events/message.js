@@ -1,18 +1,29 @@
 const Discord = require("discord.js")
 const schema = require ('../data/guild.js')
 /**/
+const data = {};
 module.exports = class {
 async run(message,bot) {
   //const data = {};
+    let bl = db.get(`bl_${message.guild.id}`);
+
+  let timeout = 1000; 
+
+                let time = dba.get(`cool_${message.author.id}`);
+
+                if(!time) time = 0;
+
+                let r = ms1(timeout - (Date.now() - time), { long: true })
+
+                let messagecool = `**you must wating for \`${r.replace(`seconds`)}\`**`;
+
   if (message.author.bot) return;
   if (message.channel.type === "dm") return;
-  const data = await schema.findOne({
-    guildID: message.guild.id, 
-    channelID: message.channel.id
-})
+  
+
  /* let data4 = await Prime.findOne({ guildID: message.guild.id });
      if (data4 && data4.log === "enable") return;
-  *//*let guild = await Guild.findOne({ guildID: message.guild.id });
+  */let guild = await Guild.findOne({ guildID: message.guild.id });
   if(!guild) { Guild.create({ guildID: message.guild.id }); }
   data.guild = guild;/*
   let user = await User.findOne({ guildID: message.guild.id, userID: message.author.id });
@@ -22,10 +33,10 @@ async run(message,bot) {
   if(!lang) { Lang.create({ guildID: message.guild.id });} 
   data.lang = lang.language*/
   if (data) {
-  if (!message.content.toLowerCase().startsWith(data.prefix.toLowerCase())) return;
+  if (!message.content.toLowerCase().startsWith(guild.prefix.toLowerCase())) return;
   let args = message.content.split(" ");
   const argsr = message.content
-    .slice(data.prefix.length)
+    .slice(guild.prefix.length)
     .trim()
     .split(/ +/g);
   const cmd = argsr.shift().toLowerCase();
@@ -78,8 +89,8 @@ async run(message,bot) {
 	}
 	  }
 	  timestamps.set(message.author.id, now);
-	  let prefix = data.prefix;
-	  if (command) command.run(bot, message, args, prefix, cmd);
+	  let prefix = guild.prefix;
+	  if (command) command.run(bot, message, args, prefix, data , cmd);
 	  setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
   }
