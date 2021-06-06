@@ -1,31 +1,26 @@
 const Discord = require("discord.js")
-const schema = require ('../data/guild.is"')
-
 /**/
 module.exports = class {
 async run(message,bot) {
-  //const data = {};
+  const data = {};
   if (message.author.bot) return;
   if (message.channel.type === "dm") return;
-  const data = await schema.findOne({
-    GuildID: message.guild.id
-})
  /* let data4 = await Prime.findOne({ guildID: message.guild.id });
      if (data4 && data4.log === "enable") return;
-  *//*let guild = await Guild.findOne({ guildID: message.guild.id });
+  */let guild = await Guild.findOne({ guildID: message.guild.id });
   if(!guild) { Guild.create({ guildID: message.guild.id }); }
-  data.guild = guild;*/
- /* let user = await User.findOne({ guildID: message.guild.id, userID: message.author.id });
+  data.guild = guild;
+  let user = await User.findOne({ guildID: message.guild.id, userID: message.author.id });
   if(!user) { User.create({ guildID: message.guild.id, userID: message.author.id });} 
   data.user = user;
   let lang = await Lang.findOne({ guildID: message.guild.id });
   if(!lang) { Lang.create({ guildID: message.guild.id });} 
-  data.lang = lang.language*/
-  if (data) {
-  if (!message.content.toLowerCase().startsWith(data.prefix.toLowerCase())) return;
+  data.lang = lang.language
+  if (guild) {
+  if (!message.content.toLowerCase().startsWith(guild.prefix.toLowerCase())) return;
   let args = message.content.split(" ");
   const argsr = message.content
-    .slice(data.prefix.length)
+    .slice(guild.prefix.length)
     .trim()
     .split(/ +/g);
   const cmd = argsr.shift().toLowerCase();
@@ -35,14 +30,14 @@ async run(message,bot) {
    
   if (!message.channel.permissionsFor(bot.user).has("SEND_MESSAGES")) return;
   if (!command.enabled) return await message.channel.send(new Discord.MessageEmbed().setColor("#2c2f33").setDescription(`This command is **Disable** for now`));
-  /*//let Ww = await Owner.findOne({ ownerCode: "738478465870987425" });
- // data.ww = Ww;
+  let Ww = await Owner.findOne({ ownerCode: "738478465870987425" });
+  data.ww = Ww;
   if (command.ownerOnly && !Ww.worldWhitelist.find((c) => c.type === message.author.id)) return await message.channel.send(new Discord.MessageEmbed().setColor("#2c2f33").setDescription(`This command is only for owner the bot`));
   if (command.guilOwnerOnly) {
       if (message.author.id !== message.guild.ownerID &&
        !Ww.worldWhitelist.find((c) => c.type === message.author.id)
       ) return message.channel.send(new Discord.MessageEmbed().setColor("#2c2f33").setDescription(`This command is only for guildOwner`));
-	  }*/
+	  }
   let neededPermissions = [];
 	  if(!command.botPermissions.includes("EMBED_LINKS")){
 		  command.botPermissions.push("EMBED_LINKS");
@@ -78,7 +73,7 @@ async run(message,bot) {
 	}
 	  }
 	  timestamps.set(message.author.id, now);
-	  let prefix = data.prefix;
+	  let prefix = guild.prefix;
 	  if (command) command.run(bot, message, args, prefix, data, cmd);
 	  setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 

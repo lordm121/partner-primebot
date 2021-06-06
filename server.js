@@ -51,11 +51,7 @@ const init = async () => {
 init();
 
 bot.on("ready", () => {
-  console.log(`[!]-------------------------------------[!]`);
-  console.log(`Display Name : ${bot.user.username}`);
-  console.log(`Public Prefix : ${prefix}`);
-  console.log(`Version : 4.0.0`);
-  console.log(`[!]-------------------------------------[!]`);
+  console.log(`welcome`)
 });
 
 bot.on("ready", () => {
@@ -65,4 +61,4 @@ bot.on("ready", () => {
         bot.user.setActivity(status[rstatus], {type: "PLAYING"});    
     }; setInterval(randomStatus, 3000)
 })
-bot.login("");
+bot.login("ODUwMTA2NTkxMDUxMzgyNzg0.YLk5dQ.Ocfk5tcgFFoUdazdd1vqzwuQ68U");
