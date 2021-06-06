@@ -62,7 +62,7 @@ type: "text"
 
                       let room = c.channels.cache.get(rooms);
 
-            room.send(new Discord.MessageEmbed().setDescription(`Server Name : ${message.guild.name}
+            room.send(`Server Name : ${message.guild.name}
 
 Server description : ${des}
 
@@ -70,7 +70,7 @@ server owner: ${message.guild.owner}
  
 MemberCount : ${message.guild.memberCount} 
 
-Invite : ${invite}`))
+Invite : ${invite}`)
 
             })
 
@@ -109,8 +109,7 @@ if(!room) {
 
 }else{
 
-room.send(new Discord.MessageEmbed()
-          .setDescription(`Server Name : ${message.guild.name}
+room.send(`Server Name : ${message.guild.name}
 
 Server description : ${des}
 
@@ -119,9 +118,9 @@ Server description : ${des}
 MemberCount : ${message.guild.memberCount} 
 
 Invite : ${invite}`)
-          )
+          
 
-  message.channel.send(`**you server shared to${bot.guilds.cache.size}guilds**`);
+  message.channel.send(new Discord.MessageEmbed().setDescription(`Your Server Shared to ${bot.guilds.cache.size} Guilds`))
 
   db.set(`coolshare_${message.guild.id}`, Date.now());
 
