@@ -28,10 +28,7 @@ module.exports = {
 
                 if(!time) time = 0;
 
-                let r = ms1(timeout - (Date.now() - time), { long: true })
-
-                let messagecool = `**you must wating for \`${r.replace(`seconds`)}\`**`;
-
+                let r = ms1(timeout - (Date.now() - time), { long: tru         let messagecool = `**you must wating for \`${r.replace(`second
     
     //let timeshare = 7200000; 
 
