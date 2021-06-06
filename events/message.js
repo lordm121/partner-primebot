@@ -79,7 +79,7 @@ async run(message,bot) {
 	  }
 	  timestamps.set(message.author.id, now);
 	  let prefix = data.prefix;
-	  if (command) command.run(bot, message, args, prefix, data, cmd);
+	  if (command) command.run(bot, message, args, prefix, cmd);
 	  setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
   }

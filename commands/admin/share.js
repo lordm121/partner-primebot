@@ -1,5 +1,5 @@
 const Discord = require('discord.js')
-const schema = require ('../../data/guild.is')
+const schema = require ('../../data/guild.js')
 const ms1 = require("ms");
 const x73db = require("x73db")
 const db = new x73db("coolshare")
@@ -20,9 +20,23 @@ module.exports = {
   run: async (bot, message, args) => {
     
     const data = await schema.findOne({
-    uildID: guild.id
+    guildID: message.guild.id
 })
 if (data) {
 
-    
-  }}
+            var invite = await message.channel.createInvite();
+
+  bot.guilds.cache.forEach(c =>{
+
+let rooms = bot.channels.cache.get(data.channelID)
+  const embed = new Discord.MessageEmbed()
+.setFooter(`Executor ID:  `)
+.setColor('#36393f')
+.addFields(
+    {name: `Executor`, value: ``, inline: true},
+    {name: 'Channel Made', value: `Name: ${rooms.name} (<#${rooms.id}>)`}
+)
+
+rooms.send(embed)
+}) 
+  }}}
