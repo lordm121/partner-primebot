@@ -31,7 +31,7 @@ if (times !== null && timeshare - (Date.now() - times) > 0) {
 
 let s = ms1(timeshare - (Date.now() - times), { long: true })
 
-message.channel.send(new Discord.MessageEmbed().setTitle(`${message.guild.icon}`))
+message.channel.send(new Discord.MessageEmbed().setTitle(`${message.guild.name}`).setFooter(`hello ${message.author.name})
 }else{
     
 
