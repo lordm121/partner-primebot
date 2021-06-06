@@ -44,7 +44,8 @@
     "quick-db": "^1.0.5",
     "quick-temp": "^0.1.8",
     "quick.db": "^7.1.2",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.1",
+    "x73db": "^1.0.0"
   },
   "engines": {
     "node": "14.x"
