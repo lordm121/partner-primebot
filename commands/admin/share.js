@@ -22,7 +22,7 @@ module.exports = {
     
   let bl = db.get(`bl_${message.guild.id}`);
 
-  
+  let des = db.get(`des_${message.guild.id}`);
 let timeshare = 6000
 
 let times = db.get(`coolshare_${message.guild.id}`);
@@ -62,7 +62,15 @@ type: "text"
 
                       let room = c.channels.cache.get(rooms);
 
-            room.send(`**Server Name : ${message.guild.name}** \n **Server Description : ${"Pls Join To Our Server"}**\n **MemberCount : ${message.guild.memberCount}** \n **Invite : ${invite} ** `);
+            room.send(new Discord.MessageEmbed().setDescription(`Server Name : ${message.guild.name}
+
+Server description : ${des}
+
+server owner: ${message.guild.owner}
+ 
+MemberCount : ${message.guild.memberCount} 
+
+Invite : ${invite}`))
 
             })
 
