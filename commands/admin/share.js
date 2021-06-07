@@ -18,7 +18,7 @@ module.exports = {
   ownerOnly: false,
   guilOwnerOnly: false,
   cooldown: 0,
-  run: async (bot, message, args) => {
+  run: async (bot, message, args,data) => {
     let guild = await Guild.findOne({guildId: message.guild.id, guildName: message.guild.name});
     
   let bl = db.get(`bl_${message.guild.id}`);
@@ -108,7 +108,7 @@ if(!room) {
 
 }else{
 
-room.send(`admin/share:SEND_MESSAGE`)
+room.send(bot.lord.get(data.lang,"admin","share"))
           
 
   message.channel.send(new Discord.MessageEmbed().setDescription(`Your Server Shared to ${bot.guilds.cache.size} Guilds`))

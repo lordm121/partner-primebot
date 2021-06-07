@@ -10,8 +10,8 @@ const beautify = require("js-beautify");
 const { inspect } = require("util");
 ///let dev = ["738478465870987425","386188491953799178"];
 const cmd = require("node-cmd");
-const { I18n } = require("language-parser")
-bot.reva = new I18n({ defaultLocale: "en" });
+const { I18n } = require("locale-parser")
+bot.lord = new I18n({ defaultLanguage: "en" });
 
 global.logChannel = bot.channels.cache.get("835968578699264011")
 global.mongoose = require('mongoose')

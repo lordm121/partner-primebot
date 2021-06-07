@@ -1,0 +1,1 @@
+share: "\`Server Name\` %${message.guild.name} \`Server Description\`: %${des} \`Invitr\`: ${invite}"
