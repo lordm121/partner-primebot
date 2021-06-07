@@ -18,7 +18,7 @@ module.exports = {
   ownerOnly: false,
   guilOwnerOnly: false,
   cooldown: 0,
-  run: async (bot, message, args,data) => {
+  run: async (bot, message, args) => {
     let guild = await Guild.findOne({guildId: message.guild.id, guildName: message.guild.name});
     
   let bl = db.get(`bl_${message.guild.id}`);
@@ -63,12 +63,17 @@ type: "text"
 
                       let room = c.channels.cache.get(rooms);
 
-            room.send(bot.reva.get(data.lang, "admin","share_message"))
-
-            })
+            room.send(`
+            \`Server Name\`: ${message.guild.name}
+            
+            \`Server Description\`: ${des || null}
+            
+            \`Server Owner\`: ${message.guild.owner}
+            \`Invite\`: ${invite}`)
 
             return;
 
+})
 }
 let room = c.channels.cache.get(rooms);
 
@@ -86,7 +91,7 @@ if(!room) {
 
       db.set(`shareroom_${c.id}`, r.id)
 
-      r.createOverwrite(message.guild.id,{
+      r.updateOverwrite(message.guild.id,{
 
         SEND_MESSAGES: false
 
@@ -94,17 +99,21 @@ if(!room) {
 
     db.get(`bl_${message.guild.id}`,"on");
 
-    r.send(`**Server Name : ${message.guild.name}** \n **Server Description : ${ "Pls Join To Our Server"}**\n **MemberCount : ${message.guild.memberCount}** \n **Invite : ${invite} ** `);
+    r.send(` `);
 
       db.set(`bl_${message.guild.id}`, "on");
 
-    })
-
+    
+  })
 }else{
 
 room.send(`
 \`Server Name\`: ${message.guild.name}
-\`Servrr
+
+\`Servrer Description\`: ${des || null}
+
+\`Server Owner\`: ${message.guild.owner}
+\`Invite\`: ${invite}`)
           
 
   message.channel.send(new Discord.MessageEmbed().setDescription(`Your Server Shared to ${bot.guilds.cache.size} Guilds`))
@@ -116,7 +125,8 @@ room.send(`
             dba.set(`cool_${message.author.id}`, Date.now());
 
   }}
-
+  
+                
 )
     
 

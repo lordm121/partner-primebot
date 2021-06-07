@@ -3,11 +3,11 @@ const Discord = require("discord.js");
 const { Color } = require("../../config.js")
 const { MessageEmbed } = require("discord.js")
 module.exports = {
-  name: "about",
-  cmdHelp: "Get more information about the bot",
-  cmdUsage: "s!about",
+  name: "help",
+  cmdHelp: "Get help embed",
+  cmdUsage: ".help",
   cmdCatagory: "General",
-  aliases: ["botinfo"],
+  aliases: ["help","command","commands"],
   enabled: true,            
   memberPermissions: [ "SEND_MESSAGES" ],            
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],        
