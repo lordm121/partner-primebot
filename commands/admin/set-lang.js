@@ -2,18 +2,20 @@ const Discord = require('discord.js')
 const { Color } = require("../../config.js");
 
 module.exports = {
-    name: "setlang.js",
+    name: "set-lang.js",
     aliases: ["setlang"],
     description: "You can ban a member, or multiple members using this command",
     usage: [".setlang"],
+  dirname: __dirname,
+		
     category: ["Admin"],
     enabled: true,
     memberPermissions: ["BAN_MEMBERS"],
     botPermissions: ["SEND_MESSAGES", "EMBED_LINKS", "BAN_MEMBERS"],
     ownerOnly: false,
     cooldown: 6000,
-    run: async (client, message, args, dev) => {
-let data = await Lang.findIne({guildID: message.guild.id})
+    run: async (client, message, args, dev,data) => {
+ //let lang = await Lang.findIne({guildID: message.guild.id})
 
   const language = this.bot.languages.find((l) => l.name === args[0] || l.aliases.includes(args[0]));
 
