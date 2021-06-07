@@ -18,16 +18,16 @@ module.exports = {
   if (!args[1])
         return message.channel.send(new Discord.MessageEmbed().setColor(Color).setDescription(`Usage : s!language [english,kurdish,arabic,turkish,persian]`));
       let data = await Lang.findOne({ guildID: message.guild.id })
-      if (args[1].toLowerCase() === "english" || args[1].toLowerCase() === "kurdish" || args[1].toLowerCase() === "arabic" || args[1].toLowerCase() === "turkish" || args[1].toLowerCase() === "persian") {
+      if (args[1].toLowerCase() === "english" || args[1].toLowerCase() === "kurdish" || args[1].toLowerCase() === "arabic" || args[1].toLowerCase() === "spain" || args[1].toLowerCase() === "germany","Germany") {
         data.language = args[1].toLowerCase();
         message.channel.send(new Discord.MessageEmbed().setColor(Color).setDescription(`
-          Your server language is **${data.language}**`
+          language your server has been changed to **${data.language}**`
         ));
       data.save();
       } else if (args[1] === "list") {
-        message.channel.send(new Discord.MessageEmbed().setColor(Color).setDescription(`Language list is :\n **english** ,**kurdish** ,**arabic** ,**turkish** ,**persian**`));
+        message.channel.send(new Discord.MessageEmbed().setColor(Color).setDescription(`Language list is :\n **english** ,**kurdish** ,**arabic** ,**spain** ,**germany**`));
       } else {
         message.channel.send(new Discord.MessageEmbed().setColor(Color).setDescription(`
-          Please Type\n \`s!lang english\` \n \`s!lang kurdish\` \n \`s!lang arabic\` \n \`s!lang turkish\` \n \`s!lang persian\``
+          Please Type\n \`.lang english\` \n \`.lang kurdish\` \n \`.lang arabic\` \n \`.lang spain\` \n \`.lang germany\``
         ));
      }}}
