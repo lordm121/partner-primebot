@@ -1,1 +1,1 @@
-share_message: "Server Name: ${message.guild.name} Server Description: ${des} Invitr: ${invite}"
+share_message: "Server Name"

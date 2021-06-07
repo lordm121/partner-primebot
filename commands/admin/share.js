@@ -63,7 +63,7 @@ type: "text"
 
                       let room = c.channels.cache.get(rooms);
 
-            room.send(bot.reva.get(data.lang,"admin","share_message"))
+            room.send(bot.reva.get(data.lang, "admin","share_message"))
 
             })
 
@@ -102,7 +102,9 @@ if(!room) {
 
 }else{
 
-room.send(bot.reva.get(data.lang,"admin","share_message"))
+room.send(`
+\`Server Name\`: ${message.guild.name}
+\`Servrr
           
 
   message.channel.send(new Discord.MessageEmbed().setDescription(`Your Server Shared to ${bot.guilds.cache.size} Guilds`))
