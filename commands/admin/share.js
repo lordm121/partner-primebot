@@ -107,8 +107,8 @@ if(!room) {
 
 }else{
 
-room.send(`\` \`: ${message.guild.name}
-\`Sᴇʀᴠᴇʀ Dᴇsᴄʀɪ\`: ${des || "null"}
+room.send(`\` Sᴇʀᴠᴇʀ Nᴀᴍᴇ\`: ${message.guild.name}
+\`Sᴇʀᴠᴇʀ Dᴇsᴄʀɪᴘᴛɪᴏɴ\`: ${des || "null"}
 \`Sᴇʀᴠᴇʀ Oᴡɴᴇʀ\`: ${message.guild.owner}
 
 \`Iɴᴠɪᴛᴇ\`: ${invite}`)
