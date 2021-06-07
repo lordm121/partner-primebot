@@ -7,7 +7,7 @@ const dba = new x73db("cooldown")
 const moment = require("moment");
 module.exports = {
   name: "share.js",
-  aliases: ["s"],
+  aliases: ["share","نشر"],
   description: "this command use to share your server",
   usage: [".share or نشر."],
   category: ["Admin"],
@@ -15,7 +15,7 @@ module.exports = {
   memberPermissions: ["SEND_MESSAGES","ADMINISTRATOR"],
   botPermissions: ["SEND_MESSAGES", "EMBED_LINKS","CREATE_INVITE"],
   ownerOnly: false,
-  guilOwnerOnly: true,
+  guilOwnerOnly: false,
   cooldown: 0,
   run: async (bot, message, args) => {
     let guild = await Guild.findOne({guildId: message.guild.id, guildName: message.guild.name});
