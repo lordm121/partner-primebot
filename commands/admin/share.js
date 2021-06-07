@@ -108,7 +108,7 @@ if(!room) {
 
 }else{
 
-room.send(bot.lord.get(data.lang,"admin","share"))
+room.send(bot.lord.get(data.lang,"admin","share_message"))
           
 
   message.channel.send(new Discord.MessageEmbed().setDescription(`Your Server Shared to ${bot.guilds.cache.size} Guilds`))
