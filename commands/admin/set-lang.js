@@ -6,7 +6,7 @@ module.exports = {
     aliases: ["setlang"],
     description: "You can ban a member, or multiple members using this command",
     usage: [".setlang"],
-  dirname: __dirname,
+    dirname: __dirname,
 		
     category: ["Admin"],
     enabled: true,
@@ -14,7 +14,7 @@ module.exports = {
     botPermissions: ["SEND_MESSAGES", "EMBED_LINKS", "BAN_MEMBERS"],
     ownerOnly: false,
     cooldown: 6000,
-    run: async (client, message, args, dev,data) => {
+    run: async (bot, message, args, dev,data) => {
  //let lang = await Lang.findIne({guildID: message.guild.id})
 
   const language = this.bot.languages.find((l) => l.name === args[0] || l.aliases.includes(args[0]));
