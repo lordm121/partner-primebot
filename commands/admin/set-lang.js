@@ -18,7 +18,7 @@ module.exports = {
   if (!args[1])
         return message.channel.send(new Discord.MessageEmbed().setColor(Color).setDescription(``));
       let data = await Lang.findOne({ guildID: message.guild.id })
-      if (args[1].toLowerCase() === "english" || args[1].toLowerCase() === "kurdish" || args[1].toLowerCase() === "arabic" || args[1].toLowerCase() === "spain" || args[1].toLowerCase() === "germany","Germany") {
+      if (args[1].toLowerCase() === "english" || args[1].toLowerCase() === "kurdish" || args[1].toLowerCase() === "arabic" || args[1].toLowerCase() === "spain" || args[1].toLowerCase() === "germany") {
         data.language = args[1].toLowerCase();
         message.channel.send(new Discord.MessageEmbed().setColor(Color).setDescription(`
           language your server has been changed to **${data.language}**`
