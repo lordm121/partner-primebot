@@ -8,12 +8,12 @@ const moment = require("moment");
 module.exports = {
   name: "set-room",
   aliases: ["st"],
-  description: "Prevent others from mass banning your members",
-  usage: ["s!antiban [number/on/off]"],
-  category: ["Security"],
+  description: "this command use to set room share",
+  usage: [".set-room or .st <#channel>"],
+  category: ["Admin"],
   enabled: true,
-  memberPermissions: ["SEND_MESSAGES"],
-  botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
+  memberPermissions: ["SEND_MESSAGES","ADMINISTRATOR"],
+  botPermissions: ["SEND_MESSAGES", "EMBED_LINKS","MANAGE_CHANNELS"],
   ownerOnly: false,
   guilOwnerOnly: true,
   cooldown: 3000,
@@ -22,11 +22,11 @@ module.exports = {
 
 
     
-let room = message.mentions.channels.first();
+            let room = message.mentions.channels.first();
 
             if(!room) return message.reply(`**I Can't Find ${args[1]}**`);
             let em = new Discord.MessageEmbed()
-            .setColor("BLUE")
+            .setColor("")
             .setDescription(`**Done Set ${room} Share Room ID ROOM : \`${room.id}\`**`)
             message.channel.send(em)
 

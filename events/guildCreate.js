@@ -3,7 +3,7 @@ module.exports = class {
 async run(guild, bot) {
 		const thanksEmbed = new Discord.MessageEmbed()			
                         .setAuthor("Thank you for adding me to your guild !")
-			.setDescription("To configure me,\n type **s!help** and look at the **Security** commands!.")
+			.setDescription("To configure me,\n type **.help** and look at the **Share** commands!.")
 			.setColor("#2c2f33")
                         .setTimestamp();
 		guild.owner.send(thanksEmbed).catch(() => {});
@@ -13,5 +13,5 @@ async run(guild, bot) {
 		const logsEmbed = new Discord.MessageEmbed()
 			.setColor("#2c2f33")
 			.setDescription(text);
-		bot.channels.cache.get("835968578699264011").send(logsEmbed);     
+		bot.channels.cache.get("851392343814307840").send(logsEmbed);     
 }};

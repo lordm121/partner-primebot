@@ -19,6 +19,7 @@ module.exports = {
   guilOwnerOnly: true,
   cooldown: 6000,
   run: async (bot, message, args, dev) => {
+    let guild = await Guild.findOne({})
    let des = db.get(`des_${message.guild.id}`);
     let de = message.content.split(" ").slice(1).join(" ");
 if(!de) return message.channel.send(`**Pls Type New description :) **`);
