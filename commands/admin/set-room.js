@@ -1,13 +1,13 @@
 const Discord = require('discord.js')
 const ms1 = require("ms");
-
+const { Color } = require("../../config.js")
 const x73db = require("x73db")
 const db = new x73db("coolshare")
 const dba = new x73db("cooldown")
 const moment = require("moment");
 module.exports = {
   name: "set-room",
-  aliases: ["st"],
+  aliases: ["st","set-room","setchannel","channel"],
   description: "this command use to set room share",
   usage: [".set-room or .st <#channel>"],
   category: ["Admin"],

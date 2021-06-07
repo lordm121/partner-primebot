@@ -9,6 +9,7 @@ const dba = new x73db("cooldown")
       const moment = require("moment");
 const fs = require("fs");
 const Discord = require("discord.js");
+const { Color } = require("../../config.js")
 module.exports = {
   name: "description.js",
   aliases: ["sd","description","set-description","setdescription"],
