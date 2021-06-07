@@ -62,15 +62,13 @@ type: "text"
 
                       let room = c.channels.cache.get(rooms);
 
-            room.send(`Server Name : ${message.guild.name}
+            room.send(`\`Sᴇʀᴠᴇʀ Nᴀᴍᴇ\`: ${message.guild.name}
 
-Server description : ${des}
+ \`Sᴇʀᴠʀʀ Dᴇsᴄʀɪᴘᴛɪᴏɴ\`: ${des}
 
-server owner: ${message.guild.owner}
- 
-MemberCount : ${message.guild.memberCount} 
+\`Sᴇʀᴠᴇʀ Oᴡɴᴇʀ\`: ${message.guild.owner}
 
-Invite : ${invite}`)
+ \`Iɴᴠɪᴛᴇ\`: ${invite}`)
 
             })
 
@@ -109,11 +107,11 @@ if(!room) {
 
 }else{
 
-room.send(`<a:settings:851218323379191819> SERVER NAME :\` ${message.guild.name}\`
-SERVER DESCRIPTION: \`${des || "null"}\`
-SERVER OWNER: ${message.guild.owner}
-SERVER COUNT:\`${message.guild.memberCount}\`
-SERVER LINK: ${invite}`)
+room.send(`\` \`: ${message.guild.name}
+\`Sᴇʀᴠᴇʀ Dᴇsᴄʀɪ\`: ${des || "null"}
+\`Sᴇʀᴠᴇʀ Oᴡɴᴇʀ\`: ${message.guild.owner}
+
+\`Iɴᴠɪᴛᴇ\`: ${invite}`)
           
 
   message.channel.send(new Discord.MessageEmbed().setDescription(`Your Server Shared to ${bot.guilds.cache.size} Guilds`))
