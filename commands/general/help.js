@@ -1,49 +1,57 @@
 const fs = require("fs");
 const Discord = require("discord.js");
-const { Color } = require("../../config.js");
+const { Color } = require("../../config.js")
+const { MessageEmbed } = require("discord.js")
 module.exports = {
-  name: "help",
-  aliases: ["commands"],
-  description: "To show you all command of the bot",
-  usage: ["s!help","s!help <command>"],
-  category: ["General"],
+  name: "about",
+  cmdHelp: "Get more information about the bot",
+  cmdUsage: "s!about",
+  cmdCatagory: "General",
+  aliases: ["botinfo"],
   enabled: true,            
   memberPermissions: [ "SEND_MESSAGES" ],            
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],        
   ownerOnly: false,            
-  cooldown: 1000,
-  run: async (bot, message, args, dev, data) => {
-   
+  cooldown: 3000,
+  run: async (bot, message, args, dev) => {
     if (!args[1]) {
-  let embed = new Discord.MessageEmbed()
-     .setColor(Color)
-     .setTitle(bot.reva.get(data.lang, "general","help_embed"))
-     .setDescription(`
-[ Top.gg soon ](https://top.gg/) - [ Invite ](https://discord.com/api/oauth2/authorize?client_id=${bot.user.id}&permissions=67206193&scope=bot) - [ Support ](https://discord.gg/aW6TnhGeSS)
-`)
-     .addField("ℹ️ General", "`invite`, `support`, `about`, `ping`, `vote(soon)`")
+let embed = new Discord.MessageEmbed()
+         .setColor(Color)
+         .setTitle( "General")
+         .setDescription(`
+    [ Top.gg soon ](https://top.gg/) - [ Invite ](https://discord.com/api/oauth2/authorize?client_id=${bot.user.id}&permissions=67206193&scope=bot) - [ Support ](https://discord.gg/aW6TnhGeSS)
+    `)
+         .addField
+("ℹ️ General", "`invite`, `support`, `about`, `ping`, `vote(soon)`")
      .addField("⚙️ Admin", "`share`, `set-room`,`prefix`, `lang`")
     /// .addField("🔨 Security", "`anti`, `settings`, `punishment`, `whitelist`")
   message.channel.send(embed)
-       } else {
-      let  command = args[1]
-      if (bot.commands.has(command) || 
-      bot.aliases.has(command)) {  
+
       
-      command = bot.commands.get(command) || bot.aliases.get(command);
-        let ccmd = "<:disable:840230135046471711> Disabled"
-        if ( command.enabled ) {
-        ccmd = "<:enable:840230134899671060> Enabled"
+    } else {
+      let command = bot.commands.get(args[1]);
+      if (!command) command = bot.commands.get(bot.aliases.get(args[1]));
+      if (command) {
+        if (!command.cmdUsage) {
+          command.cmdUsage = "No usage for this command"
         }
-      let embed = new Discord.MessageEmbed()
-      .setColor(Color) 
-      .setThumbnail(message.author.avatarURL())
-      .setTitle("**Help**")
-      .setDescription(command.description || command.name + " this command don't have a description")
-      .addField("**Usage**", "" + command.usage.join(", ") + "" )
-      .addField("**Category**", "" + command.category.join(", ") + "" )
-      .addField("**Command is**", ccmd);
-      message.channel.send(embed)
+        if (!command.cmdHelp) {
+          command.cmdHelp = "No help for this command"
         }
+        if (!command.cmdCatagory) {
+          command.cmdCatagory = "Null"
+        }
+        let embed = new MessageEmbed()
+          .setColor(Color)
+          .setTitle("Command Help")
+          .setDescription(`
+**Help:** ${command.cmdHelp}
+**Usage:** ${command.cmdUsage}
+**Category:** ${command.cmdCatagory}`)
+        message.channel.send(embed);
+      } else {
+        return message.channel.send(`We don't have command by this name **${args[0]}**`)
+      }
     }
-  }};
+  }
+}
