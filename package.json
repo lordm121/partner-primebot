@@ -45,7 +45,10 @@
     "quick-temp": "^0.1.8",
     "quick.db": "^7.1.2",
     "node-fetch": "^2.6.1",
-    "x73db": "^1.0.0"
+    "x73db": "^1.0.0",
+    "i18next": "^20.3.1",
+    "i18next-node-fs-backend": "^2.1.3",
+    "path": "^0.12.7"
   },
   "engines": {
     "node": "14.x"
