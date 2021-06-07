@@ -16,7 +16,7 @@ module.exports = {
  //let lang = await Lang.findIne({guildID: message.guild.id})
 
   if (!args[1])
-        return message.channel.send(new Discord.MessageEmbed().setColor(Color).setDescription(`Usage : s!language [english,kurdish,arabic,turkish,persian]`));
+        return message.channel.send(new Discord.MessageEmbed().setColor(Color).setDescription(``));
       let data = await Lang.findOne({ guildID: message.guild.id })
       if (args[1].toLowerCase() === "english" || args[1].toLowerCase() === "kurdish" || args[1].toLowerCase() === "arabic" || args[1].toLowerCase() === "spain" || args[1].toLowerCase() === "germany","Germany") {
         data.language = args[1].toLowerCase();

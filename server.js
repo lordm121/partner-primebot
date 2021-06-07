@@ -11,7 +11,7 @@ const { inspect } = require("util");
 ///let dev = ["738478465870987425","386188491953799178"];
 const cmd = require("node-cmd");
 const { I18n } = require("locale-parser")
-bot.lord = new I18n({ defaultLocale: "en" });
+bot.reva = new I18n({ defaultLocale: "en" });
 
 global.logChannel = bot.channels.cache.get("835968578699264011")
 global.mongoose = require('mongoose')
