@@ -23,21 +23,19 @@ async run(message,bot) {
 let lang = await Lang.findOne({ guildID: message.guild.id });
   if(!lang) { Lang.create({ guildID: message.guild.id });} 
   data.lang = lang.language
-const guild = await Guild.findOne({ guildID: message.guild.id });
-			message.guild.data = data.guild = guild;
-		
+
  /* let data4 = await Prime.findOne({ guildID: message.guild.id });
-     if (data4 && data4.log === "enable") return;
+     if (data4 && data4.log === "enable") return;*/
   let guild = await Guild.findOne({ guildID: message.guild.id});
   if(!guild) { Guild.create({ guildID: message.guild.id }); }
-  data.guild = guild;*//*
+  data.guild = guild;/*
   let user = await User.findOne({ guildID: message.guild.id, userID: message.author.id });
   if(!user) { User.create({ guildID: message.guild.id, userID: message.author.id });} 
   data.user = user;
   let lang = await Lang.findOne({ guildID: message.guild.id });
   if(!lang) { Lang.create({ guildID: message.guild.id });} 
   data.lang = lang.language*/
-  if (data) {
+  if (guild) {
   if (!message.content.toLowerCase().startsWith(guild.prefix.toLowerCase())) return;
   let args = message.content.split(" ");
   const argsr = message.content

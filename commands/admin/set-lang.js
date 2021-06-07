@@ -6,27 +6,28 @@ module.exports = {
     aliases: ["setlang"],
     description: "You can ban a member, or multiple members using this command",
     usage: [".setlang"],
-    dirname: __dirname,
-		
     category: ["Admin"],
     enabled: true,
     memberPermissions: ["BAN_MEMBERS"],
     botPermissions: ["SEND_MESSAGES", "EMBED_LINKS", "BAN_MEMBERS"],
     ownerOnly: false,
     cooldown: 6000,
-    run: async (bot, message, args, dev,data) => {
+    run: async (bot, message, args, dev) => {
  //let lang = await Lang.findIne({guildID: message.guild.id})
 
-  const language = this.bot.languages.find((l) => l.name === args[0] || l.aliases.includes(args[0]));
-
-		if(!args[0] || !language){
-			return message.error("i cant find", {
-				list: this.bot.languages.map((l) => "`"+l.name+"`").join(", ")
-			});
-		}
-
-		data.guild.language = language.name;
-		await data.guild.save();
-        
-		return message.sendT("you chnaged language secc");
-    }}
+  if (!args[1])
+        return message.channel.send(new Discord.MessageEmbed().setColor(Color).setDescription(`Usage : s!language [english,kurdish,arabic,turkish,persian]`));
+      let data = await Lang.findOne({ guildID: message.guild.id })
+      if (args[1].toLowerCase() === "english" || args[1].toLowerCase() === "kurdish" || args[1].toLowerCase() === "arabic" || args[1].toLowerCase() === "turkish" || args[1].toLowerCase() === "persian") {
+        data.language = args[1].toLowerCase();
+        message.channel.send(new Discord.MessageEmbed().setColor(Color).setDescription(`
+          Your server language is **${data.language}**`
+        ));
+      data.save();
+      } else if (args[1] === "list") {
+        message.channel.send(new Discord.MessageEmbed().setColor(Color).setDescription(`Language list is :\n **english** ,**kurdish** ,**arabic** ,**turkish** ,**persian**`));
+      } else {
+        message.channel.send(new Discord.MessageEmbed().setColor(Color).setDescription(`
+          Please Type\n \`s!lang english\` \n \`s!lang kurdish\` \n \`s!lang arabic\` \n \`s!lang turkish\` \n \`s!lang persian\``
+        ));
+     }}}
