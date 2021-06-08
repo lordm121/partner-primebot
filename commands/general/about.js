@@ -4,9 +4,9 @@ const { Color } = require("../../config.js")
 
 module.exports = {
   name: "about.js",
-  aliases: ["bot","botinfo","bot-info"],
+  aliases: ["about","botinfo","bot-info"],
   description: "information about bot",
-  usage: [".botinfo"],
+  usage: [".about"],
   category: ["general"],
   enabled: true,			
   memberPermissions: [ "SEND_MESSAGES" ],			
@@ -14,11 +14,12 @@ module.exports = {
   ownerOnly: false,			
   guilOwnerOnly: true,
   cooldown: 3000,
-  run: async (bot, message, args) => {
+  run: async (bot, message, args,data) => {
 
        let embed = new Discord.MessageEmbed()
-        .setTitle(`Info`,` ${bot.user.username}`,true)
-        .setColor("")
+      //  .setTitle(bot.pro.get(data.lang, "general","about_bot"))
+        .setColor(Color)
+       .setTitle(bot.pro.get(data.lang, "general","about_bot"))
         .setThumbnail(bot.user.displayAvatarURL())
         .addField(`**My Name:**`, `${bot.user.tag}`)
         .addField(`**My ID**`, `${bot.user.id}`)
