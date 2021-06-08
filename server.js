@@ -10,9 +10,9 @@ const beautify = require("js-beautify");
 const { inspect } = require("util");
 ///let dev = ["738478465870987425","386188491953799178"];
 const cmd = require("node-cmd");
-const { I18n } = require("locale-parser");
+/*const { I18n } = require("locale-parser");
 bot.reva = new I18n({ defaultLocale: "en" });
-
+*/
 
 global.logChannel = bot.channels.cache.get("835968578699264011")
 global.mongoose = require('mongoose')
@@ -57,7 +57,7 @@ bot.on("ready", () => {
 
 bot.on("ready", () => {
     function randomStatus() {
-        let status = [`s!help on ${bot.guilds.cache.size} Servers | v2.7.3`, `s!help | v2.7.3`]
+        let status = [`${prefix} | share your server with partner bot`, `${prefix}help | v1.4.8`]
         let rstatus = Math.floor(Math.random() * status.length);
         bot.user.setActivity(status[rstatus], {type: "PLAYING"});    
     }; setInterval(randomStatus, 3000)

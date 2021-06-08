@@ -11,11 +11,11 @@ module.exports = {
   description: "this command use to set room share",
   usage: [".set-room or .st <#channel>"],
   category: ["Admin"],
-  enabled: true,
+  enabled: false,
   memberPermissions: ["SEND_MESSAGES","ADMINISTRATOR"],
   botPermissions: ["SEND_MESSAGES", "EMBED_LINKS","MANAGE_CHANNELS"],
   ownerOnly: false,
-  guilOwnerOnly: true,
+  guilOwnerOnly: false,
   cooldown: 3000,
   run: async (bot, message, args) => {
    
