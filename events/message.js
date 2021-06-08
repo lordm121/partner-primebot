@@ -19,11 +19,11 @@ async run(message,bot) {
 
   if (message.author.bot) return;
   if (message.channel.type === "dm") return;
-  /*
+  
 let lang = await Lang.findOne({ guildID: message.guild.id });
   if(!lang) { Lang.create({ guildID: message.guild.id });} 
   data.lang = lang.language;
-*/
+
  /* let data4 = await Prime.findOne({ guildID: message.guild.id });
      if (data4 && data4.log === "enable") return;*/
   let guild = await Guild.findOne({ guildID: message.guild.id});

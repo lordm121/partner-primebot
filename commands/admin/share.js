@@ -1,5 +1,5 @@
 const Discord = require('discord.js')
-const schema = require ('../../data/guild.js')
+//onst schema = require ('../../data/guild.js')
 const ms1 = require("ms");
 const x73db = require("x73db")
 const db = new x73db("coolshare")
