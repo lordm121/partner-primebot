@@ -1,2 +1,1 @@
-share_message: "\`Server Name\`: ${message.guild.name} \`Servrer Description\`: ${des || null} \`Server Owner\`: ${message.guild.owner} \`Invite\`: ${invite}`"
-          
+help_embed: "You can get more help by typing:\n **.help <command>**"

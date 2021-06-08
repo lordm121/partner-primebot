@@ -13,11 +13,11 @@ module.exports = {
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],        
   ownerOnly: false,            
   cooldown: 3000,
-  run: async (bot, message, args, dev) => {
+  run: async (bot, message, args, dev,data) => {
     if (!args[1]) {
 let embed = new Discord.MessageEmbed()
          .setColor(Color)
-         .setTitle( "General")
+         .setTitle(bot.pro.get(data.lang, "general","help_embed"))
          .setDescription(`
     [ Top.gg soon ](https://top.gg/) - [ Invite ](https://discord.com/api/oauth2/authorize?client_id=${bot.user.id}&permissions=67206193&scope=bot) - [ Support ](https://discord.gg/aW6TnhGeSS)
     `)

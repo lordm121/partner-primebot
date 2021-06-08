@@ -24,7 +24,7 @@ module.exports = {
   let bl = db.get(`bl_${message.guild.id}`);
 
   let des = db.get(`des_${message.guild.id}`);
-let timeshare = 6000
+let timeshare = 0
 
 let times = db.get(`coolshare_${message.guild.id}`);
 
@@ -62,7 +62,7 @@ type: "text"
           rooms = r.id;
 
                       let room = c.channels.cache.get(rooms);
-/*
+
             room.send(`
             \`Server Name\`: ${message.guild.name}
             
@@ -70,7 +70,7 @@ type: "text"
             
             \`Server Owner\`: ${message.guild.owner}
             \`Invite\`: ${invite}`)
-*/room.send(bot.pro(data.lang, "general",`share_message`))
+//room.send(bot.pro(data.lang, "general",`share_message`))
             return;
 
 })
@@ -106,7 +106,7 @@ if(!room) {
     
   })
 }else{
-/*
+
 room.send(`
 \`Server Name\`: ${message.guild.name}
 
@@ -114,7 +114,7 @@ room.send(`
 
 \`Server Owner\`: ${message.guild.owner}
 \`Invite\`: ${invite}`)
-          */room.send(bot.pro(data.lang, "general",`share_message`))
+        ///  room.send(bot.pro(data.lang, "general",`share_message`))
 
   message.channel.send(new Discord.MessageEmbed().setDescription(`Your Server Shared to ${bot.guilds.cache.size} Guilds`))
 
