@@ -1,0 +1,2 @@
+share_message: "\`Server Name\`: ${message.guild.name} \`Servrer Description\`: ${des || null} \`Server Owner\`: ${message.guild.owner} \`Invite\`: ${invite}`"
+          
