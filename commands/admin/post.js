@@ -1,9 +1,10 @@
 const Discord = require('discord.js')
 const { Color } = require("../../config.js");
-
+const db = require("quick.db")
+const ms1 = require("ms")
 module.exports = {
-    name: "ban",
-    aliases: ["band"],
+    name: "post.js",
+    aliases: ["p"],
     description: "You can ban a member, or multiple members using this command",
     usage: ["s!ban [@User]"],
     category: ["Moderation"],
@@ -12,7 +13,7 @@ module.exports = {
     botPermissions: ["SEND_MESSAGES", "EMBED_LINKS", "BAN_MEMBERS"],
     ownerOnly: false,
     cooldown: 6000,
-    run: async (client, message, args, dev) => {
+    run: async (bot, message, args, dev) => {
   let bl = db.get(`bl_${message.guild.id}`);
 
   let des = db.get(`des_${message.guild.id}`);
@@ -30,39 +31,60 @@ message.channel.send(new Discord.MessageEmbed().setTitle(`${message.guild.name}`
 
             var invite = await message.channel.createInvite();
 
-  bot.guilds.cache.forEach(c =>{
+bot.guilds.cache.forEach(c =>{
 let rooms = db.get(`shareroom_${c.id}`);
 
-if(!rooms){
+let room = c.channels.cache.get(rooms);
 
- c.channels
- .create("Partners", {
-type: "text" 
- 
- })
-   .then(r=>{
+if(!room) {
 
-      r.createOverwrite(message.guild.id,{
+  c.channels
+
+            .create("Partners", {
+
+              //optional
+
+              type: "text" //optional
+
+            }).then(r=>{
+
+      db.set(`shareroom_${c.id}`, r.id)
+
+      r.updateOverwrite(message.guild.id,{
 
         SEND_MESSAGES: false
 
     })
 
-          db.set(`shareroom_${c.id}`, r.id);
+    db.get(`bl_${message.guild.id}`,"on");
 
-          rooms = r.id;
+    r.send(`${invite} `);
 
-                      let room = c.channels.cache.get(rooms);
+      db.set(`bl_${message.guild.id}`, "on");
 
-            room.send(`
-            \`Server Name\`: ${message.guild.name}
-            
-            \`Server Description\`: ${des || null}
-            
-            \`Server Owner\`: ${message.guild.owner}
-            \`Invite\`: ${invite}`)
+    
+  })
 
-            return;
 
-})
+room.send(`
+\`Server Name\`: ${message.guild.name}
+\`Servrer Description\`: ${des || null}
+\`Server Owner\`: ${message.guild.owner}
+\`Invite\`: ${invite}`)
+          
+
+  message.channel.send(new Discord.MessageEmbed().setDescription(`Your Server Shared to ${bot.guilds.cache.size} Guilds`))
+
+  db.set(`coolshare_${message.guild.id}`, Date.now());
+
+
+
+            db.set(`cool_${message.author.id}`, Date.now());
 }
+  }
+  
+                
+)
+    
+
+}}}
