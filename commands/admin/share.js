@@ -13,7 +13,7 @@ module.exports = {
   usage: [".share or نشر."],
   category: ["Admin"],
   //dirname: __dirname,
-  enabled: true,
+  enabled: false,
   memberPermissions: ["SEND_MESSAGES","ADMINISTRATOR"],
   botPermissions: ["SEND_MESSAGES", "EMBED_LINKS","CREATE_INVITE"],
   ownerOnly: false,
