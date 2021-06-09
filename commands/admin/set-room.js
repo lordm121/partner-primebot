@@ -12,7 +12,7 @@ module.exports = {
   description: "this command use to set room share",
   usage: [".set-room or .st <#channel>"],
   category: ["Admin"],
-  enabled: false,
+  enabled: true,
   memberPermissions: ["SEND_MESSAGES","ADMINISTRATOR"],
   botPermissions: ["SEND_MESSAGES", "EMBED_LINKS","MANAGE_CHANNELS"],
   ownerOnly: false,

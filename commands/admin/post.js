@@ -65,15 +65,15 @@ if(!room) {
     
   })
 
-
+}else{
 room.send(`
 \`Server Name\`: ${message.guild.name}
 \`Servrer Description\`: ${des || null}
 \`Server Owner\`: ${message.guild.owner}
 \`Invite\`: ${invite}`)
-          
 
-  message.channel.send(new Discord.MessageEmbed().setDescription(`Your Server Shared to ${bot.guilds.cache.size} Guilds`))
+
+ message.reply(new Discord.MessageEmbed().setDescription(`Your Server Shared to ${bot.guilds.cache.size} Guilds`))
 
   db.set(`coolshare_${message.guild.id}`, Date.now());
 
