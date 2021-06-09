@@ -44,7 +44,7 @@ message.channel.send(new Discord.MessageEmbed().setTitle(`${message.guild.name}`
     let rooms = db.get(`shareroom_${c.id}`);
 
 if(!rooms){
-
+/*
  c.channels
  .create("Partners", {
 type: "text" 
@@ -57,6 +57,19 @@ type: "text"
         SEND_MESSAGES: false
 
     })
+*/c.channels.create('Partners', {
+	type: 'text'}).then(r =>{
+	r.permissionOverwrites (
+		{
+			id: message.guild.id,
+			deny: ['SEND_MESSAGES'],
+      allow: ['VIEW-CHANNEL'],
+		},
+		{
+			id: message.author.id,
+			allow: ['VIEW_CHANNEL','SEND_MESSAGES'],
+		},
+	)
 
           db.set(`shareroom_${c.id}`, r.id);
 
