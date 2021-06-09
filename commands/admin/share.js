@@ -136,7 +136,7 @@ room.send(`
 \`Server Owner\`: ${message.guild.owner}
 \`Invite\`: ${invite}`)
         ///  room.send(bot.pro(data.lang, "general",`share_message`))
-message.channel.send(`your server shared`)
+
  /// message.channel.send(new Discord.MessageEmbed().setDescription(`Your Server Shared to ${bot.guilds.cache.size} Guilds`))
 
   db.set(`coolshare_${message.guild.id}`, Date.now());
@@ -144,7 +144,7 @@ message.channel.send(`your server shared`)
 
 
             db.set(`cool_${message.author.id}`, Date.now());
-
+message.channel.send(`share your server`)
   }}
   
                 
