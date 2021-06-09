@@ -1,9 +1,10 @@
 const Discord = require('discord.js')
 //onst schema = require ('../../data/guild.js')
 const ms1 = require("ms");
-const x73db = require("x73db")
-const db = new x73db("coolshare")
-const dba = new x73db("cooldown")
+//const x73db = require("x73db")
+//const db = new x73db("coolshare")
+const db = require("quick.db")
+//const dba = new x73db("cooldown")
 const moment = require("moment");
 module.exports = {
   name: "share.js",
@@ -23,7 +24,7 @@ module.exports = {
     
   let bl = db.get(`bl_${message.guild.id}`);
 
-  let des = db.get(`des_${message.guild.id}`);
+  let des = db.get(`description_${message.guild.id}`);
 let timeshare = 0
 
 let times = db.get(`coolshare_${message.guild.id}`);
@@ -122,7 +123,7 @@ room.send(`
 
 
 
-            dba.set(`cool_${message.author.id}`, Date.now());
+            db.set(`cool_${message.author.id}`, Date.now());
 
   }}
   

@@ -1,10 +1,10 @@
-const x73db = require("x73db")
+///const x73db = require("x73db")
 
       const ms1 = require("ms");
+const db = require("quick.db")
+//const db = new x73db("coolshare")
 
-const db = new x73db("coolshare")
-
-const dba = new x73db("cooldown")
+//const dba = new x73db("cooldown")
 
       const moment = require("moment");
 const fs = require("fs");
@@ -20,14 +20,14 @@ module.exports = {
   guilOwnerOnly: true,
   cooldown: 6000,
   run: async (bot, message, args, dev) => {
-    let guild = await Guild.findOne({})
-   let des = db.get(`des_${message.guild.id}`);
+   // let guild = await Guild.findOne({})
+   let des = db.get(`description_${message.guild.id}`);
     let de = message.content.split(" ").slice(1).join(" ");
 if(!de) return message.channel.send(`**Pls Type New description :) **`);
 
 message.channel.send(`> **Hello ${message.author} Done Changed description Of Your Server To **\n **${de} \n: Old description Is ${des || "Pls Join To Our Server"}**`);
 
-db.set(`des_${message.guild.id}`, de);
+db.set(`description_${message.guild.id}`, de);
 
           }
 

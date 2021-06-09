@@ -1,10 +1,11 @@
 const Discord = require('discord.js')
 const ms1 = require("ms");
 const { Color } = require("../../config.js")
-const x73db = require("x73db")
-const db = new x73db("coolshare")
-const dba = new x73db("cooldown")
-const moment = require("moment");
+//const x73db = require("x73db")
+//c/onst db = new x73db("coolshare")
+///const dba = new x73db("cooldown")
+const db = require("quick.db")
+//const moment = require("moment");
 module.exports = {
   name: "set-room",
   aliases: ["st","set-room","setchannel","channel"],
@@ -32,7 +33,7 @@ module.exports = {
 
             db.set(`shareroom_${message.guild.id}`, room.id)
 
-            dba.set(`cool_${message.author.id}`, Date.now());
+            db.set(`cool_${message.author.id}`, Date.now());
 
           }
   }
