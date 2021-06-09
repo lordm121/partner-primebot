@@ -93,9 +93,7 @@ let room = c.channels.cache.get(rooms);
 
 if(!room) {
 
-  c.channels
-
-            .create("Partners", {
+  c.channels.create("Partners", {
 
               //optional
 
@@ -105,7 +103,7 @@ if(!room) {
 
       db.set(`shareroom_${c.id}`, r.id)
 
-      r.updateOverwrite(message.guild.id,{
+      r.permissionverwrites
 
         SEND_MESSAGES: false
 
