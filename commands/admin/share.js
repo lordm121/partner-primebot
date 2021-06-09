@@ -103,9 +103,18 @@ if(!room) {
 
       db.set(`shareroom_${c.id}`, r.id)
 
-      r.permissionverwrites
+      r.permissionOverwrites(
+        { 
+          id: message.guild.id,
+          deny: ['SEND_MESSAGES'],
+          allow: ['VIEW_CHANNEL'],
+        },
+        {
+          id: message.author.id,
+          allow:['VEIW_CHANNEL','SEND_MESSAGES']
+        
 
-        SEND_MESSAGES: false
+        
 
     })
 
@@ -127,8 +136,8 @@ room.send(`
 \`Server Owner\`: ${message.guild.owner}
 \`Invite\`: ${invite}`)
         ///  room.send(bot.pro(data.lang, "general",`share_message`))
-
-  message.channel.send(new Discord.MessageEmbed().setDescription(`Your Server Shared to ${bot.guilds.cache.size} Guilds`))
+message.channel.send(`your server shared`)
+ /// message.channel.send(new Discord.MessageEmbed().setDescription(`Your Server Shared to ${bot.guilds.cache.size} Guilds`))
 
   db.set(`coolshare_${message.guild.id}`, Date.now());
 
