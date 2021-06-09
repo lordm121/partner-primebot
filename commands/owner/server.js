@@ -1,15 +1,19 @@
 const Discord = require("discord.js");
 const ownerid = "768944616724103170";
 
-module.exports = {
-    name: "serverlist",
-    aliases: ["slt"],
-    category: "owner",
-    description: "Displays the list of Servers!",
-    usage: " ",
-  enable: true,
 
-  run: async (bot, message, args) => {
+module.exports = {
+  name: "server",
+  aliases: ["slt"],
+  enabled: true,
+  memberPermissions: ["SEND_MESSAGES"],
+  botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
+  ownerOnly: false,
+  guilOwnerOnly: true,
+  cooldown: 6000,
+  run: async (bot, message, args, dev) => {
+
+  
     if (message.author.id == ownerid) {
       if (!message.guild.me.hasPermission("ADMINISTRATOR"))
         return message.channel
@@ -129,4 +133,4 @@ module.exports = {
       return;
     }
   }
-};
+  }

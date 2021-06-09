@@ -2,13 +2,16 @@
 const ownerid = "768944616724103170";
 
 module.exports = {
-        name: "getinvite",
-        aliases: ['getinv', 'gi'],
-        category: "owner",
-        description: "Generates an invitation to  server in question.",
-        usage: "[ID | name]",
-      
-    run: async(bot, message, args) => {
+  name: "ginvite",
+  aliases: ["gi"],
+  enabled: true,
+  memberPermissions: ["SEND_MESSAGES"],
+  botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
+  ownerOnly: false,
+  guilOwnerOnly: true,
+  cooldown: 6000,
+  run: async (bot, message, args, dev) => {
+
         if (message.author.id === ownerid) {
         let guild = null;
 
