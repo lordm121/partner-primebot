@@ -1,7 +1,7 @@
 const Discord = require("discord.js")
 const db = require("quick.db")
 const pretty = require('pretty-ms');
-const devs = ""
+const devs = "768944616724103170"
 let embed = new Discord.MessageEmbed()
 module.exports = {
   name: "premuim",
