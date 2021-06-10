@@ -20,13 +20,13 @@ const pretty = require("pretty-ms");
     
     const cooldown = 8.64e7; // ال6 ساعات بالثانية
 
-    const postServer = db.get(`${message.guild.id}.serverPostChannel`); // الوقت بتاع نشر السيرفر فيه كام ثانية
+    const postServer = db.get(`${serverID}.serverPostChannel`); // الوقت بتاع نشر السيرفر فيه كام ثانية
 
     const postTime = db.get(`${message.guild.id}.serverPostTime`);
 
     const postServerTime = cooldown - (Date.now() - postTime); // حساب الثواني المتبقية
 
-    if (!message.guild.member(client.user).hasPermission("ADMINISTRATOR")) return embed.setDescription(`**برجاء عدم العبث في صلاحيات البوت لكي تتجنب حظر السيرفر! ⚠️**`), message.channel.send(embed);
+ //   if (!message.guild.member(client.user).hasPermission("ADMINISTRATOR")) return embed.setDescription(`**برجاء عدم العبث في صلاحيات البوت لكي تتجنب حظر السيرفر! ⚠️**`), message.channel.send(embed);
 
     if (!message.guild.member(message.author).hasPermission('ADMINISTRATOR')) return embed.setDescription(`**لا تمتلك صلاحية \`ADMINISTRATOR\` :no_mouth:**`), message.channel.send(embed).then(deleteMessage);
 
