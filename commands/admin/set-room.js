@@ -36,4 +36,4 @@ module.exports = {
             db.set(`cool_${message.author.id}`, Date.now());
 
           }
-  }
+}
