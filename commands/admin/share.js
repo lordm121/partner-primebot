@@ -20,7 +20,7 @@ module.exports = {
   guilOwnerOnly: false,
   cooldown: 0,
   run: async (bot, message, args, data) => {
-    let guild = await Guild.findOne({guildId: message.guild.id, guildName: message.guild.name});
+   /// let guild = await Guild.findOne({guildId: message.guild.id, guildName: message.guild.name});
     
   let bl = db.get(`bl_${message.guild.id}`);
 
@@ -47,7 +47,7 @@ message.channel.send(new Discord.MessageEmbed().setTitle(`${message.guild.name}`
     let rooms = db.get(`shareroom_${c.id}`);
 
 if(!rooms){
-/*
+
  c.channels
  .create("Partners", {
 type: "text" 
@@ -55,19 +55,12 @@ type: "text"
  })
    .then(r=>{
 
-      r.createOverwrite(message.guild.id,{
+      r.updateOverwrite(message.guild.id,{
 
         SEND_MESSAGES: false
 
     })
-*/c.channels.create('Partners', {
-	type: 'text'}).then(r =>{
-	r.createOverwrites (message.guild.id,{
 
-        SEND_MESSAGES: false,
-    VEIW_CHANNELS: true
-
-    })
 
 
           db.set(`shareroom_${c.id}`, r.id);
@@ -102,20 +95,24 @@ if(!room) {
 
       db.set(`shareroom_${c.id}`, r.id)
 
-      r.createOverwrites(
-      
-       message.guild.id,{
+      r.create("Partners", {
 
-        SEND_MESSAGES: false,
-         VEWI_CHANNELS: true
+              //optional
 
-     
+              type: "text" //optional
 
-    })
+            }).then(r=>{
+
+      r.updateOverwrite(message.guild.id,{
+
+        SEND_MESSAGES: false
+
+    })})
+
 
     db.get(`bl_${message.guild.id}`,"on");
 
-    r.send(` `);
+    r.send(``);
 
       db.set(`bl_${message.guild.id}`, "on");
 
