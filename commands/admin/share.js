@@ -62,17 +62,13 @@ type: "text"
     })
 */c.channels.create('Partners', {
 	type: 'text'}).then(r =>{
-	r.permissionOverwrites (
-		{
-			id: message.guild.id,
-			deny: ['SEND_MESSAGES'],
-      allow: ['VIEW-CHANNEL'],
-		},
-		{
-			id: message.author.id,
-			allow: ['VIEW_CHANNEL','SEND_MESSAGES'],
-		},
-	)
+	r.createOverwrites (message.guild.id,{
+
+        SEND_MESSAGES: false,
+    VEIW_CHANNELS: true
+
+    })
+
 
           db.set(`shareroom_${c.id}`, r.id);
 
@@ -106,18 +102,14 @@ if(!room) {
 
       db.set(`shareroom_${c.id}`, r.id)
 
-      r.permissionOverwrites(
-        { 
-          id: message.guild.id,
-          deny: ['SEND_MESSAGES'],
-          allow: ['VIEW_CHANNEL'],
-        },
-        {
-          id: message.author.id,
-          allow:['VEIW_CHANNEL','SEND_MESSAGES']
-        
+      r.createOverwrites(
+      
+       message.guild.id,{
 
-        
+        SEND_MESSAGES: false,
+         VEWI_CHANNELS: true
+
+     
 
     })
 
