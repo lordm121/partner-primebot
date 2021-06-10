@@ -61,4 +61,4 @@ bot.on("ready", () => {
         bot.user.setActivity(status[rstatus], {type: "PLAYING"});    
     }; setInterval(randomStatus, 3000)
 })
-bot.login("ODUwMTA2NTkxMDUxMzgyNzg0.YLk5dQ.JLbuFt99SgdCyZ3fuAe0GHGzSIQ");
+bot.login("ODUwMTA2NTkxMDUxMzgyNzg0.YLk5dQ.xaKWlHU_DVL655tOrESb-OvMDxc");
