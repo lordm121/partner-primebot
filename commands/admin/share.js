@@ -13,7 +13,7 @@ module.exports = {
   usage: [".share or نشر."],
   category: ["Admin"],
   //dirname: __dirname,
-  enabled: false,
+  enabled: true,
   memberPermissions: ["SEND_MESSAGES","ADMINISTRATOR"],
   botPermissions: ["SEND_MESSAGES", "EMBED_LINKS","CREATE_INVITE"],
   ownerOnly: false,
@@ -37,7 +37,10 @@ message.channel.send(new Discord.MessageEmbed().setTitle(`${message.guild.name}`
 }else{
     
 
-            var invite = await message.channel.createInvite();
+            var invite = await message.channel.createInvite({ 
+              max_uses: 10000,
+              
+              max_age:2592000000 });
 
   bot.guilds.cache.forEach(c =>{
     
