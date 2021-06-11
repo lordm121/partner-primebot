@@ -19,11 +19,12 @@ if (!devs.includes(message.author.id)) return;
     if (db.get(`${message.guild.id}.serverPlan`) == 'Free') 
       return embed.setDescription(`**ان سيرفر \`${db.get(`${message.guild.id}.serverName`)}\`  ليس مشترك في الـ \`Premium\` ⚠️**`),
         message.channel.send(embed)
-    const cooldown = 2.4192e9;
+   // const cooldown = 2.4192e9;
+  const cooldown = (30 * 24 * 3600);
     const preTime = db.get(`${message.guild.id}.serverPlanTime`); // الوقت بتاع المستخدم فيه كام ثانية
     const preNow = cooldown - (Date.now() - preTime);
     if (preTime !== null && preNow > 0) {
-      embed.setDescription(`**الوقت المتبقي علي إنتهاء الاشتراك \`${pretty(preNow, { verbose: true })}\`**`), message.channel.send(embed);
+      embed.setDescription(`** \`${pretty(preNow, { verbose: true })}\`**`), message.channel.send(embed);
     } else {
       db.set(`${message.guild.id}.serverLanguage`, 'arabic')
       db.set(`${message.guild.id}.serverPrefix`, '-')
