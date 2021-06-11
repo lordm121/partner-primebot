@@ -17,7 +17,9 @@ module.exports = {
   run: async (bot, message, args, dev) => {
 if (!devs.includes(message.author.id)) return;
     if (db.get(`${message.guild.id}.serverPlan`) == 'Free') 
-      return embed.setDescription(`**Your server dont have premuim version \`${db.get(`${message.guild.id}.serverName`)}\`ـ if you want\`Premium\` version please join support server and send messag to <@768944616724103170> ⚠️**`),
+      return
+    embed.setDescription(`**Your server dont have premuim version \`${db.get(`${message.guild.id}.serverName`)}\`ـ 
+    if you want\`Premium\` version please join support server and send messag to <@768944616724103170> ⚠️**`),
         message.channel.send(embed)
    // const cooldown = 2.4192e9;
   const cooldown = 2592000000;
