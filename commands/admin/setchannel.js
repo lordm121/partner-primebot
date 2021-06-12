@@ -17,7 +17,8 @@ module.exports = {
   cooldown: 10000,  cooldown: 10000,
 
   run: async (bot, message, args, dev, data) => {
-  if(db.get(`${message.guild.id}.serverPlan`) === 'premuim')return embed.setDescription(`**ان سيرفر \`${db.get(`${message.guild.id}.serverName`)}\`  ليس مشترك في الـ \`Premium\` ⚠️**`), message.channel.send(embed)
+  
+    if (db.get(`${message.guild.id}.serverPlan`) == 'Free') return embed.setDescription(`**This server \`${db.get(`${message.guild.name}.serverName`)}\` don't buy \`Premium\` Version ⚠️**`), message.channel.send(embed)
  
 if (!message.guild.member(message.author).hasPermission('ADMINISTRATOR')) return embed.setColor('#FF0202').setDescription(`**You don't have  \`ADMINISTRATOR\` permission | 🤔**`), message.channel.send(embed)
 
