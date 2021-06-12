@@ -6,13 +6,13 @@ const db = require("quick.db")
 let embed = new Discord.MessageEmbed()
 module.exports = {
   name: "setchannel",
-  aliases: ["prechannel"],
-  description: "Change the prefix of the bot",
-  usage: ["s!prefix [Prefix]"],
-  category: ["Moderation"],
+  aliases: ["channel"],
+  description: "set channel inly for Premium version",
+  usage: [".channel #<channel>"],
+  category: ["Admin"],
   enabled: true,            
-  memberPermissions: [ "ADMINISTRATOR" ],            
-  botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],        
+  memberPermissions: [ "MANAGE_CHANNELS" ],            
+  botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS","MANAGE_CHANNELS"],        
   ownerOnly: false,            
   cooldown: 10000,
   run: async (bot, message, args, dev, data) => {

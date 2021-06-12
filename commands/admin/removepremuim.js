@@ -21,10 +21,10 @@ if (!devs.includes(message.author.id)) return;
 
     let premium = message.content.split(" ").slice(1).join(" ");
 
-    if (!db.has(`${premium}.serverPlan`)) return embed.setDescription(`**ان سيرفر \`${db.get(`${premium}.serverName`)}\` \`Free\` بالفعل ⚠️**`), message.channel.send(embed)
+    if (!db.has(`${premium}.serverPlan`)) return embed.setDescription(`**This server\`${db.get(`${premium}.serverName`)}\` already \`Free\` Version ⚠️**`), message.channel.send(embed)
 
     db.delete(`${premium}.serverPlan`, 'premium');
     db.delete(`${premium}.serverPlanTime`, null);
 
-    embed.setDescription(`**تم إزالة سيرفر \`${db.get(`${premium}.serverName`)}\` من الـ \`Premium\` بنجاح ☑️**`), message.channel.send(embed)
+    embed.setDescription(`**This server  \`${db.get(`${premium}.serverName`)}\` deleted \`Premium\` Version on \`database\` ☑️**`), message.channel.send(embed)
   }}
