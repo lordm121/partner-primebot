@@ -101,9 +101,13 @@ function hook(messagePost, channelsPost, bot,message) {
     channelsPost.createOverwrite(channelsPost.guild.id, {
       SEND_MESSAGES: false,
       READ_MESSAGES: true,
-      VIEW_CHANNEL: true      VIEW_CHANNEL: true
+      VIEW_CHANNEL: true     
 
     });
   } catch { 
     console.log(`ERR POST IN SERVER ${channelsPost.guild.name} | ID: ${channelsPost.guild.id}`);
    }}
+
+
+
+
