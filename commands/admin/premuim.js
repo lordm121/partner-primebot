@@ -5,9 +5,9 @@ const devs = "768944616724103170"
 let embed = new Discord.MessageEmbed()
 module.exports = {
   name: "premuim",
-  aliases: ["pre","prime"],
-  description: "To show server support",
-  usage: [".support"],
+  aliases: ["pre","prime","premuim"],
+  description: "see your premuim version if you bought befor",
+  usage: [".premuim"],
   category: ["General"],
   enabled: true,
   memberPermissions: ["SEND_MESSAGES"],
@@ -17,7 +17,7 @@ module.exports = {
   run: async (bot, message, args, dev) => {
 if (!devs.includes(message.author.id)) return;
     if (db.get(`${message.guild.id}.serverPlan`) == 'Free') 
-      return message.channel.send(`You don't buy Premuim version`)
+      return message.channel.send(`You don't buy Premuim version,if you want buy a premuim version join support server and contact <@768944616724103170>`)
    /* embed.setDescription(`**Your server dont have premuim version \`${db.get(`${message.guild.id}.serverName`)}\`ـ 
     if you want\`Premium\` version please join support server and send messag to <@768944616724103170> ⚠️**`),
         message.channel.send(embed)*/
