@@ -5,7 +5,7 @@ const devs = "768944616724103170"
 let embed = new Discord.MessageEmbed()
 module.exports = {
   name: "premuim",
-  aliases: ["pre"],
+  aliases: ["pre","prime"],
   description: "To show server support",
   usage: [".support"],
   category: ["General"],
@@ -17,10 +17,10 @@ module.exports = {
   run: async (bot, message, args, dev) => {
 if (!devs.includes(message.author.id)) return;
     if (db.get(`${message.guild.id}.serverPlan`) == 'Free') 
-      return
-    embed.setDescription(`**Your server dont have premuim version \`${db.get(`${message.guild.id}.serverName`)}\`ـ 
+      return message.channel.send(`You don't buy Premuim version`)
+   /* embed.setDescription(`**Your server dont have premuim version \`${db.get(`${message.guild.id}.serverName`)}\`ـ 
     if you want\`Premium\` version please join support server and send messag to <@768944616724103170> ⚠️**`),
-        message.channel.send(embed)
+        message.channel.send(embed)*/
    // const cooldown = 2.4192e9;
   const cooldown = 2592000000;
     const preTime = db.get(`${message.guild.id}.serverPlanTime`); // الوقت بتاع المستخدم فيه كام ثانية
