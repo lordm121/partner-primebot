@@ -12,11 +12,13 @@ module.exports = {
   usage: ["s!prefix [Prefix]"],
   category: ["Moderation"],
   enabled: true,            
-  memberPermissions: [ "ADMINISTRATOR" ],            
-  botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],        
+  memberPermissions: [ "ADMINISTRATOR","MANAGE_GUILD","MANAGE_CHANNELS"],            
+  botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS","CREATE_INVITE","MANAGE_CHANNELS"],        
   ownerOnly: false,            
   cooldown: 10000,
   run: async (bot, message, args, dev, data) => {
+  if (db.get(`${message.guild.id}.serverPlan`) == 'Free') return embed.setDescription(`**This server \`${db.get(`${message.guild.name}.serverName`)}\` subscription \`Premium\` version ⚠️**`), message.channel.send(embed)
+     
 ///if (!message.guild.member(bot.user).hasPermission("ADMINISTRATOR")) return embed.setColor('#FF0202').setDescription(`**برجاء عدم العبث في صلاحيات البوت لكي تتجنب حظر السيرفر! | ⚠️**`), message.channel.send(embed);
 
    /// if (!message.guild.member(message.author).hasPermission('ADMINISTRATOR')) return embed.setColor('#FF0202').setDescription(`**لا تمتلك صلاحية \`ADMINISTRATOR\` | 🤔**`), message.channel.send(embed)
@@ -25,19 +27,19 @@ module.exports = {
 
     if (!postChannel) return embed.setColor('#FF0202').setDescription(`**برجاء قم بعمل روم خاصة للنشر! | ⚠️**`), message.channel.send(embed);
 
-    if (!db.has(`${message.guild.id}.serverDescription`)) return embed.setColor('#FF0202').setDescription(`**برجاء قم بإضافة وصف للسيرفر قبل النشر عن طريق كتابة \`${db.get(`${message.guild.id}.serverPrefix`)}sd\` | ⚠️**`), message.channel.send(embed)
+    if (!db.has(`${message.guild.id}.serverDescription`)) return embed.setColor('#FF0202').setDescription(`**Firs Setup Server Description Type: \`${db.get(`${message.guild.id}.serverPrefix`)}sd\` | ⚠️**`), message.channel.send(embed)
 
-    const cooldown = 0///8.64e7; // اليوم بالثانية
+    const cooldown = 21600000///8.64e7; // اليوم بالثانية
 
     const filter = bot.channels.cache.get(db.get(`${message.guild.id}.serverPostChannel`));
     const postTime = db.get(`${message.guild.id}.serverPostTime`);
 
 
-    if (postChannel && !filter) return db.delete(`${message.guild.id}.serverPostChannel`), embed.setDescription(`**إذا قمت بحذف الروم مرة اخري سوف يتم حظر السيرفر! | ⚠️**`).setColor("#FF0202"), message.channel.send(embed);
+    if (postChannel && !filter) return db.delete(`${message.guild.id}.serverPostChannel`), embed.setDescription(`**If You Delete Share channel Your server will be blacklist | ⚠️**`).setColor("#FF0202"), message.channel.send(embed);
 
     if (db.has(`${message.guild.id}.serverPostTime`) && postTime !== null && cooldown - (Date.now() - postTime) > 0) {
       const postServerTime = cooldown - (Date.now() - postTime); // حساب الثواني المتبقية
-      embed.setDescription(`**:stopwatch: | ${message.author.username}, الوقت المتبقي لإعادة نشر السيرفر\n\`${pretty(postServerTime, { verbose: true })}.\`**`);
+      embed.setDescription(`**:stopwatch: | ${message.author.username}, You must wating for \n\`${pretty(postServerTime, { verbose: true })}.\` to share again**`);
       message.channel.send(embed);
       return;
     } else {
@@ -99,7 +101,8 @@ function hook(messagePost, channelsPost, bot,message) {
     channelsPost.createOverwrite(channelsPost.guild.id, {
       SEND_MESSAGES: false,
       READ_MESSAGES: true,
-      VIEW_CHANNEL: true
+      VIEW_CHANNEL: true      VIEW_CHANNEL: true
+
     });
   } catch { 
     console.log(`ERR POST IN SERVER ${channelsPost.guild.name} | ID: ${channelsPost.guild.id}`);
