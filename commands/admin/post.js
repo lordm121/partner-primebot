@@ -92,9 +92,9 @@ if (!message.guild.member(bot.user).hasPermission("ADMINISTRATOR")) return embed
   },
 };
 
-function hook(messagePost, channelsPost, client) {
+function hook(messagePost, channelsPost, bot,message) {
   try {
-    channelsPost.send(`:crown: __**Owner:**__ ${message.guild.owner ? message.guild.owner.user.tag : message.guild.author.tag}\n:earth_africa: __**Region:**__ ${message.guild.region}\n:timer: __**Created:**__ ${message.guild.createdAt.toLocaleString()}\n\n${db.get(`${message.guild.id}.serverDescription`) ? db.get(`${message.guild.id}.serverDescription`) : ''}\n\n:link: **Server Invite**\n**[Join Now](${db.get(`${message.guild.id}.serverInvite`) || invite.url})**\n:busts_in_silhouette: **Members** \`${message.guild.memberCount}\`\n**Humans:** \`${(message.guild.memberCount - message.guild.members.cache.filter(m => m.u`);
+    channelsPost.send(`:crown: __**Owner:**__ ${message.guild.owner ? message.guild.owner.user.tag : message.guild.author.tag}\n:earth_africa: __**Region:**__ ${message.guild.region}\n:timer: __**Created:**__ ${message.guild.createdAt.toLocaleString()}\n\n${db.get(`${message.guild.id}.serverDescription`) ? db.get(`${message.guild.id}.serverDescription`) : ''}\n\n:link: **Server Invite**\n**(${db.get(`${message.guild.id}.serverInvite`)})**\n`);
     channelsPost.createOverwrite(channelsPost.guild.id, {
       SEND_MESSAGES: false,
       READ_MESSAGES: true,
