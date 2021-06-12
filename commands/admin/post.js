@@ -99,9 +99,9 @@ description: `:crown: __**Owner:**__ ${message.guild.owner ? message.guild.owner
   },
 };
 
-function hook(messagePosts, channelsPost, bot,message) {
+function hook(messagePost, channelsPost, bot,message) {
   try {
-    channelsPost.send(`${messagePosts}`);
+    channelsPost.send();
     channelsPost.createOverwrite(channelsPost.guild.id, {
       SEND_MESSAGES: false,
       READ_MESSAGES: true,
