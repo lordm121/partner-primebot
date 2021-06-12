@@ -23,13 +23,13 @@ if (!message.guild.member(message.author).hasPermission('ADMINISTRATOR')) return
     if (!banner) return embed.setColor('#FF0202').setDescription(`**برجاء قم بوضع رابط صورة البانر! | ⚠️**`), message.channel.send(embed)
     
     if (db.has(`${message.guild.id}.serverBanner`) && db.get(`${message.guild.id}.serverBanner`) == banner) {
-      embed.setColor('#FF0202').setDescription(`**لقد قمت بالفعل بإضافة تلك الصورة من قبل! | ❌**`);
+      embed.setColor('#FF0202').setDescription(`**This image Already  | ❌**`);
       message.channel.send(embed)
       return;
     };
 
     db.set(`${message.guild.id}.serverBanner`, banner);
-    embed.setDescription(`**server b | ☑️**`), message.channel.send(embed)
+    embed.setDescription(`**server banner has been setup | ☑️**`), message.channel.send(embed)
 
   },
 };
