@@ -59,7 +59,7 @@ if (!message.guild.member(bot.user).hasPermission("ADMINISTRATOR")) return embed
             max_uses: 0,
             max_age: 0
           }).then(invite => {
-
+/*
             const messagePosts = {
               description: `:crown: __**Owner:**__ ${message.guild.owner ? message.guild.owner.user.tag : message.guild.author.tag}\n:earth_africa: __**Region:**__ ${message.guild.region}\n:timer: __**Created:**__ ${message.guild.createdAt.toLocaleString()}\n\n${db.get(`${message.guild.id}.serverDescription`) ? db.get(`${message.guild.id}.serverDescription`) : ''}\n\n:link: **Server Invite**\n**[Join Now](${db.get(`${message.guild.id}.serverInvite`) || invite.url})**\n:busts_in_silhouette: **Members** \`${message.guild.memberCount}\`\n**Humans:** \`${(message.guild.memberCount - message.guild.members.cache.filter(m => m.user.bot).size)}\` | **Bots:** \`${message.guild.members.cache.filter(m => m.user.bot).size}\`\n:grinning: **Emotes** \`${message.guild.emojis.cache.size}\`\n${emoji.join(' ')}`,
               color: 'RANDOM',
@@ -79,6 +79,13 @@ if (!message.guild.member(bot.user).hasPermission("ADMINISTRATOR")) return embed
               },
               timestamp: new Date(),
             };
+            */
+            const messagePosts = {
+            ///  description: `:crown: __**Owner:**__ ${message.guild.owner ? message.guild.owner.user.tag : message.guild.author.tag}\n:earth_africa: __**Region:**__ ${message.guild.region}\n:timer: __**Created:**__ ${message.guild.createdAt.toLocaleString()}\n\n${db.get(`${message.guild.id}.serverDescription`) ? db.get(`${message.guild.id}.se;
+description: `:crown: __**Owner:**__ ${message.guild.owner ? message.guild.owner.user.tag : message.guild.author.tag}\n:earth_africa: __**Region:**__ ${message.guild.region}\n:timer: __**Created:**__ ${message.guild.createdAt.toLocaleString()}\n\n${db.get(`${message.guild.id}.serverDescription`) ? db.get(`${message.guild.id}.serverDescription`) : ''}\n\n:link: **Server Invite**\n**[Join Now](${db.get(`${message.guild.id}.serverInvite`) || invite.url})**\n:busts_in_silhouette: **Members** \`${message.guild.memberCount}\`\n**Humans:** \`${(message.guild.memberCount - message.guild.members.cache.filter(m => m.user.bot).size)}\` | **Bots:** \`${message.guild.members.cache.filter(m => m.user.bot).size}\`\n:grinning: **Emotes** \`${message.guild.emojis.cache.size}\`\n${emoji.join(' ')}`,
+    
+
+            }
 
             if (channelsPost && messagePosts) {
               hook(messagePosts, channelsPost, bot);
@@ -92,9 +99,9 @@ if (!message.guild.member(bot.user).hasPermission("ADMINISTRATOR")) return embed
   },
 };
 
-function hook(messagePost, channelsPost, bot,message) {
+function hook(messagePost, channelsPost, bot) {
   try {
-    channelsPost.send(`:crown: __**Owner:**__ ${message.guild.owner ? message.guild.owner.user.tag : message.guild.author.tag}\n:earth_africa: __**Region:**__ ${message.guild.region}\n:timer: __**Created:**__ ${message.guild.createdAt.toLocaleString()}\n\n${db.get(`${message.guild.id}.serverDescription`) ? db.get(`${message.guild.id}.serverDescription`) : ''}\n\n:link: **Server Invite**\n**(${db.get(`${message.guild.id}.serverInvite`)})**\n`);
+    channelsPost.send({messagePost});
     channelsPost.createOverwrite(channelsPost.guild.id, {
       SEND_MESSAGES: false,
       READ_MESSAGES: true,
