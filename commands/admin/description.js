@@ -1,35 +1,34 @@
-///const x73db = require("x73db")
-
-      const ms1 = require("ms");
+const Discord = require("discord.js")
 const db = require("quick.db")
-//const db = new x73db("coolshare")
-
-//const dba = new x73db("cooldown")
-
-      const moment = require("moment");
-const fs = require("fs");
-const Discord = require("discord.js");
-const { Color } = require("../../config.js")
+let embed = new Discord.MessageEmbed()
 module.exports = {
   name: "description.js",
   aliases: ["sd","description","set-description","setdescription"],
-  enabled: false,
+  enabled: true,
   memberPermissions: ["SEND_MESSAGES"],
   botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
   ownerOnly: false,
   guilOwnerOnly: true,
   cooldown: 6000,
   run: async (bot, message, args, dev) => {
-   // let guild = await Guild.findOne({})
-   let des = db.get(`description_${message.guild.id}`);
-    let de = message.content.split(" ").slice(1).join(" ");
-if(!de) return message.channel.send(`**Pls Type New description :) **`);
+  if (!message.guild.member(message.author).hasPermission('ADMINISTRATOR')) return embed.setColor('#FF0202').setDescription(`**لا تمتلك صلاحية \`ADMINISTRATOR\` | 🤔**`), message.channel.send(embed)
 
-message.channel.send(`> **Hello ${message.author} Done Changed description Of Your Server To **\n **${de} \n: Old description Is ${des || "Pls Join To Our Server"}**`);
+    let description = message.content.split(' ').slice(1).join(' ');
 
-db.set(`description_${message.guild.id}`, de);
+    if (!description) return embed.setColor('#FF0202').setDescription(`**برجاء قم بكتابة وصف للسيرفر الخاص بك ! | ⚠️**`), message.channel.send(embed)
 
-          }
+    if (db.has(`${message.guild.id}.serverDescription`) && db.get(`${message.guild.id}.serverDescription`) == description) {
+      embed.setColor('#FF0202').setDescription(`**لقد قمت بالفعل بإضافة ذلك الوصف من قبل ! | ❌**`);
+      message.channel.send(embed)
+      return;
+    };
+    let des = description.includes('@')?description.replace(/@/gi, '-'):description;
+    db.set(`${message.guild.id}.serverDescription`, des);
+
+
+    embed.setDescription(`**.لقد تم إضافة وصف السيرفر بنجاح | ☑️**`), message.channel.send(embed)
+
+  }
 
 }
 
