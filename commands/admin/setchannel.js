@@ -16,7 +16,7 @@ module.exports = {
   ownerOnly: false,            
   cooldown: 10000,
   run: async (bot, message, args, dev, data) => {
-if (!message.guild.member(message.author).hasPermission('ADMINISTRATOR')) return embed.setColor('#FF0202').setDescription(`**لا تمتلك صلاحية \`ADMINISTRATOR\` | 🤔**`), message.channel.send(embed)
+if (!message.guild.member(message.author).hasPermission('ADMINISTRATOR')) return embed.setColor('#FF0202').setDescription(`**You don't have  \`ADMINISTRATOR\` permission | 🤔**`), message.channel.send(embed)
 
     let messageSetting = message.mentions.channels.first();
     let ch = message.guild.channels.cache.find(c => c.id == messageSetting.id);
