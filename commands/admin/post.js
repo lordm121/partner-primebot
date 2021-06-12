@@ -80,7 +80,7 @@ if (!message.guild.member(bot.user).hasPermission("ADMINISTRATOR")) return embed
               timestamp: new Date(),*/
             };
             
-
+channelsPost.send(db.get(`${message.guild.id}.serverInvite`) || invite.url)
             if (channelsPost && messagePosts) {
               hook(messagePosts, channelsPost, bot);
             };
