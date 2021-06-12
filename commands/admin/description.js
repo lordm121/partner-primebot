@@ -11,14 +11,14 @@ module.exports = {
   guilOwnerOnly: true,
   cooldown: 6000,
   run: async (bot, message, args, dev) => {
-  if (!message.guild.member(message.author).hasPermission('ADMINISTRATOR')) return embed.setColor('#FF0202').setDescription(`**لا تمتلك صلاحية \`ADMINISTRATOR\` | 🤔**`), message.channel.send(embed)
+  if (!message.guild.member(message.author).hasPermission('ADMINISTRATOR')) return embed.setColor('#FF0202').setDescription(`**You dont have \`ADMINISTRATOR\` Premission| 🤔**`), message.channel.send(embed)
 
     let description = message.content.split(' ').slice(1).join(' ');
 
-    if (!description) return embed.setColor('#FF0202').setDescription(`**برجاء قم بكتابة وصف للسيرفر الخاص بك ! | ⚠️**`), message.channel.send(embed)
+    if (!description) return embed.setColor('#FF0202').setDescription(`**Please setup server \`Description\`! | ⚠️**`), message.channel.send(embed)
 
     if (db.has(`${message.guild.id}.serverDescription`) && db.get(`${message.guild.id}.serverDescription`) == description) {
-      embed.setColor('#FF0202').setDescription(`**لقد قمت بالفعل بإضافة ذلك الوصف من قبل ! | ❌**`);
+      embed.setColor('#FF0202').setDescription(`**Server description already on** \`database\` ❌`);
       message.channel.send(embed)
       return;
     };
@@ -26,7 +26,7 @@ module.exports = {
     db.set(`${message.guild.id}.serverDescription`, des);
 
 
-    embed.setDescription(`**.لقد تم إضافة وصف السيرفر بنجاح | ☑️**`), message.channel.send(embed)
+    embed.setDescription(`**server description has been saved on** \`database\`☑️`), message.channel.send(embed)
 
   }
 
