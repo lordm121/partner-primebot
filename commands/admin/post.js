@@ -27,7 +27,7 @@ if (!message.guild.member(bot.user).hasPermission("ADMINISTRATOR")) return embed
 
     if (!db.has(`${message.guild.id}.serverDescription`)) return embed.setColor('#FF0202').setDescription(`**برجاء قم بإضافة وصف للسيرفر قبل النشر عن طريق كتابة \`${db.get(`${message.guild.id}.serverPrefix`)}sd\` | ⚠️**`), message.channel.send(embed)
 
-    const cooldown = 8.64e7; // اليوم بالثانية
+    const cooldown = 0///8.64e7; // اليوم بالثانية
 
     const filter = bot.channels.cache.get(db.get(`${message.guild.id}.serverPostChannel`));
     const postTime = db.get(`${message.guild.id}.serverPostTime`);
