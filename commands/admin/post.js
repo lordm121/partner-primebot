@@ -59,6 +59,10 @@ module.exports = {
   ownerOnly: false,            
   cooldown: 10000,
   run: async (bot, message, args, dev, data) => {
+    const members = message.guild.members.cache;
+
+		const channels = message.guild.channels.cache;
+
   if (db.get(`${message.guild.id}.serverPlan`) == 'Free') return embed.setDescription(`**This server \`${db.get(`${message.guild.name}.serverName`)}\` subscription \`Premium\` version ⚠️**`), message.channel.send(embed)
      
 ///if (!message.guild.member(bot.user).hasPermission("ADMINISTRATOR")) return embed.setColor('#FF0202').setDescription(`**برجاء عدم العبث في صلاحيات البوت لكي تتجنب حظر السيرفر! | ⚠️**`), message.channel.send(embed);
@@ -109,9 +113,13 @@ module.exports = {
               description: `
               link: **Server Invite**\n**[Join Server](${db.get(`${message.guild.id}.serverInvite`) || invite.url})**\n
               \n\n${db.get(`${message.guild.id}.serverDescription`) ? db.get(`${message.guild.id}.serverDescription`) : ''}\n\n
-              \n\nVerification Level**\n**${verificationLevels[message.guild.verificationLevel]}**\n
-              \n\nRegion**\n**${regions[message.guild.region]}**\n
-              \n:grinning: **Emotes** \`${message.guild.emojis.cache.size}\`
+              
+              
+Verification Level:${verificationLevels[message.guild.verificationLevel]}
+Region:${regions[message.guild.region]}
+Member Count:${message.guild.memberCount}
+Humans:${members.filter(member => !member.user.bot).size}
+Bots:${members.filter(member => member.user.bot).size}
               \n${emoji.join(' ')}`,
              color: '',
               author: {
