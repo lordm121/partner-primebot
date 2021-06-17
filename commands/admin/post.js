@@ -43,7 +43,7 @@ const regions = {
 
 };
 const Discord = require("discord.js");
-///const { Color } = require("../../config.js");
+const { Color } = require("../../config.js");
 const db = require("quick.db")
 const pretty = require("pretty-ms");
 let embed = new Discord.MessageEmbed()
@@ -121,13 +121,13 @@ module.exports = {
 •:busts_in_silhouette:Member Count:  ${message.guild.memberCount}
 •:bust_in_silhouette:Humans:  ${members.filter(member => !member.user.bot).size}
 •:robot:Bots:  ${members.filter(member => member.user.bot).size}
-•:sparkles:Boost Count\n ${message.guild.premiumSubscriptionCount || '0'}
-•:speech_balloon:Text Channels\n${channels.filter(channel => channel.type === 'text').size}
-•:loud_sound:Voice Channels\n${channels.filter(channel => channel.type === 'voice').size}`,
+•:sparkles:Boost Count: ${message.guild.premiumSubscriptionCount || '0'}
+•:speech_balloon:Text Channels: ${channels.filter(channel => channel.type === 'text').size}
+•:loud_sound:Voice Channels: ${channels.filter(channel => channel.type === 'voice').size}`,
 
                              
               
-             color: '',
+             color: Color,
               author: {
                 name: message.guild.name,
                 icon_url: message.guild.iconURL(),
