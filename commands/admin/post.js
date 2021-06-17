@@ -111,16 +111,16 @@ module.exports = {
             const messagePosts = {
         
               description: `
-              link: **Server Invite**\n**[Join Server](${db.get(`${message.guild.id}.serverInvite`) || invite.url})**\n
+              [Join Server](${db.get(`${message.guild.id}.serverInvite`) || invite.url})
               \n\n${db.get(`${message.guild.id}.serverDescription`) ? db.get(`${message.guild.id}.serverDescription`) : ''}\n\n
               
               
-Verification Level:${verificationLevels[message.guild.verificationLevel]}
-Region:${regions[message.guild.region]}
-Member Count:${message.guild.memberCount}
-Humans:${members.filter(member => !member.user.bot).size}
-Bots:${members.filter(member => member.user.bot).size}
-              \n${emoji.join(' ')}`,
+🚨Verification Level:${verificationLevels[message.guild.verificationLevel]}
+🚩Region:${regions[message.guild.region]}
+🧮Member Count:${message.guild.memberCount}
+👥Humans:${members.filter(member => !member.user.bot).size}
+🤖Bots:${members.filter(member => member.user.bot).size}`,
+              
              color: '',
               author: {
                 name: message.guild.name,
