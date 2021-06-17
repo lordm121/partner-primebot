@@ -63,8 +63,7 @@ module.exports = {
           }).then(invite => {
 
             const messagePosts = {
-              image: {
-                url: db.get(`${message.guild.id}.serverBanner`),},
+              
               description: `:crown: __**Owner:**__ ${message.guild.owner ? message.guild.owner.user.tag : message.guild.author.tag}
               \n:earth_africa: __**Region:**__ ${message.guild.region}
               \n:timer: __**Created:**__ ${message.guild.createdAt.toLocaleString()}
