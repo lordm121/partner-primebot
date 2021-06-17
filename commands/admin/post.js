@@ -115,11 +115,17 @@ module.exports = {
               \n\n${db.get(`${message.guild.id}.serverDescription`) ? db.get(`${message.guild.id}.serverDescription`) : ''}\n\n
               
               
-🚨Verification Level:${verificationLevels[message.guild.verificationLevel]}
-🚩Region:${regions[message.guild.region]}
-🧮Member Count:${message.guild.memberCount}
-👥Humans:${members.filter(member => !member.user.bot).size}
-🤖Bots:${members.filter(member => member.user.bot).size}`,
+
+• Verification Level:  ${verificationLevels[message.guild.verificationLevel]}
+•:earth_africa:Region:  ${regions[message.guild.region]}
+•:busts_in_silhouette:Member Count:  ${message.guild.memberCount}
+•:bust_in_silhouette:Humans:  ${members.filter(member => !member.user.bot).size}
+•:robot:Bots:  ${members.filter(member => member.user.bot).size}
+•:sparkles:Boost Count\n ${message.guild.premiumSubscriptionCount || '0'}
+•:speech_balloon:Text Channels\n${channels.filter(channel => channel.type === 'text').size}
+•:loud_sound:Voice Channels\n${channels.filter(channel => channel.type === 'voice').size}`,
+
+                             
               
              color: '',
               author: {
