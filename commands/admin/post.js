@@ -29,7 +29,7 @@ module.exports = {
 
     if (!db.has(`${message.guild.id}.serverDescription`)) return embed.setColor('#FF0202').setDescription(`**Firs Setup Server Description Type: \`${db.get(`${message.guild.id}.serverPrefix`)}sd\` | ⚠️**`), message.channel.send(embed)
 
-    const cooldown = 21600000///8.64e7; // اليوم بالثانية
+    const cooldown = 0//21600000///8.64e7; // اليوم بالثانية
 
     const filter = bot.channels.cache.get(db.get(`${message.guild.id}.serverPostChannel`));
     const postTime = db.get(`${message.guild.id}.serverPostTime`);
@@ -63,7 +63,14 @@ module.exports = {
           }).then(invite => {
 
             const messagePosts = {
-              description: `:crown: __**Owner:**__ ${message.guild.owner ? message.guild.owner.user.tag : message.guild.author.tag}\n:earth_africa: __**Region:**__ ${message.guild.region}\n:timer: __**Created:**__ ${message.guild.createdAt.toLocaleString()}\n\n${db.get(`${message.guild.id}.serverDescription`) ? db.get(`${message.guild.id}.serverDescription`) : ''}\n\n:link: **Server Invite**\n**[Join Now](${db.get(`${message.guild.id}.serverInvite`) || invite.url})**\n:busts_in_silhouette: **Members** \`${message.guild.memberCount}\`\n**Humans:** \`${(message.guild.memberCount - message.guild.members.cache.filter(m => m.user.bot).size)}\` | **Bots:** \`${message.guild.members.cache.filter(m => m.user.bot).size}\`\n:grinning: **Emotes** \`${message.guild.emojis.cache.size}\`\n${emoji.join(' ')}`,
+              image: {
+                url: db.get(`${message.guild.id}.serverBanner`),},
+              description: `:crown: __**Owner:**__ ${message.guild.owner ? message.guild.owner.user.tag : message.guild.author.tag}
+              \n:earth_africa: __**Region:**__ ${message.guild.region}
+              \n:timer: __**Created:**__ ${message.guild.createdAt.toLocaleString()}
+              \n\n${db.get(`${message.guild.id}.serverDescription`) ? db.get(`${message.guild.id}.serverDescription`) : ''}\n\n:link: **Server Invite**\n**[Join Now](${db.get(`${message.guild.id}.serverInvite`) || invite.url})**\n:busts_in_silhouette: **Members** \`${message.guild.memberCount}\`\n**Humans:** \`${(message.guild.memberCount - message.guild.members.cache.filter(m => m.user.bot).size)}\`     \n**Bots:** \`${message.guild.members.cache.filter(m => m.user.bot).size}\`
+              \n:grinning: **Emotes** \`${message.guild.emojis.cache.size}\`
+              \n${emoji.join(' ')}`,
              color: '',
               author: {
                 name: message.guild.name,
