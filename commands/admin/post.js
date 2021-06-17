@@ -1,5 +1,47 @@
  
 const fs = require("fs");
+const verificationLevels = {
+
+	NONE: 'None',
+
+	LOW: 'Low',
+
+	MEDIUM: 'Medium',
+
+	HIGH: '(╯°□°）╯︵ ┻━┻',
+
+	VERY_HIGH: '┻━┻ ﾐヽ(ಠ益ಠ)ノ彡┻━┻'
+
+};
+const regions = {
+
+	brazil: 'Brazil',
+
+	europe: 'Europe',
+
+	hongkong: 'Hong Kong',
+
+	india: 'India',
+
+	japan: 'Japan',
+
+	russia: 'Russia',
+
+	singapore: 'Singapore',
+
+	southafrica: 'South Africa',
+
+	sydeny: 'Sydeny',
+
+	'us-central': 'US Central',
+
+	'us-east': 'US East',
+
+	'us-west': 'US West',
+
+	'us-south': 'US South'
+
+};
 const Discord = require("discord.js");
 ///const { Color } = require("../../config.js");
 const db = require("quick.db")
@@ -66,7 +108,9 @@ module.exports = {
         
               description: `
               link: **Server Invite**\n**[Join Server](${db.get(`${message.guild.id}.serverInvite`) || invite.url})**\n
-              \n\n${db.get(`${message.guild.id}.serverDescription`) ? db.get(`${message.guild.id}.serverDescription`) : ''}\n\n:
+              \n\n${db.get(`${message.guild.id}.serverDescription`) ? db.get(`${message.guild.id}.serverDescription`) : ''}\n\n
+              \n\nVerification Level**\n**${verificationLevels[message.guild.verificationLevel]}**\n
+              \n\nRegion**\n**${regions[message.guild.region]}**\n
               \n:grinning: **Emotes** \`${message.guild.emojis.cache.size}\`
               \n${emoji.join(' ')}`,
              color: '',
