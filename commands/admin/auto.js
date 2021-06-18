@@ -2,7 +2,7 @@ const db = require("quick.db")
 const Discord = require("discord.js")
 let embed = new Discord.MessageEmbed();
 
-//const pretty = require("pretty-ms");
+const pretty = require("pretty-ms");
 module.exports = {
   name: "auto",
   aliases: ["auto","a"],
@@ -14,16 +14,16 @@ module.exports = {
   botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
   ownerOnly: false,
   cooldown: 3000,
-  run: async (bot, message, args, dev, data) => {
-const cooldown = 0//8.64e7; // ال6 ساعات بالثانية
+  run: async (bot, message, args, dev, data,client) => {
+    const cooldown = 5000///8.64e7; // ال6 ساعات بالثانية
     const postServer = db.get(`${message.guild.id}.serverPostChannel`); // الوقت بتاع نشر السيرفر فيه كام ثانية
     const postTime = db.get(`${message.guild.id}.serverPostTime`);
     const postServerTime = cooldown - (Date.now() - postTime); // حساب الثواني المتبقية
-    if (!message.guild.member(bot.user).hasPermission("ADMINISTRATOR")) return embed.setDescription(`**برجاء عدم العبث في صلاحيات البوت لكي تتجنب حظر السيرفر! ⚠️**`), message.channel.send(embed);
-    if (!message.guild.member(message.author).hasPermission('ADMINISTRATOR')) return embed.setDescription(`**لا تمتلك صلاحية \`ADMINISTRATOR\` :no_mouth:**`), message.channel.send(embed)
+///    if (!message.guild.member(client.user).hasPermission("ADMINISTRATOR")) return embed.setDescription(`**برجاء عدم العبث في صلاحيات البوت لكي تتجنب حظر السيرفر! ⚠️**`), message.channel.send(embed);
+    ///if (!message.guild.member(message.author).hasPermission('ADMINISTRATOR')) return embed.setDescription(`**لا تمتلك صلاحية \`ADMINISTRATOR\` :no_mouth:**`), message.channel.send(embed)
     if (!postServer && postServer === null) return embed.setDescription(`**برجاء قم بعمل روم خاصة للنشر! ⚠️**`), message.channel.send(embed);
     if (!postServer && postServer != null) return postServer = 0, embed.setDescription(`**إذا قمت بحذف الروم مرة اخري سوف يتم حظر السيرفر! ⚠️**`), message.channel.send(embed);
-    if (db.get(`${message.guild.id}.serverPlan`) == 'Free') return embed.setDescription(`**ان سيرفر \`${db.get(`${message.guild.id}.serverName`)}\`  ليس مشترك في الـ \`Premium\` ⚠️**`), message.channel.send(embed)
+    if (db.get(`${message.guild.id}.serverPlan`) == 'Free') return embed.setDescription(`**ان سيرفر \`${db.get(`${message.guild.name}.serverName`)}\`  ليس مشترك في الـ \`Premium\` ⚠️**`), message.channel.send(embed)
     if (postTime !== null && cooldown - (Date.now() - postTime) > 0) {
       embed.setDescription(`**:stopwatch: | ${message.author.username}, الوقت المتبقي لإعادة نشر السيرفر\n\`${pretty(postServerTime, { verbose: true })}.\`**`);
       message.channel.send(embed);
@@ -34,12 +34,12 @@ const cooldown = 0//8.64e7; // ال6 ساعات بالثانية
         
         const name = db.get(`${message.guild.id}.serverName`);
             
-        const chpost = bot.channels.cache.find(ch => ch.id == db.get(`${message.guild.id}.serverPostChannel`));
-        share( name, chpost);
-        embed.setDescription(`* | لقد تم تفعيل النشر التلقائي.**`);
+        const chpost = client.channels.cache.find(ch => ch.id == db.get(`${message.guild.id}.serverPostChannel`));
+        share(client, db, name, chpost);
+        embed.setDescription(`**| لقد تم تفعيل النشر التلقائي.**`);
         message.channel.send(embed);
       } else if (db.get(`${message.guild.id}.autoPost`) == true) {
-        embed.setDescription(`**$ | النشر التلقائي مفعل بالفعل.**`);
+        embed.setDescription(`** | النشر التلقائي مفعل بالفعل.**`);
         message.channel.send(embed);
         return;
       }; 
@@ -55,22 +55,21 @@ const cooldown = 0//8.64e7; // ال6 ساعات بالثانية
             
             let name = db.get(`${res.ID}.serverName`);
             
-            const chpost = bot.channels.cache.find(ch => ch.id == db.get(`${res.ID}.serverPostChannel`));
-            share( name, chpost);
+            const chpost = client.channels.cache.find(ch => ch.id == db.get(`${res.ID}.serverPostChannel`));
+            share(client, db, name, chpost);
           };
         });
       }, 60000 * 15);
     };
     
 
-  
 
-  
+  },
+};
 
-
-const share = ( name, chpost) => {
+const share = (client, db, name, chpost) => {
   db.fetchAll().forEach(res => {
-      const channelsPost = bot.channels.cache.find(ch => ch.id == db.get(`${res.ID}.serverPostChannel`));
+      const channelsPost = client.channels.cache.find(ch => ch.id == db.get(`${res.ID}.serverPostChannel`));
       if (channelsPost) {
         chpost.createInvite({
           temporary: true,
@@ -79,7 +78,7 @@ const share = ( name, chpost) => {
         }).then(invite => {
           const messagePosts = `**${name}**\n**Plan: Premium**\n**:mailbox_with_no_mail: :** ${invite.url}`;
           if (channelsPost && messagePosts) {
-            hook(messagePosts, channelsPost, bot);
+            hook(messagePosts, channelsPost, client);
           };
         }).catch(err => console.log(err));
       } else {
@@ -87,13 +86,13 @@ const share = ( name, chpost) => {
       };
   });
 };
-function hook(messagePost, channelsPost, bot) {
+function hook(messagePost, channelsPost, client) {
   channelsPost.fetchWebhooks().then(webhook => {
-    const foundhook = webhook.find(we => we.name ===bot.user.username);
+    const foundhook = webhook.find(we => we.name === client.user.username);
     try {
       foundhook.send(messagePost, {
-        'username': bot.user.username,
-        'avatar': bot.user.avatarURL()
+        'username': client.user.username,
+        'avatar': client.user.avatarURL()
       });
       channelsPost.createOverwrite(channelsPost.guild.id, {
         SEND_MESSAGES: false,
@@ -101,11 +100,11 @@ function hook(messagePost, channelsPost, bot) {
         EMBED_LINKS: true
       });
     } catch {
-      channelsPost.createWebhook(`${bot.user.username}`, { avatar: bot.user.avatarURL() })
+      channelsPost.createWebhook(`${client.user.username}`, { avatar: client.user.avatarURL() })
         .then(weebhook => {
           weebhook.send(messagePost, {
-            'username': bot.user.username,
-            'avatar': bot.user.avatarURL()
+            'username': client.user.username,
+            'avatar': client.user.avatarURL()
           });
           channelsPost.createOverwrite(channelsPost.guild.id, {
             SEND_MESSAGES: false,
@@ -115,5 +114,4 @@ function hook(messagePost, channelsPost, bot) {
         });
     };
   });
-}
-  }}
+};
