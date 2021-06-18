@@ -2,7 +2,7 @@ const db = require("quick.db")
 const Discord = require("discord.js")
 let embed = new Discord.MessageEmbed();
 
-const pretty = require("pretty-ms");
+//const pretty = require("pretty-ms");
 module.exports = {
   name: "auto",
   aliases: ["auto","a"],
@@ -35,7 +35,7 @@ const cooldown = 0//8.64e7; // ال6 ساعات بالثانية
         const name = db.get(`${message.guild.id}.serverName`);
             
         const chpost = bot.channels.cache.find(ch => ch.id == db.get(`${message.guild.id}.serverPostChannel`));
-        share(bot, db, name, chpost);
+        share( name, chpost);
         embed.setDescription(`* | لقد تم تفعيل النشر التلقائي.**`);
         message.channel.send(embed);
       } else if (db.get(`${message.guild.id}.autoPost`) == true) {
@@ -56,20 +56,21 @@ const cooldown = 0//8.64e7; // ال6 ساعات بالثانية
             let name = db.get(`${res.ID}.serverName`);
             
             const chpost = bot.channels.cache.find(ch => ch.id == db.get(`${res.ID}.serverPostChannel`));
-            share(bot, db, name, chpost);
+            share( name, chpost);
           };
         });
       }, 60000 * 15);
     };
     
 
+  
 
   
 
 
-const share = (client, db, name, chpost) => {
+const share = ( name, chpost) => {
   db.fetchAll().forEach(res => {
-      const channelsPost = client.channels.cache.find(ch => ch.id == db.get(`${res.ID}.serverPostChannel`));
+      const channelsPost = bot.channels.cache.find(ch => ch.id == db.get(`${res.ID}.serverPostChannel`));
       if (channelsPost) {
         chpost.createInvite({
           temporary: true,
@@ -78,7 +79,7 @@ const share = (client, db, name, chpost) => {
         }).then(invite => {
           const messagePosts = `**${name}**\n**Plan: Premium**\n**:mailbox_with_no_mail: :** ${invite.url}`;
           if (channelsPost && messagePosts) {
-            hook(messagePosts, channelsPost, client);
+            hook(messagePosts, channelsPost, bot);
           };
         }).catch(err => console.log(err));
       } else {
@@ -86,13 +87,13 @@ const share = (client, db, name, chpost) => {
       };
   });
 };
-function hook(messagePost, channelsPost, client) {
+function hook(messagePost, channelsPost, bot) {
   channelsPost.fetchWebhooks().then(webhook => {
-    const foundhook = webhook.find(we => we.name === client.user.username);
+    const foundhook = webhook.find(we => we.name ===bot.user.username);
     try {
       foundhook.send(messagePost, {
-        'username': client.user.username,
-        'avatar': client.user.avatarURL()
+        'username': bot.user.username,
+        'avatar': bot.user.avatarURL()
       });
       channelsPost.createOverwrite(channelsPost.guild.id, {
         SEND_MESSAGES: false,
@@ -100,11 +101,11 @@ function hook(messagePost, channelsPost, client) {
         EMBED_LINKS: true
       });
     } catch {
-      channelsPost.createWebhook(`${client.user.username}`, { avatar: client.user.avatarURL() })
+      channelsPost.createWebhook(`${bot.user.username}`, { avatar: bot.user.avatarURL() })
         .then(weebhook => {
           weebhook.send(messagePost, {
-            'username': client.user.username,
-            'avatar': client.user.avatarURL()
+            'username': bot.user.username,
+            'avatar': bot.user.avatarURL()
           });
           channelsPost.createOverwrite(channelsPost.guild.id, {
             SEND_MESSAGES: false,
@@ -114,4 +115,5 @@ function hook(messagePost, channelsPost, client) {
         });
     };
   });
-}}};
+}
+  }}
