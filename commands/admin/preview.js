@@ -6,13 +6,14 @@ module.exports = {
     aliases: ["prev"],
     description: "You can ban a member, or multiple members using this command",
     usage: ["s!ban [@User]"],
-    category: ["Moderation"],
+    category: ["admin"],
     enabled: true,
-    memberPermissions: ["BAN_MEMBERS"],
+    memberPermissions: ["B"],
     botPermissions: ["SEND_MESSAGES", "EMBED_LINKS", "BAN_MEMBERS"],
     ownerOnly: false,
     cooldown: 6000,
     run: async (client, message, args, dev) => {
+      
   let des= db.get(`${message.guild.id}.serverDescription`)
   let channel = db.get(`${message.guild.id}.serverPostChannel`)
   let color = db.get(`${message.guild.id}.serverColor`)
