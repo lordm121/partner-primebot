@@ -63,12 +63,13 @@ module.exports = {
 
 		const channels = message.guild.channels.cache;
 
-  if (db.get(`${message.guild.id}.serverPlan`) == 'Free') return embed.setDescription(`**This server \`${db.get(`${message.guild.name}.serverName`)}\` subscription \`Premium\` version ⚠️**`), message.channel.send(embed)
+ ///// if (db.get(`${message.guild.id}.serverPlan`) == 'Free') return embed.setDescription(`**This server \`${db.get(`${message.guild.name}.serverName`)}\` subscription \`Premium\` version ⚠️**`), message.channel.send(embed)
      
 ///if (!message.guild.member(bot.user).hasPermission("ADMINISTRATOR")) return embed.setColor('#FF0202').setDescription(`**برجاء عدم العبث في صلاحيات البوت لكي تتجنب حظر السيرفر! | ⚠️**`), message.channel.send(embed);
 
    /// if (!message.guild.member(message.author).hasPermission('ADMINISTRATOR')) return embed.setColor('#FF0202').setDescription(`**لا تمتلك صلاحية \`ADMINISTRATOR\` | 🤔**`), message.channel.send(embed)
 
+    if (!db.has(`${message.guild.id}.serverBlacklist`)) return message.channel.send(`your server on blacklist`)
     const postChannel = db.has(`${message.guild.id}.serverPostChannel`); // الوقت بتاع نشر السيرفر فيه كام ثانية
 
     if (!postChannel) return embed.setColor('#FF0202').setDescription(`**برجاء قم بعمل روم خاصة للنشر! | ⚠️**`), message.channel.send(embed);
