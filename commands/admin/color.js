@@ -20,7 +20,7 @@ module.exports = {
             emb.setDescription("**You need to enter a hex color code qwq**")
             return message.channel.send(`i cant this`)
         }
-        
+        db.set(`${message.guild.id}.serverColor`, color)
         return message.channel.send(emb.setDescription("**Changed color succesfully**"))
-      db.set(`${message.guild.id}.serverColor`)
+     /// db.set(`${message.guild.id}.serverColor`,color)
     }}
