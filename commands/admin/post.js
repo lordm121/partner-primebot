@@ -69,7 +69,7 @@ module.exports = {
 
    /// if (!message.guild.member(message.author).hasPermission('ADMINISTRATOR')) return embed.setColor('#FF0202').setDescription(`**لا تمتلك صلاحية \`ADMINISTRATOR\` | 🤔**`), message.channel.send(embed)
 
-    if (!db.get(`${message.guild.id}.serverBlacklist`)) return message.channel.send(`your server on blacklist`)
+   // if (!db.get(`${message.guild.id}.serverBlacklist`)) return message.channel.send(`your server on blacklist`)
     const postChannel = db.has(`${message.guild.id}.serverPostChannel`); // الوقت بتاع نشر السيرفر فيه كام ثانية
 
     if (!postChannel) return embed.setColor('#FF0202').setDescription(`**برجاء قم بعمل روم خاصة للنشر! | ⚠️**`), message.channel.send(embed);
@@ -128,7 +128,7 @@ module.exports = {
 
                              
               
-             color: Color,
+             color: db.get(`${message.guild.id}.serverColor`),
               author: {
                 name: message.guild.name,
                 icon_url: message.guild.iconURL(),
