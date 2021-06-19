@@ -1,4 +1,4 @@
-/*const Discord = require("discord.js")
+const Discord = require("discord.js")
 const embed = new Discord.MessageEmbed()
 const db = require("quick.db")
 const devs = "768944616724103170"
@@ -16,6 +16,6 @@ module.exports = {
   run: async (bot, message, args, dev, data) => {
 if (!devs.includes(message.author.id)) return;
     const black = message.content.split(" ").slice(1).join(" ");
-    if (db.has(`${message.guild.id}.serverBlackList`)) return embed.setDescription(`**لقد تم حظر السيرفر بالفعل | ⚠️**`), message.channel.send(embed)
-    db.set(`${message.guild.id}.serverBlackList`, true);
-    embed.setDescripti}}*/
+    if (db.has(`${black}.serverBlackList`)) return embed.setDescription(`**لقد تم حظر السيرفر بالفعل | ⚠️**`), message.channel.send(embed)
+    db.set(`${black}.serverBlackList`, true);
+    embed.setDescripti}}
