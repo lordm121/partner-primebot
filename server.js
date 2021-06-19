@@ -1,4 +1,6 @@
 const Discord = require("discord.js");
+
+///const Discord = require("discord.js");
 const bot = new Discord.Client();
 const db = require('quick.db')
 //const { Color } = require("./config.js");
