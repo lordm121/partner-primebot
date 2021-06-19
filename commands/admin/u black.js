@@ -1,4 +1,4 @@
-const Discord = require("discord.js")
+/*const Discord = require("discord.js")
 const embed = new Discord.MessageEmbed()
 const db = require("quick.db")
 const devs = "768944616724103170"
@@ -18,8 +18,8 @@ module.exports = {
 
     var black = message.content.split(" ").slice(1).join(" ");
 
-    if (db.has(`${message.guild.id}.serverBlackList`)) return embed.setDescription(`**ان السيرفر ليس في قائمة الحظر | ⚠️**`), message.channel.send(embed)
-    db.delete(`${message.guild.id}.serverBlackList`);
+    if (db.has(`${black}.serverBlackList`)) return embed.setDescription(`**ان السيرفر ليس في قائمة الحظر | ⚠️**`), message.channel.send(embed)
+    db.delete(`${black}.serverBlackList`);
 
     embed.setDescription(`**لقد تم إزالة الحظر من السيرفر بنجاح | ☑️**`), message.channel.send(embed)
-  }}
+  }}*/
