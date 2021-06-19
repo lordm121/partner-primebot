@@ -27,31 +27,27 @@ let embed = new Discord.MessageEmbed()
     /// .addField("🔨 Security", "`anti`, `settings`, `punishment`, `whitelist`")
   message.channel.send(embed)
 
-      
     } else {
-      let command = bot.commands.get(args[1]);
-      if (!command) command = bot.commands.get(bot.aliases.get(args[1]));
-      if (command) {
-        if (!command.cmdUsage) {
-          command.cmdUsage = "No usage for this command"
+      let  command = args[1]
+      if (bot.commands.has(command) || 
+      bot.aliases.has(command)) {  
+      
+      command = bot.commands.get(command) || bot.aliases.get(command);
+        let ccmd = "<:disable:840230135046471711> Disabled"
+        if ( command.enabled ) {
+        ccmd = "<:enable:840230134899671060> Enabled"
         }
-        if (!command.cmdHelp) {
-          command.cmdHelp = "No help for this command"
+      let embed = new Discord.MessageEmbed()
+      .setColor(Color) 
+      .setThumbnail(message.author.avatarURL())
+      .setTitle("**Help**")
+      .setDescription(command.description || command.name + " this command don't have a description")
+//      .addField("**Usage**", "" + command.usage.join(", ") + "" )
+      .addField("**Category**", "" + command.category.join(", ") + "" )
+      .addField("**Command is**", ccmd);
+      message.channel.send(embed)
         }
-        if (!command.cmdCatagory) {
-          command.cmdCatagory = "Null"
-        }
-        let embed = new MessageEmbed()
-          .setColor(Color)
-          .setTitle("Command Help")
-          .setDescription(`
-**Help:** ${command.cmdHelp}
-**Usage:** ${command.cmdUsage}
-**Category:** ${command.cmdCatagory}`)
-        message.channel.send(embed);
-      } else {
-        return message.channel.send(`We don't have command by this name **${args[0]}**`)
-      }
-    }
+    }  
+  
   }
 }

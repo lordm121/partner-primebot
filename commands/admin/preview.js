@@ -4,12 +4,12 @@ let embed = new Discord.MessageEmbed()
 module.exports = {
     name: "preview",
     aliases: ["prev"],
-    description: "You can ban a member, or multiple members using this command",
-    usage: ["s!ban [@User]"],
-    category: ["admin"],
+    description: "show all configuration befor bump your server",
+    usage: [".preview"],
+    category: ["Admin"],
     enabled: true,
-    memberPermissions: ["B"],
-    botPermissions: ["SEND_MESSAGES", "EMBED_LINKS", "BAN_MEMBERS"],
+    memberPermissions: ["MANAGE_GUILD","ADMINISTRATOR"],
+    botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
     ownerOnly: false,
     cooldown: 6000,
     run: async (client, message, args, dev) => {
