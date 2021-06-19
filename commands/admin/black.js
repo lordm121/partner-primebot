@@ -1,4 +1,4 @@
-const Discord = require("discord.js")
+/*const Discord = require("discord.js")
 const embed = new Discord.MessageEmbed()
 const db = require("quick.db")
 const devs = "768944616724103170"
@@ -18,4 +18,4 @@ if (!devs.includes(message.author.id)) return;
     const black = message.content.split(" ").slice(1).join(" ");
     if (db.has(`${message.guild.id}.serverBlackList`)) return embed.setDescription(`**لقد تم حظر السيرفر بالفعل | ⚠️**`), message.channel.send(embed)
     db.set(`${message.guild.id}.serverBlackList`, true);
-    embed.setDescripti}}
+    embed.setDescripti}}*/
