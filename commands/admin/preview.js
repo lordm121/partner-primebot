@@ -1,9 +1,10 @@
 const Discord = require("discord.js")
 const db = require("quick.db")
 let embed = new Discord.MessageEmbed()
+const Color = require("../../config.js")
 module.exports = {
     name: "preview",
-    aliases: ["prev"],
+    aliases: ["prev","preview"],
     description: "show all configuration befor bump your server",
     usage: [".preview"],
     category: ["Admin"],
@@ -19,14 +20,14 @@ module.exports = {
   let color = db.get(`${message.guild.id}.serverColor`)
   let banner = db.get(`${message.guild.id}.serverBanner`)
            embed .setTitle(` Preview [${message.guild.name}]`)
-           embed .setColor("")
+           embed .setColor(Color)
  
         .setDescription(`
 \`Description\`: \n **${des} **
 \`share channel\`:**<#${channel}>**
 \`server banner\`: **${banner}**
 \`embed Color code\` : **${color}**
-:globe_with_meridians: ${message.guild.region}
+\`server region\`:globe_with_meridians:: ${message.guild.region}
 
     `)
         return message.channel.send(embed)

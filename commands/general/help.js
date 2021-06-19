@@ -42,7 +42,8 @@ let embed = new Discord.MessageEmbed()
       .setThumbnail(message.author.avatarURL())
       .setTitle("**Help**")
       .setDescription(command.description || command.name + " this command don't have a description")
-//      .addField("**Usage**", "" + command.usage.join(", ") + "" )
+
+      .addField("**Usage**", "" + command.usage.join(", ") + "" )
       .addField("**Category**", "" + command.category.join(", ") + "" )
       .addField("**Command is**", ccmd);
       message.channel.send(embed)
