@@ -22,9 +22,9 @@ module.exports = {
         .setDescription(`
 \`Description\`: \n **${des} **
 \`share channel\`:**<#${channel}>**
-\`embed Color\` : **${color}**
+\`embed Color code\` : **${color}**
 :globe_with_meridians: ${message.guild.region}
-${message.guild.memberCount}
+
     `)
         return message.channel.send(embed)
     }}
