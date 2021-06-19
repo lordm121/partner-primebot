@@ -16,12 +16,14 @@ module.exports = {
   let des= db.get(`${message.guild.id}.serverDescription`)
   let channel = db.get(`${message.guild.id}.serverPostChannel`)
   let color = db.get(`${message.guild.id}.serverColor`)
+  let banner = db.get(`${message.guild.id}.serverBanner`)
            embed .setTitle(` Preview [${message.guild.name}]`)
            embed .setColor("")
  
         .setDescription(`
 \`Description\`: \n **${des} **
 \`share channel\`:**<#${channel}>**
+\`server banner\`: **${banner}**
 \`embed Color code\` : **${color}**
 :globe_with_meridians: ${message.guild.region}
 
