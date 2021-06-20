@@ -1,9 +1,7 @@
-
 const Discord = require("discord.js")
-
 module.exports = {
-  name: "say",
-  aliases: ["say"],
+  name: "image",
+  aliases: ["iamge"],
   description: "To show you all command of the bot",
   usage: ["s!help","s!help <command>"],
   category: ["General"],
@@ -13,7 +11,6 @@ module.exports = {
   ownerOnly: false,            
   cooldown: 1000,
   run: async (bot, message, args, dev, data) => {
-  const sayMessage = args.join(" ") //a mensagem no caso tudo depois que vier do prefixo seguido do comando t.say bla bla bla (tudo que vier apأ�s o t.say serأ� escrito)
-   message.delete()//deleta a mensagem logo apأ�s executar o comando e pegar os args
- message.channel.send(sayMessage) //aqui o comando vai ser mandado no chat que foi solicitado o comando
-  }} 
+  const image = args.join("")
+  message.channel.send(`https://cdn.discordapp.com/attachments/805417634102640690/856098452669071380/Screenshot_20210620_120145_com.discord.jpg`)
+  }}
