@@ -17,7 +17,7 @@ module.exports = {
     if (!devs.includes(message.author.id)) return;
   
   const image = args.join("")
-  message.channel.send(``)
+  message.channel.send(`https://cdn.discordapp.com/attachments/851392343814307840/856217225055436840/VivaCut_video_1624207856278_HD.mp4`)
   
 
   } 
