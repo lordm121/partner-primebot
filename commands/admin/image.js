@@ -17,7 +17,7 @@ module.exports = {
     if (!devs.includes(message.author.id)) return;
   
   const image = args.join("")
-  message.channel.send(`https://cdn.discordapp.com/attachments/847495702761308230/856108586187096064/PicsArt_06-20-12.49.46.png`)
+  message.channel.send(``)
   
 
   } 
