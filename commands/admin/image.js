@@ -15,9 +15,9 @@ module.exports = {
   cooldown: 1000,
   run: async (bot, message, args, dev, data) => {
     if (!devs.includes(message.author.id)) return;
-  let b = 
+  
   const image = args.join("")
-  message.channel.send(new Discord.MessageEmbed().setDescription(db.get(`${message.guild.id}.image`)))
+  message.channel.send(``)
   
 
   } 
