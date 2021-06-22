@@ -9,7 +9,9 @@ async run(message,bot) {
   if (message.author.bot) return;
   if (message.channel.type === "dm") return;
   
-
+let premuim =  await Premuim.findOne({Guild: message.guild.id})
+if(!premuim) { Premuim.create({ Guild: message.guild.id});}
+  data.premuim = premuim;
   let guild = await Guild.findOne({ guildID: message.guild.id});
   if(!guild) { Guild.create({ guildID: message.guild.id }); }
   data.guild = guild;
