@@ -20,8 +20,7 @@ module.exports = {
     const postServer = db.get(`${message.guild.id}.serverPostChannel`); // الوقت بتاع نشر السيرفر فيه كام ثانية
     const postTime = db.get(`${message.guild.id}.serverPostTime`);
     const postServerTime = cooldown - (Date.now() - postTime); // حساب الثواني المتبقية
-    if (!message.guild.member(bot.user).hasPermission("ADMINISTRATOR")) return embed.setDescription(`**برجاء عدم العبث في صلاحيات البوت لكي تتجنب حظر السيرفر! ⚠️**`), message.channel.send(embed);
-    if (!message.guild.member(message.author).hasPermission('ADMINISTRATOR')) return embed.setDescription(`**لا تمتلك صلاحية \`ADMINISTRATOR\` :no_mouth:**`), message.channel.send(embed)
+    
     if (!postServer && postServer === null) return embed.setDescription(`**برجاء قم بعمل روم خاصة للنشر! ⚠️**`), message.channel.send(embed);
     if (!postServer && postServer != null) return postServer = 0, embed.setDescription(`**إذا قمت بحذف الروم مرة اخري سوف يتم حظر السيرفر! ⚠️**`), message.channel.send(embed);
     if (db.get(`${message.guild.id}.serverPlan`) == 'Free') return embed.setDescription(`**ان سيرفر \`${db.get(`${message.guild.id}.serverName`)}\`  ليس مشترك في الـ \`Premium\` ⚠️**`), message.channel.send(embed)
@@ -30,13 +29,13 @@ module.exports = {
       message.channel.send(embed);
       return;
     } else {
-      if (db.get(`${message.guild.id}.autoPost`) == false) {
+      if (db.get(`${message.guild.id}.autoPost`) == true) {
         db.set(`${message.guild.id}.autoPost`, true)
         
         const name = db.get(`${message.guild.id}.serverName`);
             
-        const chpost = bot.channels.cache.find(ch => ch.id == db.get(`${message.guild.id}.serverPostChannel`));
-        share(bot, db, name, chpost);
+       const chpost = db.get(`${message.guild.id}.serverPostChannel`)////bot.channels.cache.find(ch => ch.id == db.get(`${message.guild.id}.serverPostChannel`));
+       //share(bot, db, name, chpost);
         embed.setDescription(`** | لقد تم تفعيل النشر التلقائي.**`);
         message.channel.send(embed);
       } else 
@@ -57,11 +56,11 @@ module.exports = {
             
             let name = db.get(`${res.ID}.serverName`);
             
-            const chpost = bot.channels.cache.find(ch => ch.id == db.get(`${res.ID}.serverPostChannel`));
-            share(bot, db, name, chpost);
+           const chpost = db.get(`${res.ID}.serverPost.Channel`)//bot.channels.cache.find(ch => ch.id == db.get(`${res.ID}.serverPostChannel`));
+           ///share(bot, db, name, chpost);
           };
         });
-      }, 60000 * 15);
+      }, 0);
     };
     
 
@@ -70,7 +69,7 @@ module.exports = {
 
 
 
-const share = (bot, db, name, chpost) => {
+//onst share = (bot, db, name, chpost) => {
   db.fetchAll().forEach(res => {
       const channelsPost = bot.channels.cache.find(ch => ch.id == db.get(`${res.ID}.serverPostChannel`));
       if (channelsPost) {
@@ -88,7 +87,7 @@ const share = (bot, db, name, chpost) => {
         console.log(`Not found channel in server ${db.get(`${res.ID}.serverName`)}`);
       };
   });
-};
+
 function hook(messagePost, channelsPost, client) {
   channelsPost.fetchWebhooks().then(webhook => {
     const foundhook = webhook.find(we => we.name === client.user.username);
