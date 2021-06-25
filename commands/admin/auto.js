@@ -14,9 +14,9 @@ module.exports = {
     botPermissions: ["SEND_MESSAGES", "EMBED_LINKS", "BAN_MEMBERS"],
     ownerOnly: false,
     cooldown: 6000,
-    run: async (bot, message, args, dev) => {
+    run: async (bot, message, args, dev,client) => {
 
-    const cooldown = 8.64e7; // ال6 ساعات بالثانية
+    const cooldown = 0// 8.64e7; // ال6 ساعات بالثانية
     const postServer = db.get(`${message.guild.id}.serverPostChannel`); // الوقت بتاع نشر السيرفر فيه كام ثانية
     const postTime = db.get(`${message.guild.id}.serverPostTime`);
     const postServerTime = cooldown - (Date.now() - postTime); // حساب الثواني المتبقية
@@ -39,7 +39,8 @@ module.exports = {
         share(bot, db, name, chpost);
         embed.setDescription(`** | لقد تم تفعيل النشر التلقائي.**`);
         message.channel.send(embed);
-      } else if (db.get(`${message.guild.id}.autoPost`) == true) {
+      } else 
+        if (db.get(`${message.guild.id}.autoPost`) == true) {
         embed.setDescription(`** | النشر التلقائي مفعل بالفعل.**`);
         message.channel.send(embed);
         return;
@@ -69,9 +70,9 @@ module.exports = {
 
 
 
-const share = (client, db, name, chpost) => {
+const share = (bot, db, name, chpost) => {
   db.fetchAll().forEach(res => {
-      const channelsPost = client.channels.cache.find(ch => ch.id == db.get(`${res.ID}.serverPostChannel`));
+      const channelsPost = bot.channels.cache.find(ch => ch.id == db.get(`${res.ID}.serverPostChannel`));
       if (channelsPost) {
         chpost.createInvite({
           temporary: true,
@@ -80,7 +81,7 @@ const share = (client, db, name, chpost) => {
         }).then(invite => {
           const messagePosts = `**${name}**\n**Plan: Premium**\n**:mailbox_with_no_mail: :** ${invite.url}`;
           if (channelsPost && messagePosts) {
-            hook(messagePosts, channelsPost, client);
+            hook(messagePosts, channelsPost, bot);
           };
         }).catch(err => console.log(err));
       } else {
