@@ -62,6 +62,7 @@ module.exports = {
     const members = message.guild.members.cache;
 
 		const channels = message.guild.channels.cache;
+    
 
   const postChannel = db.has(`${message.guild.id}.serverPostChannel`); // الوقت بتاع نشر السيرفر فيه كام ثانية
 
@@ -73,7 +74,22 @@ module.exports = {
 
     const filter = bot.channels.cache.get(db.get(`${message.guild.id}.serverPostChannel`));
     const postTime = db.get(`${message.guild.id}.serverPostTime`);
-
+    
+if (db.get(`${message.guild.id}.autoPost`) == false) {
+        db.set(`${message.guild.id}.autoPost`, true)
+        
+        const name = db.get(`${message.guild.id}.serverName`);
+            
+        const chpost = bot.channels.cache.find(ch => ch.id == db.get(`${message.guild.id}.serverPostChannel`));
+       /// share(bot, db, name, chpost);
+        embed.setDescription(`** | لقد تم تفعيل النشر التلقائي.**`);
+        message.channel.send(embed);
+      } else if (db.get(`${message.guild.id}.autoPost`) == true) {
+        embed.setDescription(`**$ | النشر التلقائي مفعل بالفعل.**`);
+        message.channel.send(embed);
+        return;
+      }; 
+    
 
     if (postChannel && !filter) return db.delete(`${message.guild.id}.serverPostChannel`), embed.setDescription(`**If You Delete Share channel Your server will be blacklist | ⚠️**`).setColor("#FF0202"), message.channel.send(embed);
 
