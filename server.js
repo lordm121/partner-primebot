@@ -8,7 +8,7 @@ const fs = require("fs");
 const request = require("request");
 const prefix = "!";
 const { Collection, MessageEmbed } = require("discord.js");
-const beautify = require("js-beautify");
+
 const { inspect } = require("util");
 ///let dev = ["738478465870987425","386188491953799178"];
 const cmd = require("node-cmd");
@@ -64,4 +64,4 @@ bot.on("ready", () => {
         bot.user.setActivity(status[rstatus], {type: "PLAYING"});    
     }; setInterval(randomStatus, 3000)
 })
-bot.login("ODUwMTA2NTkxMDUxMzgyNzg0.YLk5dQ.MLxlcOLzvRCV9R7oZdP6IcuiQJ8");
+bot.login("ODU2NDgyNTUwNTQwMDA5NDcy.YNBriA.6l47-ZYnTQf5vKdeUj7mVfq_ih0");
