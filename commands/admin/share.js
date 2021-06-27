@@ -109,7 +109,7 @@ message.channel.send(new Discord.MessageEmbed().setColor(Color).setDescription(`
         };
       });
 
-      data.Channel.fetchAll().forEach(res => {
+      data.fetchAll().forEach(res => {
         const channelsPost = bot.channels.cache.find(ch => ch.id == data.Channel);////db.get(`${res.ID}.serverPostChannel`));
         if (channelsPost) {
           const chann = bot.channels.cache.find(ch => ch.id == data.Channel)///db.get(`${message.guild.id}.serverPostChannel`));
@@ -145,12 +145,12 @@ message.channel.send(new Discord.MessageEmbed().setColor(Color).setDescription(`
               footer: {
                 text: "Posted by " + message.author.username,
                 icon_url: message.author.avatarURL(),
-              },
+              },/*
               image: {
                 
                 url: data.Banner,
              
-              },
+              },*/
               thumbnail: {
                 url: message.guild.iconURL({ dynamic: true }),
               },
