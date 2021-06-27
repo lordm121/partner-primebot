@@ -58,11 +58,11 @@ module.exports = {
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS","CREATE_INVITE","MANAGE_CHANNELS"],        
   ownerOnly: false,            
   cooldown: 10000,
-  run: async (bot, message, args, dev, data) => {
+  run: async (bot, message, args, dev) => {
     const members = message.guild.members.cache;
 
 		const channels = message.guild.channels.cache;
-    
+    let data = await Guild.findOne({ guildID: message.guild.id})
 
   const postChannel = db.has(`${message.guild.id}.serverPostChannel`); // الوقت بتاع نشر السيرفر فيه كام ثانية
 
@@ -119,6 +119,7 @@ message.channel.send(new Discord.MessageEmbed().setColor(Color).setDescription(`
           }).then(invite => {
 
             const messagePosts = {
+              
         
               description: `
               [Join Server](${db.get(`${message.guild.id}.serverInvite`) || invite.url})
@@ -145,7 +146,7 @@ message.channel.send(new Discord.MessageEmbed().setColor(Color).setDescription(`
                 icon_url: message.author.avatarURL(),
               },
               image: {
-                url: db.get(`${message.guild.id}.serverBanner`),
+                url: data.Banner,////db.get(`${message.guild.id}.serverBanner`),
               },
               thumbnail: {
                 url: message.guild.iconURL({ dynamic: true }),
