@@ -146,7 +146,7 @@ message.channel.send(new Discord.MessageEmbed().setColor(Color).setDescription(`
                 icon_url: message.author.avatarURL(),
               },
               image: {
-                url: data.Banner,////db.get(`${message.guild.id}.serverBanner`),
+                url: data.Banner+({ dynamic: true}),////db.get(`${message.guild.id}.serverBanner`),
               },
               thumbnail: {
                 url: message.guild.iconURL({ dynamic: true }),
