@@ -45,6 +45,7 @@ const regions = {
 const Discord = require("discord.js");
 const { Color } = require("../../config.js");
 const db = require("quick.db")
+
 const pretty = require("pretty-ms");
 let embed = new Discord.MessageEmbed()
 module.exports = {
@@ -108,7 +109,8 @@ message.channel.send(new Discord.MessageEmbed().setColor(Color).setDescription(`
         };
       });
 
-      db.fetchAll().forEach(res => {
+      //data.fetchAll()
+      data.channelID.forEach(res => {
         const channelsPost = bot.channels.cache.find(ch => ch.id == db.get(`${res.ID}.serverPostChannel`));
         if (channelsPost) {
           const chann = bot.channels.cache.find(ch => ch.id == db.get(`${message.guild.id}.serverPostChannel`));
@@ -146,7 +148,9 @@ message.channel.send(new Discord.MessageEmbed().setColor(Color).setDescription(`
                 icon_url: message.author.avatarURL(),
               },
               image: {
-                url: data.Banner+({ dynamic: true}),////db.get(`${message.guild.id}.serverBanner`),
+                
+                url: data.Banner,
+             
               },
               thumbnail: {
                 url: message.guild.iconURL({ dynamic: true }),
