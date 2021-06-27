@@ -16,22 +16,24 @@ module.exports = {
   ownerOnly: false,            
   cooldown: 10000,
   run: async (bot, message, args, dev) => {
-    let data = await Guild.findOne({banner: banner}) 
+    //let data = await Guild.findOne({banner: args[1]}) 
 ////if (!message.guild.member(message.author).hasPermission('ADMINISTRATOR')) return embed.setDescription(`**لا تمتلك صلاحية \`ADMINISTRATOR\` | 🤔**`), message.channel.send(embed)
 if (db.get(`${message.guild.id}.serverPlan`) == 'Free') return embed.setDescription(`**This server \`${db.get(`${message.guild.name}.serverName`)}\` Don't have \`Premium\`  version⚠️**`), message.channel.send(embed)
 
-    let banner = message.content.split(' ').slice(1).join(' ');
-
+    let banner = args[1]///message.content.split(' ').slice(1).join(' ');
+let data = await Guild.findOne({banner: args[1]})
     if (!banner) return embed.setColor('#FF0202').setDescription(`** Please send URL of a banner! | ⚠️**`), message.channel.send(embed)
     
-    if (db.has(`${message.guild.id}.serverBanner`) && db.get(`${message.guild.id}.serverBanner`) == banner) {
-      embed.setColor('#FF0202').setDescription(`**This image Already  | ❌**`);
-      message.channel.send(embed)
-      return;
-    };
-    if(data) return message.channel.send(`banner already saved befor`)
+   
+    ///if (db.has(`${mesage.guild.id}.serverBanner`) && db.get(`${message.guild.id}.serverBanner`) == banner) {
+      if(data) return message.channel.send(`no please`)
+    ////embed.setColor('#FF0202').setDescription(`**This image Already  | ❌**`);
+     /// message.channel.send(embed)
+      
+  
+    //if(data.) return message.channel.send(`banner already saved befor`)
     if(!data) { Guild.create({
-      banner: banner,
+      banner: args[1],
     }).save}
 
     ///db.set(`${message.guild.id}.serverBanner`, banner);
