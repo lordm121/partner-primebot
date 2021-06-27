@@ -3,9 +3,9 @@ const mongoose = require ('mongoose')
 
 const Schema = new mongoose.Schema({
     guildID: String,
-    channelID: String,
-  guildName: String,
-     prefix: { type: String, default: "!"},
+    guildName: String,
+    banner: String,
+    prefix: { type: String, default: "!"},
 
 
 })
