@@ -21,10 +21,12 @@ module.exports = {
 if (db.get(`${message.guild.id}.serverPlan`) == 'Free') return embed.setDescription(`**This server \`${db.get(`${message.guild.name}.serverName`)}\` Don't have \`Premium\`  version⚠️**`), message.channel.send(embed)
 
   if(args[1]){
-    let data = await Guild.findOne({guildID:message.guild.id})
-    if (!args[1]) return embed.setColor('#FF0202').setDescription(`** Please send URL of a banner! | ⚠️**`), message.channel.send(embed)
+    let data = await Guild.findOne({ guildID: message.guild.id })
+   /// if (!args[1]) return embed.setColor('#FF0202').setDescription(`** Please send URL of a banner! | ⚠️**`), message.channel.send(embed)
     data.Banner = args[1]
+    data.guildID = message.guild.id
     data.save()
+    message.channel.send(`added`)
   }
    
     ///if (db.has(`${mesage.guild.id}.serverBanner`) && db.get(`${message.guild.id}.serverBanner`) == banner) {
