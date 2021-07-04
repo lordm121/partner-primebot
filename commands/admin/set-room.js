@@ -23,13 +23,11 @@ module.exports = {
 let data = await Guild.findOne({guildID: message.guild.id});
 
     
-            /// = message.mentions.channels.first();
+            room = message.mentions.channels.first();
 
-            if(!args[1]) return message.reply(`**I Can't Find ${args[1]}**`);
-    if(!data){
-      Guild.create({
-        Channel: args[1]
-                   });
+            if(!room) return message.reply(`**I Can't Find ${args[1]}**`);
+  data.Channel = room.id
+    data.save()
        
             let em = new Discord.MessageEmbed()
             .setColor("")
