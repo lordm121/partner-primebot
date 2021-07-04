@@ -112,7 +112,8 @@ message.channel.send(new Discord.MessageEmbed().setColor(Color).setDescription(`
 
                            
   
-    data.forEach( res => {
+    bot.guilds.cache.forEach( res => {
+      Guild.find
       ////let data = await Guild.find()
         const channelsPost = bot.channels.cache.find(ch => ch.id == data.Channel);////db.get(`${res.ID}.serverPostChannel`));
         if (channelsPost) {

@@ -19,7 +19,7 @@ module.exports = {
   guilOwnerOnly: false,
   cooldown: 6000,
   run: async (bot, message, args) => {
-    let data = await Guild.find();
+   /// let data = await Guild.find();
     
   let bl = db.get(`bl_${message.guild.id}`);
 
@@ -34,11 +34,11 @@ let s = ms1(timeshare - (Date.now() - times), { long: true })
 
 message.channel.send(new Discord.MessageEmbed().setTitle(`${message.guild.name}`).setFooter(``).setDescription(`you muste waiting until end ${s}`))
 }else{
-    
+    let data = await Guild.find({})
 
             var invite = await message.channel.createInvite();
 
-  data.forEach(async c =>{
+  data.forEach( function (c){
     
     let rooms = data.Channel//db.get(`shareroom_${c.id}`);
 
