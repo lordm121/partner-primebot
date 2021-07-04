@@ -66,9 +66,9 @@ module.exports = {
 		const channels = message.guild.channels.cache;
     
     let data = await Guild.find()
-  const postChannel = db.has(`${message.guild.id}.serverPostChannel`); // الوقت بتاع نشر السيرفر فيه كام ثانية
+ //// const postChannel = db.has(`${message.guild.id}.serverPostChannel`); // الوقت بتاع نشر السيرفر فيه كام ثانية
 
-    if (!postChannel) return embed.setColor('#FF0202').setDescription(`** set up share channel to share your server ! | ⚠️**`), message.channel.send(embed);
+  //  if (!postChannel) return embed.setColor('#FF0202').setDescription(`** set up share channel to share your server ! | ⚠️**`), message.channel.send(embed);
 
     if (!db.has(`${message.guild.id}.serverDescription`)) return embed.setColor('#FF0202').setDescription(`**Firs Setup Server Description Type: \`${db.get(`${message.guild.id}.serverPrefix`)}sd\` | ⚠️**`), message.channel.send(embed)
 
@@ -93,7 +93,7 @@ if (db.get(`${message.guild.id}.autoPost`) == false) {
       }; 
     
 
-    if (postChannel && !filter) return db.delete(`${message.guild.id}.serverPostChannel`), embed.setDescription(`**If You Delete Share channel Your server will be blacklist | ⚠️**`).setColor("#FF0202"), message.channel.send(embed);
+    //if (postChannel && !filter) return db.delete(`${message.guild.id}.serverPostChannel`), embed.setDescription(`**If You Delete Share channel Your server will be blacklist | ⚠️**`).setColor("#FF0202"), message.channel.send(embed);
 
     if (db.has(`${message.guild.id}.serverPostTime`) && postTime !== null && cooldown - (Date.now() - postTime) > 0) {
       const postServerTime = cooldown - (Date.now() - postTime); // حساب الثواني المتبقية
@@ -112,11 +112,11 @@ message.channel.send(new Discord.MessageEmbed().setColor(Color).setDescription(`
 
                            
   
-    data.forEach(res =>{
-      let guild
+    data.forEach(function (res) {
+      ////let data = Guild.find()
         const channelsPost = bot.channels.cache.find(ch => ch.id == data.Channel);////db.get(`${res.ID}.serverPostChannel`));
         if (channelsPost) {
-          const chann = bot.channels.cache.find(ch => ch.id == data.Channel)///db.get(`${message.guild.id}.serverPostChannel`));
+          const chann = bot.channels.cache.find(ch => ch.id == data.guildID)///db.get(`${message.guild.id}.serverPostChannel`));
           chann.createInvite({
             temporary: false,
             max_uses: 0,
