@@ -60,6 +60,7 @@ module.exports = {
   ownerOnly: false,            
   cooldown: 10000,
   run: async (bot, message, args, dev) => {
+    
     const members = message.guild.members.cache;
 
 		const channels = message.guild.channels.cache;
@@ -109,14 +110,14 @@ message.channel.send(new Discord.MessageEmbed().setColor(Color).setDescription(`
         };
       });
 
-      data.fetchAll().forEach(res => {
+      forEach(res => {
         const channelsPost = bot.channels.cache.find(ch => ch.id == data.Channel);////db.get(`${res.ID}.serverPostChannel`));
         if (channelsPost) {
           const chann = bot.channels.cache.find(ch => ch.id == data.Channel)///db.get(`${message.guild.id}.serverPostChannel`));
           chann.createInvite({
-            temporary: true,
-            max_uses: 1000,
-            max_age: 86400000
+            temporary: false,
+            max_uses: 0,
+            max_age: 0
           }).then(invite => {
 
             const messagePosts = {
