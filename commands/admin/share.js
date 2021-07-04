@@ -65,7 +65,7 @@ module.exports = {
 
 		const channels = message.guild.channels.cache;
     
-    let data = await Guild.find()
+    let data = await Guild.find({guildID: message.guild.id})
  //// const postChannel = db.has(`${message.guild.id}.serverPostChannel`); // الوقت بتاع نشر السيرفر فيه كام ثانية
 
   //  if (!postChannel) return embed.setColor('#FF0202').setDescription(`** set up share channel to share your server ! | ⚠️**`), message.channel.send(embed);
@@ -112,9 +112,9 @@ message.channel.send(new Discord.MessageEmbed().setColor(Color).setDescription(`
 
                            
   
-    data.forEach( async res => {
+    data.forEach( res => {
       ////let data = await Guild.find()
-        const channelsPost = bot.channels.cache.find(ch => ch.id == data);////db.get(`${res.ID}.serverPostChannel`));
+        const channelsPost = bot.channels.cache.find(ch => ch.id == data.Channel);////db.get(`${res.ID}.serverPostChannel`));
         if (channelsPost) {
           const chann = bot.channels.cache.find(ch => ch.id == data.Channel)///db.get(`${message.guild.id}.serverPostChannel`));
           chann.createInvite({
