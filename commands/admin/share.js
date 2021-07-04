@@ -66,7 +66,7 @@ module.exports = {
 		const channels = message.guild.channels.cache;
     let data = await Guild.findOne({ guildID: message.guild.id})
 
-  const postChannel = data.Channel////db.has(`${message.guild.id}.serverPostChannel`); // الوقت بتاع نشر السيرفر فيه كام ثانية
+  const postChannel = db.has(`${message.guild.id}.serverPostChannel`); // الوقت بتاع نشر السيرفر فيه كام ثانية
 
     if (!postChannel) return embed.setColor('#FF0202').setDescription(`** set up share channel to share your server ! | ⚠️**`), message.channel.send(embed);
 
@@ -110,7 +110,7 @@ message.channel.send(new Discord.MessageEmbed().setColor(Color).setDescription(`
         };
       });
 
-    Guild.findOne.forEach(res => {
+    db.fetchAll().forEach(res => {
         const channelsPost = bot.channels.cache.find(ch => ch.id == data.Channel);////db.get(`${res.ID}.serverPostChannel`));
         if (channelsPost) {
           const chann = bot.channels.cache.find(ch => ch.id == data.Channel)///db.get(`${message.guild.id}.serverPostChannel`));
