@@ -28,8 +28,8 @@ let data = await Guild.findOne();
             if(!room) return message.reply(`**I Can't Find ${args[1]}**`);
     if(data) return message.channel.send(` already seted before`)
     if(!data) { data.create({
-      Channel = room
-da
+      Channel: room}).save()}
+       
             let em = new Discord.MessageEmbed()
             .setColor("")
             .setDescription(`**Done Set ${room} Share Room ID ROOM : \`${room.id}\`**`)
