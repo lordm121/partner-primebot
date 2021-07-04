@@ -20,12 +20,16 @@ module.exports = {
   cooldown: 3000,
   run: async (bot, message, args) => {
    
-
+let data = await Guild.findOne();
 
     
             let room = message.mentions.channels.first();
 
             if(!room) return message.reply(`**I Can't Find ${args[1]}**`);
+    if(data) return message.channel.send(` already seted before`)
+    if(!data) { data.create({
+      Channel = room
+da
             let em = new Discord.MessageEmbed()
             .setColor("")
             .setDescription(`**Done Set ${room} Share Room ID ROOM : \`${room.id}\`**`)
