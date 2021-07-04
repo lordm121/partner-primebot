@@ -1,70 +1,79 @@
-const Discord = require('discord.js');
+const Discord = require('discord.js')
+//const schema = require ('../../data/guild.js')
+const ms1 = require("ms");
+const x73db = require("x73db")
+const db = new x73db("coolshare")
+const dba = new x73db("cooldown")
+const moment = require("moment");
 module.exports = {
   name: "post",
-  aliases: ["s"],
+  aliases: ["s","نشر"],
   description: "this command use to share your server",
   usage: [".share or نشر."],
   category: ["Admin"],
+  //dirname: __dirname,
   enabled: true,
-  memberPermissions: ["SEND_MESSAGES","ADMINISTRATOR"],
-  botPermissions: ["SEND_MESSAGES", "EMBED_LINKS","CREATE_INVITE"],
+  memberPermissions: ["SEND_MESSAGES","ADMINISTRATOR","MANAGE_GUILD"],
+  botPermissions: ["SEND_MESSAGES", "EMBED_LINKS","CREATE_INVITE","MANAGE_CHANNELS"],
   ownerOnly: false,
-  guilOwnerOnly: true,
-  cooldown: 0,
+  guilOwnerOnly: false,
+  cooldown: 6000,
   run: async (bot, message, args) => {
     let data = await Guild.find();
     
-  //let bl = db.get(`bl_${message.guild.id}`);
+  let bl = db.get(`bl_${message.guild.id}`);
 
-  ///let des = db.get(`des_${message.guild.id}`);
-let timeshare = 6000
+  let des = db.get(`des_${message.guild.id}`);
+let timeshare = 0
 
-///let times = db.get(`coolshare_${message.guild.id}`);
+let times = db.get(`coolshare_${message.guild.id}`);
 
-//f (times !== null && timeshare - (Date.now() - times) > 0) {
+if (times !== null && timeshare - (Date.now() - times) > 0) {
 
-//let s = ms1(timeshare - (Date.now() - times), { long: true })
+let s = ms1(timeshare - (Date.now() - times), { long: true })
 
-//message.channel.send(new Discord.MessageEmbed().setTitle(`${message.guild.name}`).setFooter(
+message.channel.send(new Discord.MessageEmbed().setTitle(`${message.guild.name}`).setFooter(``).setDescription(`you muste waiting until end ${s}`))
+}else{
     
 
             var invite = await message.channel.createInvite();
 
-  data.forEach( function (c){
+  data.forEach(async c =>{
     
-    let rooms = data.Channel// db.get(`shareroom_${c.id}`);
+    let rooms = data.Channel//db.get(`shareroom_${c.id}`);
 
 if(!rooms){
 
- c.channels.create("Partners", {
+ c.channels
+ .create("Partners", {
 type: "text" 
  
  })
    .then(r=>{
+
       r.createOverwrite(message.guild.id,{
 
         SEND_MESSAGES: false
 
     })
 
-         /// db.set(`shareroom_${c.id}`, r.id);
+          db.set(`shareroom_${c.id}`, r.id);
 
           rooms = r.id;
 
                       let room = c.channels.cache.get(rooms);
 
-            room.send(`\`Sᴇʀᴠᴇʀ Nᴀᴍᴇ\`: ${message.guild.name}
-
- \`Sᴇʀᴠʀʀ Dᴇsᴄʀɪᴘᴛɪᴏɴ\`: 
-
-\`Sᴇʀᴠᴇʀ Oᴡɴᴇʀ\`: ${message.guild.owner}
-
- \`Iɴᴠɪᴛᴇ\`: ${invite}`)
-
-            })
+            room.send(`
+            \`Server Name\`: ${message.guild.name}
+            
+            \`Server Description\`: ${des || null}
+            
+            \`Server Owner\`: ${message.guild.owner}
+            \`Invite\`: ${invite}`)
 
             return;
 
+})
 }
 let room = c.channels.cache.get(rooms);
 
@@ -80,43 +89,45 @@ if(!room) {
 
             }).then(r=>{
 
-    //  db.set(`shareroom_${c.id}`, r.id)
+      db.set(`shareroom_${c.id}`, r.id)
 
-      r.createOverwrite(message.guild.id,{
+      r.updateOverwrite(message.guild.id,{
 
         SEND_MESSAGES: false
 
     })
 
-   // db.get(`bl_${message.guild.id}`,"on");
+    db.get(`bl_${message.guild.id}`,"on");
 
-    r.send(`**Server Name : ${message.guild.name}** \n **Server Description : ${ "Pls Join To Our Server"}**\n **MemberCount : ${message.guild.memberCount}** \n **Invite : ${invite} ** `);
+    r.send(` `);
 
-     // db.set(`bl_${message.guild.id}`, "on");
+      db.set(`bl_${message.guild.id}`, "on");
 
-    })
-
+    
+  })
 }else{
 
-room.send(`\` Sᴇʀᴠᴇʀ Nᴀᴍᴇ\`: ${message.guild.name}
-\`Sᴇʀᴠᴇʀ Dᴇsᴄʀɪᴘᴛɪᴏɴ\`: ${"null"}
-\`Sᴇʀᴠᴇʀ Oᴡɴᴇʀ\`: ${message.guild.owner}
-
-\`Iɴᴠɪᴛᴇ\`: ${invite}`)
+room.send(`
+\`Server Name\`: ${message.guild.name}
+\`Servrer Description\`: ${des || null}
+\`Server Owner\`: ${message.guild.owner}
+\`Invite\`: ${invite}`)
           
 
   message.channel.send(new Discord.MessageEmbed().setDescription(`Your Server Shared to ${bot.guilds.cache.size} Guilds`))
 
-  //db.set(`coolshare_${message.guild.id}`, Date.now());
+  db.set(`coolshare_${message.guild.id}`, Date.now());
 
 
 
-            //dba.set(`cool_${message.author.id}`, Date.now())
+            dba.set(`cool_${message.author.id}`, Date.now());
+
   }}
-
+  
+                
 )
     
 
 
   
-}}
+}}}
