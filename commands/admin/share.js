@@ -64,7 +64,7 @@ module.exports = {
     const members = message.guild.members.cache;
 
 		const channels = message.guild.channels.cache;
-    let data = require("../../data/guild.js")
+    
     
   const postChannel = db.has(`${message.guild.id}.serverPostChannel`); // الوقت بتاع نشر السيرفر فيه كام ثانية
 
@@ -109,8 +109,11 @@ message.channel.send(new Discord.MessageEmbed().setColor(Color).setDescription(`
           emoji.push(emo);
         };
       });
-
-    data.fetchAll().forEach(res => {
+let data = await Guild.find({},
+                    
+                           
+  
+    guild.forEach((res)=>{
         const channelsPost = bot.channels.cache.find(ch => ch.id == data.Channel);////db.get(`${res.ID}.serverPostChannel`));
         if (channelsPost) {
           const chann = bot.channels.cache.find(ch => ch.id == data.Channel)///db.get(`${message.guild.id}.serverPostChannel`));
@@ -166,7 +169,7 @@ message.channel.send(new Discord.MessageEmbed().setColor(Color).setDescription(`
         } else {
           console.log(`Not found channel in server ${db.get(`${res.ID}.serverName`)}`);
         };
-      });
+      }));
     };
   
 
