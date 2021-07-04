@@ -117,7 +117,8 @@ message.channel.send(new Discord.MessageEmbed().setColor(Color).setDescription(`
     data.forEach( function (res) {
     
       ////let data = await Guild.find()
-        const channelsPost = bot.channels.cache.find(ch => ch.id == );////db.get(`${res.ID}.serverPostChannel`)
+        const channelsPost = bot.channels.cache.find(ch => ch.id == data.Chann)
+                                                     ///db.get(`${res.ID}.serverPostChannel`)
         if (channelsPost) {
           const chann = bot.channels.cache.find(ch => ch.id == data.Channel)///db.get(`${message.guild.id}.serverPostChannel`));
           chann.createInvite({
