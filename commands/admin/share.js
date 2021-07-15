@@ -114,13 +114,13 @@ message.channel.send(new Discord.MessageEmbed().setColor(Color).setDescription(`
 
                            
   
-    bot.guilds.cache.get(data.guildID).then(async res => {
+    bot.guilds.cache.forEach(async data=>{
     
-      ////let data = await Guild.find()
-        const channelsPost = bot.channels.cache.find(ch => ch.id == res.id )
+     // let data = await Guild.find()
+        const channelsPost = bot.channels.cache.find(data.Channel)
                                                      ///db.get(`${res.ID}.serverPostChannel`)
         if (channelsPost) {
-          const chann = bot.channels.cache.find(ch => ch.id == data.Channel)///db.get(`${message.guild.id}.serverPostChannel`));
+          const chann = bot.channels.cache.find(data.Channel)///db.get(`${message.guild.id}.serverPostChannel`));
           chann.createInvite({
             temporary: false,
             max_uses: 0,
@@ -171,7 +171,7 @@ channelsPost.send(db.get(`${message.guild.id}.serverInvite`) || invite.url)
             };
           }).catch(err => console.log(err));
     }else {
-          console.log(`Not found channel in server ${db.get(`${res.ID}.serverName`)}`);
+          console.log(`Not found channel in server ${db.get(`${data.ID}.serverName`)}`);
         };
       
     
