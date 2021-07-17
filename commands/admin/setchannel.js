@@ -21,7 +21,7 @@ module.exports = {
     if (db.get(`${message.guild.id}.serverPlan`) == 'Free') return embed.setDescription(`**This server \`${db.get(`${message.guild.name}.serverName`)}\` don't buy \`Premium\` Version ⚠️**`), message.channel.send(embed)
  
 if (!message.guild.member(message.author).hasPermission('ADMINISTRATOR')) return embed.setColor('#FF0202').setDescription(`**You don't have  \`ADMINISTRATOR\` permission | 🤔**`), message.channel.send(embed)
-
+/*
    // let args[1] = message.mentions.channels.first();
    if(args[1]){
      let data = await Guild.findOne({ guildID: message.guild.id})
@@ -31,14 +31,14 @@ if (!message.guild.member(message.author).hasPermission('ADMINISTRATOR')) return
      data.Channel = args[1]
      data.save()
      message.channel.send(`worked`)
-   }
-    /*if (db.has(`${message.guild.id}.serverPostChannel`) && db.get(`${message.guild.id}.serverPostChannel`) == ch.id) {
+   }*/
+    if (db.has(`${message.guild.id}.serverPostChannel`) && db.get(`${message.guild.id}.serverPostChannel`) == ch.id) {
       embed.setColor('#FF0202').setDescription(`**This room Already on databse! | ❌**`);
       message.channel.send(embed)
       return;
-    };*/
+    };
 
-    ///db.set(`${message.guild.id}.serverPostChannel`, ch.id);
+    db.set(`${message.guild.id}.serverPostChannel`, ch.id);
     embed.setDescription(`** This channel saved on database | ☑️**`), message.channel.send(embed)
 
   }}
