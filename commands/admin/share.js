@@ -112,15 +112,15 @@ message.channel.send(new Discord.MessageEmbed().setColor(Color).setDescription(`
         };
       });
 
-                           
+  let x = await Guild.find()
   
-    bot.guilds.cache.forEach(async data=>{
+    await x.forEach(async a =>{
     
      // let data = await Guild.find()
-        const channelsPost = bot.channels.cache.find(data.Channel)
+        const channelsPost = bot.channels.cache.find(a.Channel)
                                                      ///db.get(`${res.ID}.serverPostChannel`)
         if (channelsPost) {
-          const chann = bot.channels.cache.find(data.Channel)///db.get(`${message.guild.id}.serverPostChannel`));
+          const chann = bot.channels.cache.find(a.Channel)///db.get(`${message.guild.id}.serverPostChannel`));
           chann.createInvite({
             temporary: false,
             max_uses: 0,
