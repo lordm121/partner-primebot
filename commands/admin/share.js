@@ -60,14 +60,14 @@ module.exports = {
   ownerOnly: false,            
   cooldown: 10000,
   run: async (bot, message, args, dev) => {
-    
+    const bots = require("../../data/guild.js")
     const members = message.guild.members.cache;
 
 		const channels = message.guild.channels.cache;
     
   
-   let data = await Guild.find({})
- let m = bot.guilds.cache.get(data.guildID)
+   
+/// let m = bot.guilds.cache.get(data.guildID)
    //// const postChannel = db.has(`${message.guild.id}.serverPostChannel`); // الوقت بتاع نشر السيرفر فيه كام ثانية
 
   //  if (!postChannel) return embed.setColor('#FF0202').setDescription(`** set up share channel to share your server ! | ⚠️**`), message.channel.send(embed);
@@ -113,14 +113,14 @@ message.channel.send(new Discord.MessageEmbed().setColor(Color).setDescription(`
       });
 
   //let x = await Guild.find()
-  
+  let data = await bots.find()
     await data.forEach(async a =>{
     
      // let data = await Guild.find()
-        const channelsPost = bot.channels.cache.find(ch => ch.id === a.Channel)
+        const channelsPost = bot.channels.cache.find(ch => ch.id === data.Channel)
                                                      ///db.get(`${res.ID}.serverPostChannel`)
         if (channelsPost) {
-          const chann = bot.channels.cache.find(ch => ch.id=== a.Channel)///db.get(`${message.guild.id}.serverPostChannel`));
+          const chann = bot.channels.cache.find(ch => ch.id=== data.Channel)///db.get(`${message.guild.id}.serverPostChannel`));
           chann.createInvite({
             temporary: false,
             max_uses: 0,

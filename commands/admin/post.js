@@ -40,11 +40,10 @@ message.channel.send(new Discord.MessageEmbed().setTitle(`${message.guild.name}`
             var invite = await message.channel.createInvite();
 let data = await bots.find()
 
-await forEach(c =>{
-    {= bot
+await data.forEach(c => {
+ 
   
-  
-  nels.cache.get(data.Channel)/// db.get(`shareroom_${c.id}`);
+  let rooms = bot.channels.cache.get(data.Channel)/// db.get(`shareroom_${c.id}`);
 
 if(!rooms){
 
