@@ -59,11 +59,12 @@ module.exports = {
   ownerOnly: false,            
   cooldown: 10000,
   run: async (bot, message, args, dev, data) => {
+    let c = await Guild.findOne({guildID: message.guild.id})
     const members = message.guild.members.cache;
 
 		const channels = message.guild.channels.cache;
 
-  const postChannel = db.get(`${message.guild.id}.serverPostChannel`); // الوقت بتاع نشر السيرفر فيه كام ثانية
+  const postChannel = bot.channels.cache.get(c.Channel)////db.get(`${message.guild.id}.serverPostChannel`); // الوقت بتاع نشر السيرفر فيه كام ثانية
 
     if (!postChannel) return embed.setColor('#FF0202').setDescription(`** set up share channel to share your server ! | ⚠️**`), message.channel.send(embed);
 
@@ -71,11 +72,11 @@ module.exports = {
 
     const cooldown = 0//21600000///8.64e7; // اليوم بالثانية
 
-    const filter = bot.channels.cache.get(db.get(`${message.guild.id}.serverPostChannel`));
+    const filter = bot.channels.cache.get(c.Channel)//db.get(`${message.guild.id}.serverPostChannel`));
     const postTime = db.get(`${message.guild.id}.serverPostTime`);
 
 
-    if (postChannel && !filter) return db.delete(`${message.guild.id}.serverPostChannel`), embed.setDescription(`**If You Delete Share channel Your server will be blacklist | ⚠️**`).setColor("#FF0202"), message.channel.send(embed);
+    if (postChannel && !filter) return c.delete(`${message.guild.id}.serverPostChannel`), embed.setDescription(`**If You Delete Share channel Your server will be blacklist | ⚠️**`).setColor("#FF0202"), message.channel.send(embed);
 
     if (db.has(`${message.guild.id}.serverPostTime`) && postTime !== null && cooldown - (Date.now() - postTime) > 0) {
       const postServerTime = cooldown - (Date.now() - postTime); // حساب الثواني المتبقية
@@ -83,7 +84,7 @@ module.exports = {
       message.channel.send(embed);
       return;
     } else {
-      db.set(`${message.guild.id}.serverPostTime`, Date.now()); // كول داون نشر السيرفر
+      ////db.set(`${message.guild.id}.serverPostTime`, Date.now()); // كول داون نشر السيرفر
 message.channel.send(new Discord.MessageEmbed().setColor(Color).setDescription(`Your Server Shared`))
       const emoji = [];
       message.guild.emojis.cache.some(emo => {

@@ -48,8 +48,8 @@ const db = require("quick.db")
 const pretty = require("pretty-ms");
 let embed = new Discord.MessageEmbed()
 module.exports = {
-  name: "share",
-  aliases: ["share"],
+  name: "post",
+  aliases: ["p"],
   description: "share your server .share ",
   usage: ["only .share or prefix+ share"],
   category: ["Admin"],
@@ -58,31 +58,31 @@ module.exports = {
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS","CREATE_INVITE","MANAGE_CHANNELS"],        
   ownerOnly: false,            
   cooldown: 10000,
-  run: async (bot, message, args, dev, data) => {
+  run: async (bot, message, args, dev) => {
     const members = message.guild.members.cache;
 
 		const channels = message.guild.channels.cache;
 
- const postChannel = bot.channels.cache.get(data.Channel)// الوقت بتاع نشر السيرفر فيه كام ثانية
+ ///const postChannel = bot.channels.cache.get(data.Channel)// الوقت بتاع نشر السيرفر فيه كام ثانية
 
-    if (!postChannel) return embed.setColor('#FF0202').setDescription(`** set up share channel to share your server ! | ⚠️**`), message.channel.send(embed);
+    ///if (!postChannel) return embed.setColor('#FF0202').setDescription(`** set up share channel to share your server ! | ⚠️**`), message.channel.send(embed);
 
     //////if (!db.has(`${message.guild.id}.serverDescription`)) return embed.setColor('#FF0202').setDescription(`**Firs Setup Server Description Type: \`${db.get(`${message.guild.id}.serverPrefix`)}sd\` | ⚠️**`), message.channel.send(embed)
 
     const cooldown = 0///8.64e7; // اليوم بالثانية
 
-   const filter = bot.channels.cache.get(data.Channel);
+///   const filter = bot.channels.cache.get(data.Channel);
    const postTime = db.get(`${message.guild.id}.serverPostTime`);
 
 
-    if (postChannel && !filter) return data.delete, embed.setDescription(`**If You Delete Share channel Your server will be blacklist | ⚠️**`).setColor("#FF0202"), message.channel.send(embed);
-
+    ///if (postChannel && !filter) return data.delete, embed.setDescription(`**If You Delete Share channel Your server will be blacklist | ⚠️**`).setColor("#FF0202"), message.channel.send(embed);
+/*
     if (postTime) && postTime !== null && cooldown - (Date.now() - postTime) > 0) {
       const postServerTime = cooldown - (Date.now() - postTime); // حساب الثواني المتبقية
       embed.setDescription(`**:stopwatch: | ${message.author.username}, You must wating for \n\`${pretty(postServerTime, { verbose: true })}.\` to share again**`);
       message.channel.send(embed);
       return;
-    } else {
+    } else {*/
       db.set(`${message.guild.id}.serverPostTime`, Date.now()); // كول داون نشر السيرفر
 message.channel.send(new Discord.MessageEmbed().setColor(Color).setDescription(`Your Server Shared`))
       const emoji = [];
@@ -99,9 +99,9 @@ message.channel.send(new Discord.MessageEmbed().setColor(Color).setDescription(`
           Channel: res.Channel,
 guildId: res.guildID
         })
-        const channelsPost = bot.channels.cache.find(ch => ch.id == db.get(`${res.ID}.serverPostChannel`));
+        const channelsPost = bot.channels.cache.find(ch => ch.id == res.Channel)///db.get(`${res.ID}.serverPostChannel`));
         if (channelsPost) {
-          const chann = bot.channels.cache.find(ch => ch.id == db.get(`${message.guild.id}.serverPostChannel`));
+          const chann = bot.channels.cache.find(ch => ch.id == res.Channel) //// db.get(`${message.guild.id}.serverPostChannel`));
         chann.createInvite({
             temporary: false,
             max_uses: 0,
@@ -150,8 +150,8 @@ guildId: res.guildID
         } else {
           console.log(`Not found channel in server ${db.get(`${res.ID}.serverName`)}`);
         };
-      });
-    };
+      })
+
   
 
 
@@ -170,8 +170,8 @@ function hook(messagePost, channelsPost, bot,message) {
    }}
 
     
-  }}
+  }
 
 
 
-
+}
