@@ -8,7 +8,7 @@ const Schema = new mongoose.Schema({
     Channel: String,
     prefix: { type: String, default: "!"},
    time: String,
-
+rooms: String,
 })
 
 module.exports = mongoose.model ('Guild', Schema)
