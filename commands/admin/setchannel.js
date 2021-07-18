@@ -18,8 +18,8 @@ module.exports = {
   run: async (bot, message, args) => {
    
     
-    let message = message.mentions.channels.firs()
-    let ch = message.
+    let m = message.mentions.channels.first()
+    let ch = message.guild.channels.cache.find(c => c.id == ch.id)
     if(args[1]){
     
     let data = await Lang.findOne({Channel: args[1]})
@@ -39,13 +39,13 @@ module.exports = {
       return message.channel.send(`your chnannel on database`)
     }
       if (!data){ Lang.create({
-      Channel: args[1],
+      Channel: ch.id,
         guildID: message.guild.id
       })}
         
         
     message.channel.send(`seteee`)
-    db.set(`${message.guild.id}.serverPostChannel`, ch.id);
+   // db.set(`${message.guild.id}.serverPostChannel`, ch.id);
     embed.setDescription(`**.لقد تم التثبيت بنجاح | ☑️**`), message.channel.send(embed)
 
   }}}
