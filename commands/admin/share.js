@@ -59,25 +59,25 @@ module.exports = {
   ownerOnly: false,            
   cooldown: 10000,
   run: async (bot, message, args, dev) => {
-    let c = await Guild.find()
+    let data = await Guild.findOne({guildID: message.guild.id})
     const members = message.guild.members.cache;
 
 		const channels = message.guild.channels.cache;
 
-  const postChannel = bot.channels.cache.get(c.Channel)////db.get(`${message.guild.id}.serverPostChannel`); // الوقت بتاع نشر السيرفر فيه كام ثانية
+  const postChannel = bot.channels.cache.get(data.Channel)///db.get(`${message.guild.id}.serverPostChannel`); // الوقت بتاع نشر السيرفر فيه كام ثانية
 
-    if (!postChannel) return embed.setColor('#FF0202').setDescription(`** set up share channel to share your server ! | ⚠️**`), message.channel.send(embed);
+    ///if (!postChannel) return embed.setColor('#FF0202').setDescription(`** set up share channel to share your server ! | ⚠️**`), message.channel.send(embed);
 
-  ///  if(!c.Channel) return message.channel.send(`setup channel`)
+//   if(!data.Channel) return message.channel.send(`setup channel`)
     if (!db.has(`${message.guild.id}.serverDescription`)) return embed.setColor('#FF0202').setDescription(`**Firs Setup Server Description Type: \`${db.get(`${message.guild.id}.serverPrefix`)}sd\` | ⚠️**`), message.channel.send(embed)
 
     const cooldown = 0//21600000///8.64e7; // اليوم بالثانية
 
-    const filter = bot.channels.cache.get(c.Channel)//db.get(`${message.guild.id}.serverPostChannel`));
+    const filter = bot.channels.cache.get(data.Channel)//db.get(`${message.guild.id}.serverPostChannel`));
    /// const postTime = db.get(`${message.guild.id}.serverPostTime`);
 
 
-    if (postChannel && !filter) return c.delete(`${message.guild.id}.serverPostChannel`), embed.setDescription(`**If You Delete Share channel Your server will be blacklist | ⚠️**`).setColor("#FF0202"), message.channel.send(embed);
+    if (postChannel && !filter) return data.delete, embed.setDescription(`**If You Delete Share channel Your server will be blacklist | ⚠️**`).setColor("#FF0202"), message.channel.send(embed);
 
    /* if (c.time) && postTime !== null && cooldown */
     
@@ -87,7 +87,7 @@ module.exports = {
       message.channel.send(embed);
       return;
     } else {
-      if(c) { Guild.create({
+      if(data) { Guild.create({
         time: cooldown,
         guildID: message.guild.id
       })
