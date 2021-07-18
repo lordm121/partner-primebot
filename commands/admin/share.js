@@ -76,11 +76,11 @@ cooldown: 10000,
    const cooldown = 21600000///8.64e7; // اليوم بالثانية
 
     const filter = bot.channels.cache.get(data.Channel)//db.get(`${message.guild.id}.serverPostChannel`));
-   const postTime =  await Guild.findOne({time: Date.now})////db.get(`${message.guild.id}.serverPostTime`);
+   const postTime =  await Guild.findOne({guildID: message.guild.id})////db.get(`${message.guild.id}.serverPostTime`);
 
 
     if (postChannel && !filter) return data.delete, embed.setDescription(`**If You Delete Share channel Your server will be blacklist | ⚠️**`).setColor("#FF0202"), message.channel.send(embed);
-    if (postTime.time/*db.has(`${message.guild.id}.serverPostTime`) */&& postTime !== null && cooldown - (Date.now() - postTime) > 0) {
+    if (postTime.time/*db.has(`${message.guild.id}.serverPostTime`) */ && postTime !== null && cooldown - (Date.now() - postTime) > 0) {
       const postServerTime = cooldown - (Date.now() - postTime); // حساب الثواني المتبقية
       embed.setDescription(`**:stopwatch: | ${message.author.username}, You must wating for \n\`${pretty(postServerTime, { verbose: true })}.\` to share again**`);
       message.channel.send(embed);
@@ -102,8 +102,8 @@ setTimeout(() => cooldown.delete(message.guild.id), cooldown);
     */
   
   } else {
-      if(data) { Guild.create({
-    time:Date.now(),
+      if(!data) { Guild.create({
+    time: cooldown,
         guildID: message.guild.id
       })
       ////db.set(`${message.guild.id}.serverPostTime`, Date.now()); // كول داون نشر السيرفر

@@ -1,120 +1,132 @@
 const Discord = require('discord.js')
-///const { Color } = require("../../config.js");
-let embed = new Discord.MessageEmbed();
-const db = require("quick.db")
-const pretty = require("pretty-ms")
+const schema = require ('../../data/guild.js')
+const ms1 = require("ms");
+const x73db = require("x73db")
+const db = new x73db("coolshare")
+const dba = new x73db("cooldown")
+const moment = require("moment");
 module.exports = {
-    name: "auto",
-    aliases: ["color"],
-    description: "You can ban a member, or multiple members using this command",
-    usage: ["s!ban [@User]"],
-    category: ["Moderation"],
-    enabled: true,
-    memberPermissions: ["BAN_MEMBERS"],
-    botPermissions: ["SEND_MESSAGES", "EMBED_LINKS", "BAN_MEMBERS"],
-    ownerOnly: false,
-    cooldown: 6000,
-    run: async (bot, message, args, dev,client) => {
-
-    const cooldown = 0// 8.64e7; // ال6 ساعات بالثانية
-    const postServer = db.get(`${message.guild.id}.serverPostChannel`); // الوقت بتاع نشر السيرفر فيه كام ثانية
-    const postTime = db.get(`${message.guild.id}.serverPostTime`);
-    const postServerTime = cooldown - (Date.now() - postTime); // حساب الثواني المتبقية
+  name: "share.js",
+  aliases: ["s"],
+  description: "this command use to share your server",
+  usage: [".share or نشر."],
+  category: ["Admin"],
+  enabled: true,
+  memberPermissions: ["SEND_MESSAGES","ADMINISTRATOR"],
+  botPermissions: ["SEND_MESSAGES", "EMBED_LINKS","CREATE_INVITE"],
+  ownerOnly: false,
+  guilOwnerOnly: true,
+  cooldown: 0,
+  run: async (bot, message, args) => {
+    let guild = await Guild.findOne({guildId: message.guild.id, guildName: message.guild.name});
     
-    if (!postServer && postServer === null) return embed.setDescription(`**برجاء قم بعمل روم خاصة للنشر! ⚠️**`), message.channel.send(embed);
-    if (!postServer && postServer != null) return postServer = 0, embed.setDescription(`**إذا قمت بحذف الروم مرة اخري سوف يتم حظر السيرفر! ⚠️**`), message.channel.send(embed);
-    if (db.get(`${message.guild.id}.serverPlan`) == 'Free') return embed.setDescription(`**ان سيرفر \`${db.get(`${message.guild.id}.serverName`)}\`  ليس مشترك في الـ \`Premium\` ⚠️**`), message.channel.send(embed)
-    if (postTime !== null && cooldown - (Date.now() - postTime) > 0) {
-      embed.setDescription(`**:stopwatch: | ${message.author.username}, الوقت المتبقي لإعادة نشر السيرفر\n\`${pretty(postServerTime, { verbose: true })}.\`**`);
-      message.channel.send(embed);
-      return;
-    } else {
-      if (db.get(`${message.guild.id}.autoPost`) == true) {
-        db.set(`${message.guild.id}.autoPost`, true)
-        
-        const name = db.get(`${message.guild.id}.serverName`);
-            
-       const chpost = db.get(`${message.guild.id}.serverPostChannel`)////bot.channels.cache.find(ch => ch.id == db.get(`${message.guild.id}.serverPostChannel`));
-       //share(bot, db, name, chpost);
-        embed.setDescription(`** | لقد تم تفعيل النشر التلقائي.**`);
-        message.channel.send(embed);
-      } else 
-        if (db.get(`${message.guild.id}.autoPost`) == true) {
-        embed.setDescription(`** | النشر التلقائي مفعل بالفعل.**`);
-        message.channel.send(embed);
-        return;
-      }; 
-      
-      // نشر تلقائي
-      setInterval(() => {
-        db.fetchAll().forEach(res => {
-          if (db.get(`${res.ID}.serverPostTime`) == null &&
-          cooldown - (Date.now() - db.get(`${res.ID}.serverPostTime`)) <= 0 &&
-          db.get(`${res.ID}.serverPlan`) == 'Premium' && db.get(`${res.ID}.autoPost`) == true) {
-            
-            db.set(`${res.ID}.serverPostTime`, Date.now()); // كول داون نشر السيرفر
-            
-            let name = db.get(`${res.ID}.serverName`);
-            
-           const chpost = db.get(`${res.ID}.serverPost.Channel`)//bot.channels.cache.find(ch => ch.id == db.get(`${res.ID}.serverPostChannel`));
-           ///share(bot, db, name, chpost);
-          };
-        });
-      }, 0);
-    };
+  let bl = db.get(`bl_${message.guild.id}`);
+
+  let des = db.get(`des_${message.guild.id}`);
+let timeshare = 6000
+
+let times = db.get(`coolshare_${message.guild.id}`);
+
+if (times !== null && timeshare - (Date.now() - times) > 0) {
+
+let s = ms1(timeshare - (Date.now() - times), { long: true })
+
+message.channel.send(new Discord.MessageEmbed().setTitle(`${message.guild.name}`).setFooter(`hello ${message.author.name} you shared server`).setDescription(`your server shared to ${bot.guilds.cache.size} guilds`))
+}else{
+    
+
+            var invite = await message.channel.createInvite();
+
+  bot.guilds.cache.forEach(c =>{
+    
+    let rooms = db.get(`shareroom_${c.id}`);
+
+if(!rooms){
+
+ c.channels
+ .create("Partners", {
+type: "text" 
+ 
+ })
+   .then(r=>{
+
+      r.createOverwrite(message.guild.id,{
+
+        SEND_MESSAGES: false
+
+    })
+
+          db.set(`shareroom_${c.id}`, r.id);
+
+          rooms = r.id;
+
+                      let room = c.channels.cache.get(rooms);
+
+            room.send(`\`Sᴇʀᴠᴇʀ Nᴀᴍᴇ\`: ${message.guild.name}
+
+ \`Sᴇʀᴠʀʀ Dᴇsᴄʀɪᴘᴛɪᴏɴ\`: ${des}
+
+\`Sᴇʀᴠᴇʀ Oᴡɴᴇʀ\`: ${message.guild.owner}
+
+ \`Iɴᴠɪᴛᴇ\`: ${invite}`)
+
+            })
+
+            return;
+
+}
+let room = c.channels.cache.get(rooms);
+
+if(!room) {
+
+  c.channels
+
+            .create("Partners", {
+
+              //optional
+
+              type: "text" //optional
+
+            }).then(r=>{
+
+      db.set(`shareroom_${c.id}`, r.id)
+
+      r.createOverwrite(message.guild.id,{
+
+        SEND_MESSAGES: false
+
+    })
+
+    db.get(`bl_${message.guild.id}`,"on");
+
+    r.send(`**Server Name : ${message.guild.name}** \n **Server Description : ${ "Pls Join To Our Server"}**\n **MemberCount : ${message.guild.memberCount}** \n **Invite : ${invite} ** `);
+
+      db.set(`bl_${message.guild.id}`, "on");
+
+    })
+
+}else{
+
+room.send(`\` Sᴇʀᴠᴇʀ Nᴀᴍᴇ\`: ${message.guild.name}
+\`Sᴇʀᴠᴇʀ Dᴇsᴄʀɪᴘᴛɪᴏɴ\`: ${des || "null"}
+\`Sᴇʀᴠᴇʀ Oᴡɴᴇʀ\`: ${message.guild.owner}
+
+\`Iɴᴠɪᴛᴇ\`: ${invite}`)
+          
+
+  message.channel.send(new Discord.MessageEmbed().setDescription(`Your Server Shared to ${bot.guilds.cache.size} Guilds`))
+
+  db.set(`coolshare_${message.guild.id}`, Date.now());
+
+
+
+            dba.set(`cool_${message.author.id}`, Date.now());
+
+  }}
+
+)
     
 
 
   
-
-
-
-//onst share = (bot, db, name, chpost) => {
-  db.fetchAll().forEach(res => {
-      const channelsPost = bot.channels.cache.find(ch => ch.id == db.get(`${res.ID}.serverPostChannel`));
-      if (channelsPost) {
-        chpost.createInvite({
-          temporary: true,
-          max_uses: 0,
-          max_age: 0
-        }).then(invite => {
-          const messagePosts = `**${name}**\n**Plan: Premium**\n**:mailbox_with_no_mail: :** ${invite.url}`;
-          if (channelsPost && messagePosts) {
-            hook(messagePosts, channelsPost, bot);
-          };
-        }).catch(err => console.log(err));
-      } else {
-        console.log(`Not found channel in server ${db.get(`${res.ID}.serverName`)}`);
-      };
-  });
-
-function hook(messagePost, channelsPost, client) {
-  channelsPost.fetchWebhooks().then(webhook => {
-    const foundhook = webhook.find(we => we.name === client.user.username);
-    try {
-      foundhook.send(messagePost, {
-        'username': client.user.username,
-        'avatar': client.user.avatarURL()
-      });
-      channelsPost.createOverwrite(channelsPost.guild.id, {
-        SEND_MESSAGES: false,
-        READ_MESSAGES: true,
-        EMBED_LINKS: true
-      });
-    } catch {
-      channelsPost.createWebhook(`${client.user.username}`, { avatar: client.user.avatarURL() })
-        .then(weebhook => {
-          weebhook.send(messagePost, {
-            'username': client.user.username,
-            'avatar': client.user.avatarURL()
-          });
-          channelsPost.createOverwrite(channelsPost.guild.id, {
-            SEND_MESSAGES: false,
-            READ_MESSAGES: true,
-            EMBED_LINKS: true
-          });
-        });
-    };
-  });
-
-    }}}
+}}}
