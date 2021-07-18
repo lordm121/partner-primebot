@@ -23,6 +23,7 @@ mongoose.connect("mongodb+srv://Partner:partner123@cluster0.3jlu3.mongodb.net/my
   console.log("Unable to connect to the Mongodb database. Error:" + err);
 });
 global.Guild = require("./data/guild.js");
+global.Guild = requ
 ///global.User = require("./data/user.js");
 global.Lang = require("./data/lang.js");
 global.Premuim = require("./data/premuim.js")

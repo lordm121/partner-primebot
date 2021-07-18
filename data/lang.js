@@ -1,5 +1,14 @@
-const schema = mongoose.Schema({
-  guildID: String, 
-  language: { type: String, default: "english"},
-});
-module.exports = mongoose.model("Lang", schema)
+const mongoose = require ('mongoose')
+
+
+const Schema = new mongoose.Schema({
+    guildID: String,
+    guildName: String,
+    Banner: String,
+    Channel: String,
+    prefix: { type: String, default: "!"},
+
+
+})
+
+module.exports = mongoose.model ('Guild', Schema)
