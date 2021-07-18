@@ -7,38 +7,29 @@ let embed = new Discord.MessageEmbed()
 module.exports = {
   name: "setchannel",
   aliases: ["channel"],
-  description: "set channel inly for Premium version",
-  usage: [".channel #<channel>"],
-  category: ["Admin"],
+  description: "Change the prefix of the bot",
+  usage: ["s!prefix [Prefix]"],
+  category: ["Moderation"],
   enabled: true,            
-  memberPermissions: [ "MANAGE_CHANNELS" ],            
-  botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS","MANAGE_CHANNELS"],        
+  memberPermissions: [ "ADMINISTRATOR" ],            
+  botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],        
   ownerOnly: false,            
-  cooldown: 10000,  cooldown: 10000,
+  cooldown: 10000,
+  run: async (bot, message, args, dev, data) => {
+if (!message.guild.member(message.author).hasPermission('ADMINISTRATOR')) return embed.setColor('#FF0202').setDescription(`**لا تمتلك صلاحية \`ADMINISTRATOR\` | 🤔**`), message.channel.send(embed)
 
-  run: async (bot, message, args, dev) => {
-  ////let data = await Guild.findOne({ Channel: args[1]})
-    if (db.get(`${message.guild.id}.serverPlan`) == 'Free') return embed.setDescription(`**This server \`${db.get(`${message.guild.name}.serverName`)}\` don't buy \`Premium\` Version ⚠️**`), message.channel.send(embed)
- 
-if (!message.guild.member(message.author).hasPermission('ADMINISTRATOR')) return embed.setColor('#FF0202').setDescription(`**You don't have  \`ADMINISTRATOR\` permission | 🤔**`), message.channel.send(embed)
-/*
-   // let args[1] = message.mentions.channels.first();
-   if(args[1]){
-     let data = await Guild.findOne({ guildID: message.guild.id})
-    let ch = message.guild.channels.cache.find(c => c.id == args[1].id);
+    let messageSetting = message.mentions.channels.first();
+    let ch = message.guild.channels.cache.find(c => c.id == messageSetting.id);
 
-    if (!args[1]) return embed.setColor('#FF0202').setDescription(`**You must mention room to setup channel! | ⚠️**`), message.channel.send(embed)
-     data.Channel = args[1]
-     data.save()
-     message.channel.send(`worked`)
-   }*/
+    if (!messageSetting || !ch) return embed.setColor('#FF0202').setDescription(`**برجاء قم بعمل منشن للروم/التشانل الخاصة للنشر! | ⚠️**`), message.channel.send(embed)
+
     if (db.has(`${message.guild.id}.serverPostChannel`) && db.get(`${message.guild.id}.serverPostChannel`) == ch.id) {
-      embed.setColor('#FF0202').setDescription(`**This room Already on databse! | ❌**`);
+      embed.setColor('#FF0202').setDescription(`**لقد قمت بالفعل بإضافة تلك التشانل من قبل! | ❌**`);
       message.channel.send(embed)
       return;
     };
 
     db.set(`${message.guild.id}.serverPostChannel`, ch.id);
-    embed.setDescription(`** This channel saved on database | ☑️**`), message.channel.send(embed)
+    embed.setDescription(`**.لقد تم التثبيت بنجاح | ☑️**`), message.channel.send(embed)
 
   }}
