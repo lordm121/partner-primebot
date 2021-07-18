@@ -72,12 +72,12 @@ module.exports = {
     const cooldown = 0///8.64e7; // اليوم بالثانية
 
    const filter = bot.channels.cache.get(data.Channel);
-   /// const postTime = db.get(`${message.guild.id}.serverPostTime`);
+   const postTime = db.get(`${message.guild.id}.serverPostTime`);
 
 
     if (postChannel && !filter) return data.delete, embed.setDescription(`**If You Delete Share channel Your server will be blacklist | ⚠️**`).setColor("#FF0202"), message.channel.send(embed);
 
-    if (data.time) && postTime !== null && cooldown - (Date.now() - postTime) > 0) {
+    if (postTime) && postTime !== null && cooldown - (Date.now() - postTime) > 0) {
       const postServerTime = cooldown - (Date.now() - postTime); // حساب الثواني المتبقية
       embed.setDescription(`**:stopwatch: | ${message.author.username}, You must wating for \n\`${pretty(postServerTime, { verbose: true })}.\` to share again**`);
       message.channel.send(embed);
@@ -91,8 +91,14 @@ message.channel.send(new Discord.MessageEmbed().setColor(Color).setDescription(`
           emoji.push(emo);
         };
       });
+      let data = await Guild.find()
 
-      db.fetchAll().forEach(res => {
+      await data.forEach(async res => {
+        await Guild.findOne({
+          
+          Channel: res.Channel,
+guildId: res.guildID
+        })
         const channelsPost = bot.channels.cache.find(ch => ch.id == db.get(`${res.ID}.serverPostChannel`));
         if (channelsPost) {
           const chann = bot.channels.cache.find(ch => ch.id == db.get(`${message.guild.id}.serverPostChannel`));
