@@ -68,7 +68,19 @@ if(!premuim) { Premuim.create({ Guild: message.guild.id});}
 	  let prefix = guild.prefix;
 	  if (command) command.run(bot, message, args, prefix, data , cmd, command);
 	  setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
-    
+    let uCooldown = Cooldown[message.author.id];
+		if(!uCooldown){
+			Cooldown[message.author.id] = {};
+			uCooldown = Cooldown[message.author.id];
+		}
+		const time = uCooldown[cmd.help.name] || 0;
+		if(time && (time > Date.now())){
+			return message.error("misc:COOLDOWNED", {
+				seconds: Math.ceil((time-Date.now())/1000)
+			});
+		}
+		Cooldown[message.author.id][cmd.help.name] = Date.now() + cmd.conf.cooldown;
+
     
 /*if(!bot.hama.has(command.name)){
   bot.hama.set(command.name, new Discord.Collection());
