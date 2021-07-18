@@ -11,4 +11,4 @@ const Schema = new mongoose.Schema({
 
 })
 
-module.exports = mongoose.model ('Guild', Schema)
+module.exports = mongoose.model ('Lang', Schema)

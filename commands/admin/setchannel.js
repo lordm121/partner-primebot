@@ -16,7 +16,7 @@ module.exports = {
   ownerOnly: false,            
   cooldown: 10000,
   run: async (bot, message, args) => {
-    let data = await Guild.findOne({})
+    let data = await Lang.findOne({Channel: args[1]})
     
     
     
@@ -32,7 +32,7 @@ if (!message.guild.member(message.author).hasPermission('ADMINISTRATOR')) return
       message.channel.send(embed)
       return;
     };*/
-    if(data.Channel) return message.channel.send(`your chnannel on database`)
+    if(data) return message.channel.send(`your chnannel on database`)
 if(!data){
   data.Channel = args[1].id
 data.save}
