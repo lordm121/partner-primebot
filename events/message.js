@@ -56,7 +56,7 @@ if(!premuim) { Premuim.create({ Guild: message.guild.id});}
 	  }
 	  const now = Date.now();
 	  const timestamps = bot.cooldowns.get(command.name);
-	  const cooldownAmount = (/*command.cooldown ||*/ 10000000); 
+	  const cooldownAmount = (/*command.cooldown ||*/ 5000); 
 	  if (timestamps.has(message.guild.id)) {
 	const expirationTime = timestamps.get(message.guild.id) + cooldownAmount;
 	if (now < expirationTime) {
@@ -68,7 +68,17 @@ if(!premuim) { Premuim.create({ Guild: message.guild.id});}
 	  let prefix = guild.prefix;
 	  if (command) command.run(bot, message, args, prefix, data , cmd);
 	  setTimeout(() => timestamps.delete(message.guild.id), cooldownAmount);
-
+if(!bot.cooldownss.has(command.name)){
+  bot.cooldowns.set(command.name, new Discord.Collection());
+}
+    const timetamps = bot.cooldowns.get(command.name)
+    const Amount = 5000
+          if(timetamps.has(message.author.id)){
+            const expirationtime = timetamps.get(message.author.id) + Amount
+            if(now< expirationtime){
+              const timeleft = (expirationtime - now)/1000
+return message.channel.send(`Please wait ${timeleft.toFixed(1)} second`).then(msg => msg.delete({ timeout: timeleft.toFixed(1)*1000})
+                                                                                                    
 
     
     
