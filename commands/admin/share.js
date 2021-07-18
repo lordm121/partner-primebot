@@ -58,8 +58,8 @@ module.exports = {
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS","CREATE_INVITE","MANAGE_CHANNELS"],        
   ownerOnly: false,            
   cooldown: 10000,
-  run: async (bot, message, args, dev, data) => {
-    let c = await Guild.findOne({guildID: message.guild.id})
+  run: async (bot, message, args, dev) => {
+    let c = await Guild.find()
     const members = message.guild.members.cache;
 
 		const channels = message.guild.channels.cache;
@@ -68,6 +68,7 @@ module.exports = {
 
     if (!postChannel) return embed.setColor('#FF0202').setDescription(`** set up share channel to share your server ! | ⚠️**`), message.channel.send(embed);
 
+  ///  if(!c.Channel) return message.channel.send(`setup channel`)
     if (!db.has(`${message.guild.id}.serverDescription`)) return embed.setColor('#FF0202').setDescription(`**Firs Setup Server Description Type: \`${db.get(`${message.guild.id}.serverPrefix`)}sd\` | ⚠️**`), message.channel.send(embed)
 
     const cooldown = 0//21600000///8.64e7; // اليوم بالثانية
@@ -80,8 +81,8 @@ module.exports = {
 
    /* if (c.time) && postTime !== null && cooldown */
     
-   if(cooldown - (Date.now() - postTime) > 0 ){
-      const postServerTime = cooldown - (Date.now() - postTime); // حساب الثواني المتبقية
+   if(cooldown - (Date.now()) > 0 ){
+      const postServerTime = cooldown - (Date.now()); // حساب الثواني المتبقية
       embed.setDescription(`**:stopwatch: | ${message.author.username}, You must wating for \n\`${pretty(postServerTime, { verbose: true })}.\` to share again**`);
       message.channel.send(embed);
       return;
@@ -175,7 +176,7 @@ function hook(messagePost, channelsPost, bot,message) {
    }}
 
     
-  }}
+  }}}
 
 
 
