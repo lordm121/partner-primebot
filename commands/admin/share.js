@@ -71,7 +71,7 @@ module.exports = {
 //   if(!data.Channel) return message.channel.send(`setup channel`)
     if (!db.has(`${message.guild.id}.serverDescription`)) return embed.setColor('#FF0202').setDescription(`**Firs Setup Server Description Type: \`${db.get(`${message.guild.id}.serverPrefix`)}sd\` | ⚠️**`), message.channel.send(embed)
 
-    const cooldown = 0//21600000///8.64e7; // اليوم بالثانية
+    const cooldown = 5000//21600000///8.64e7; // اليوم بالثانية
 
     const filter = bot.channels.cache.get(data.Channel)//db.get(`${message.guild.id}.serverPostChannel`));
    /// const postTime = db.get(`${message.guild.id}.serverPostTime`);
@@ -80,12 +80,25 @@ module.exports = {
     if (postChannel && !filter) return data.delete, embed.setDescription(`**If You Delete Share channel Your server will be blacklist | ⚠️**`).setColor("#FF0202"), message.channel.send(embed);
 
    /* if (c.time) && postTime !== null && cooldown */
+    const now = Date.now();
+    const timestamps = bot.cooldowns.get(message.author.tag);
+
+    if (timestamps.has(message.guild.id)) {
+	const expirationTime = timestamps.get(message.guild.id) + cooldown;
+	if (now < expirationTime) {
+		const timeLeft = (expirationTime - now)/ 1000;
+		return message.channel.send(`Please wait ${timeLeft.toFixed(1)} second`).then(msg=> msg.delete({ timeout:timeLeft.toFixed(1)*1000 }));
+	}
+	  
+
     
+    
+/*
    if(cooldown - (Date.now()) > 0 ){
       const postServerTime = cooldown - (Date.now()); // حساب الثواني المتبقية
       embed.setDescription(`**:stopwatch: | ${message.author.username}, You must wating for \n\`${pretty(postServerTime, { verbose: true })}.\` to share again**`);
       message.channel.send(embed);
-      return;
+      return;*/
     } else {
       if(data) { Guild.create({
         time: cooldown,
