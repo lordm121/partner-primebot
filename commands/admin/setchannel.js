@@ -19,7 +19,7 @@ module.exports = {
    
     
     let m = message.mentions.channels.first()
-    let ch = message.guild.channels.cache.find(c => c.id == ch.id)
+    let ch = message.guild.channels.cache.find(c => c.id == m.id)
     if(args[1]){
     
     let data = await Lang.findOne({Channel: args[1]})
@@ -39,7 +39,7 @@ module.exports = {
       return message.channel.send(`your chnannel on database`)
     }
       if (!data){ Lang.create({
-      Channel: ch.id,
+      Channel: m.id,
         guildID: message.guild.id
       })}
         

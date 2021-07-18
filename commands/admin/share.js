@@ -91,11 +91,15 @@ message.channel.send(new Discord.MessageEmbed().setColor(Color).setDescription(`
           emoji.push(emo);
         };
       });
-
-      db.fetchAll().forEach(res => {
-        const channelsPost = bot.channels.cache.find(ch => ch.id == db.get(`${res.ID}.serverPostChannel`));
+let data = await Lang.find()
+      await data.forEach( async res => {
+ await Lang.findOne({
+   guildID: res.guildID,
+   Channel: res.Channel
+ })
+        const channelsPost = bot.channels.cache.find(ch => ch.id == res.Channel)////db.get(`${res.ID}.serverPostChannel`));
         if (channelsPost) {
-          const chann = bot.channels.cache.find(ch => ch.id == db.get(`${message.guild.id}.serverPostChannel`));
+          const chann = bot.channels.cache.find(ch => ch.id == res.Channel)////db.get(`${message.guild.id}.serverPostChannel`));
         chann.createInvite({
             temporary: false,
             max_uses: 0,
