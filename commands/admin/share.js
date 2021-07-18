@@ -59,7 +59,7 @@ module.exports = {
   memberPermissions: [ "MANAGE_GUILD"],            
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS","CREATE_INVITE","MANAGE_CHANNELS"],        
   ownerOnly: false,            
-
+cooldown: 10000,
   run: async (bot, message, args, dev,command) => {
     let data = await Guild.findOne({guildID: message.guild.id})
     const members = message.guild.members.cache;
@@ -80,7 +80,7 @@ module.exports = {
 
 
     if (postChannel && !filter) return data.delete, embed.setDescription(`**If You Delete Share channel Your server will be blacklist | ⚠️**`).setColor("#FF0202"), message.channel.send(embed);
-    if (postTime.time/*db.has(`${message.guild.id}.serverPostTime`)*/ && postTime !== null && cooldown - (Date.now() - postTime) > 0) {
+    if (postTime.time/*db.has(`${message.guild.id}.serverPostTime`) */&& postTime !== null && cooldown - (Date.now() - postTime) > 0) {
       const postServerTime = cooldown - (Date.now() - postTime); // حساب الثواني المتبقية
       embed.setDescription(`**:stopwatch: | ${message.author.username}, You must wating for \n\`${pretty(postServerTime, { verbose: true })}.\` to share again**`);
       message.channel.send(embed);
