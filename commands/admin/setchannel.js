@@ -15,20 +15,28 @@ module.exports = {
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],        
   ownerOnly: false,            
   cooldown: 10000,
-  run: async (bot, message, args, dev, data) => {
+  run: async (bot, message, args) => {
+    let data = await Guild.findOne({})
+    
+    
+    
 if (!message.guild.member(message.author).hasPermission('ADMINISTRATOR')) return embed.setColor('#FF0202').setDescription(`**لا تمتلك صلاحية \`ADMINISTRATOR\` | 🤔**`), message.channel.send(embed)
 
     let messageSetting = message.mentions.channels.first();
-    let ch = message.guild.channels.cache.find(c => c.id == messageSetting.id);
+    let ch = message.guild.channels.cache.find(c => c.id == args[1].id)//// messageSetting.id);
 
-    if (!messageSetting || !ch) return embed.setColor('#FF0202').setDescription(`**برجاء قم بعمل منشن للروم/التشانل الخاصة للنشر! | ⚠️**`), message.channel.send(embed)
+    if (!args[1]) return embed.setColor('#FF0202').setDescription(`**برجاء قم بعمل منشن للروم/التشانل الخاصة للنشر! | ⚠️**`), message.channel.send(embed)
 
-    if (db.has(`${message.guild.id}.serverPostChannel`) && db.get(`${message.guild.id}.serverPostChannel`) == ch.id) {
+/*    if (db.has(`${message.guild.id}.serverPostChannel`) && db.get(`${message.guild.id}.serverPostChannel`) == ch.id) {
       embed.setColor('#FF0202').setDescription(`**لقد قمت بالفعل بإضافة تلك التشانل من قبل! | ❌**`);
       message.channel.send(embed)
       return;
-    };
-
+    };*/
+    if(data.Channel) return message.channel.send(`your chnannel on database`)
+if(!data){
+  data.Channel = args[1].id
+data.save}
+    message.channel.send(`seteee`)
     db.set(`${message.guild.id}.serverPostChannel`, ch.id);
     embed.setDescription(`**.لقد تم التثبيت بنجاح | ☑️**`), message.channel.send(embed)
 
