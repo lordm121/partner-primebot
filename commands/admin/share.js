@@ -46,6 +46,7 @@ const Discord = require("discord.js");
 const { Color } = require("../../config.js");
 const db = require("quick.db")
 const pretty = require("pretty-ms");
+const cooldown = new Set()
 let embed = new Discord.MessageEmbed()
 const cdtime = 4
 module.exports = {
@@ -58,9 +59,8 @@ module.exports = {
   memberPermissions: [ "MANAGE_GUILD"],            
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS","CREATE_INVITE","MANAGE_CHANNELS"],        
   ownerOnly: false,            
-  cooldownss: 0,
-  hama: 0,
-  run: async (bot, message, args, dev) => {
+
+  run: async (bot, message, args, dev,command) => {
     let data = await Guild.findOne({guildID: message.guild.id})
     const members = message.guild.members.cache;
 
@@ -73,19 +73,17 @@ module.exports = {
 //   if(!data.Channel) return message.channel.send(`setup channel`)
     if (!db.has(`${message.guild.id}.serverDescription`)) return embed.setColor('#FF0202').setDescription(`**Firs Setup Server Description Type: \`${db.get(`${message.guild.id}.serverPrefix`)}sd\` | ⚠️**`), message.channel.send(embed)
 
-    const cooldown = 5000//21600000///8.64e7; // اليوم بالثانية
+    const cooldown = 0///21600000///8.64e7; // اليوم بالثانية
 
     const filter = bot.channels.cache.get(data.Channel)//db.get(`${message.guild.id}.serverPostChannel`));
    /// const postTime = db.get(`${message.guild.id}.serverPostTime`);
 
 
     if (postChannel && !filter) return data.delete, embed.setDescription(`**If You Delete Share channel Your server will be blacklist | ⚠️**`).setColor("#FF0202"), message.channel.send(embed);
-if (!bot.cooldowns.has(command.name)) {
-		  bot.cooldowns.set(command.name, new Discord.Collection());
-	  }
+
     const now = Date.now();
-	  const timestamps = bot.cooldowns.get(command.name)
-  if (timestamps.has(message.author.id)) {
+	  const cooldown
+  if (timestamps.has(message.guild.id)) {
 	const expirationTime = timestamps.get(message.guild.id) + cooldown;
 	if (now < expirationTime) {
 		const timeLeft = (expirationTime - now)/ 1000;
@@ -95,6 +93,7 @@ if (!bot.cooldowns.has(command.name)) {
 
     
     timestamps.set(message.guild.id, now);
+setTimeout(() => timestamps.delete(message.guild.id), cooldown);
     } else {
       if(data) { Guild.create({
         time: cooldown,
