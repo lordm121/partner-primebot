@@ -9,7 +9,7 @@ module.exports = {
   botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
   ownerOnly: false,
   guilOwnerOnly: true,
-  cooldown: 6000,
+  cooldownss: 0,
   run: async (bot, message, args, dev) => {
   if (!message.guild.member(message.author).hasPermission('ADMINISTRATOR')) return embed.setColor('#FF0202').setDescription(`**You dont have \`ADMINISTRATOR\` Premission| 🤔**`), message.channel.send(embed)
 
