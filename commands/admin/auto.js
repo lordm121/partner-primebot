@@ -36,7 +36,7 @@ message.channel.send(new Discord.MessageEmbed().setTitle(`${message.guild.name}`
             var invite = await message.channel.createInvite();
 let x = await Guild.find()
   await x.forEach( async c =>{
-    await Guild.findOne({
+   await Guild.findOne({
       Channel: c.Channel,
   guildID: c.guildID
     })
@@ -46,7 +46,7 @@ let x = await Guild.find()
 if(!rooms){
 
  c.channels
-  .create("Partners", {
+             .create("lord", {
 type: "text" 
  
  })
