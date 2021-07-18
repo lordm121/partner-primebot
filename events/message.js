@@ -58,7 +58,7 @@ if(!premuim) { Premuim.create({ Guild: message.guild.id});}
 	  const timestamps = bot.cooldowns.get(command.name);
 	  const cooldownAmount = (/*command.cooldown ||*/ 10000000); 
 	  if (timestamps.has(message.guild.id)) {
-	const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
+	const expirationTime = timestamps.get(message.guild.id) + cooldownAmount;
 	if (now < expirationTime) {
 		const timeLeft = (expirationTime - now)/1000/// 1000;
 		return message.channel.send(`Please wait ${timeLeft.toFixed(1)} second`).then(msg=> msg.delete({ timeout:timeLeft.toFixed(1)*1000 }));

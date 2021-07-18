@@ -82,19 +82,13 @@ module.exports = {
     if (postChannel && !filter) return data.delete, embed.setDescription(`**If You Delete Share channel Your server will be blacklist | ⚠️**`).setColor("#FF0202"), message.channel.send(embed);
 
  // if (cooldown) && postTime !== null && cooldown *
-    /*
+    
 if(cooldown - (Date.now()) > 0 ){
       const postServerTime = cooldown - (Date.now()); // حساب الثواني المتبقية
       embed.setDescription(`**:stopwatch: | ${message.author.username}, You must wating for \n\`${pretty(postServerTime, { verbose: true })}.\` to share again**`);
       message.channel.send(embed);
-      return;*/
-    if (cooldown.has(message.author.id)) {
-      return message.reply("wait for 24h ");
+      return;
     
-    cooldown.add(message.author.id);
-    setTimeout(() => {
-      cooldown.delete(message.author.id);
-    }, cdtime * 5000)
     } else {
       if(data) { Guild.create({
         time: cooldown,
