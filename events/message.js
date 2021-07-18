@@ -70,7 +70,7 @@ if(!premuim) { Premuim.create({ Guild: message.guild.id});}
 	  setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
     
     
-if(!bot.hama.has(command.name)){
+/*if(!bot.hama.has(command.name)){
   bot.hama.set(command.name, new Discord.Collection());
 }
     const timetamps = bot.hama.get(command.name)
@@ -86,7 +86,7 @@ return message.channel.send(`Please wait ${timeleft.toFixed(1)} second`).then(ms
     if(command) command.run(bot, cmd, data,message,args, prefix)
     
     setTimeout(() => timetamps.delete(message.author.id), Amount)
-    
+    */
                
     
     

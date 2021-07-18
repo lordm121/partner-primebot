@@ -46,7 +46,7 @@ const Discord = require("discord.js");
 const { Color } = require("../../config.js");
 const db = require("quick.db")
 const pretty = require("pretty-ms");
-const cooldown = new Set()
+
 let embed = new Discord.MessageEmbed()
 const cdtime = 4
 module.exports = {
@@ -73,18 +73,23 @@ module.exports = {
 //   if(!data.Channel) return message.channel.send(`setup channel`)
     if (!db.has(`${message.guild.id}.serverDescription`)) return embed.setColor('#FF0202').setDescription(`**Firs Setup Server Description Type: \`${db.get(`${message.guild.id}.serverPrefix`)}sd\` | ⚠️**`), message.channel.send(embed)
 
-    const cooldown = 0///21600000///8.64e7; // اليوم بالثانية
+   const cooldown = 21600000///8.64e7; // اليوم بالثانية
 
     const filter = bot.channels.cache.get(data.Channel)//db.get(`${message.guild.id}.serverPostChannel`));
-   /// const postTime = db.get(`${message.guild.id}.serverPostTime`);
+   const postTime =  await Guild.findOne({time: Date.now})////db.get(`${message.guild.id}.serverPostTime`);
 
 
     if (postChannel && !filter) return data.delete, embed.setDescription(`**If You Delete Share channel Your server will be blacklist | ⚠️**`).setColor("#FF0202"), message.channel.send(embed);
-
+    if (postTime.time/*db.has(`${message.guild.id}.serverPostTime`)*/ && postTime !== null && cooldown - (Date.now() - postTime) > 0) {
+      const postServerTime = cooldown - (Date.now() - postTime); // حساب الثواني المتبقية
+      embed.setDescription(`**:stopwatch: | ${message.author.username}, You must wating for \n\`${pretty(postServerTime, { verbose: true })}.\` to share again**`);
+      message.channel.send(embed);
+      return;
+/*
     const now = Date.now();
-	  const cooldown
-  if (timestamps.has(message.guild.id)) {
-	const expirationTime = timestamps.get(message.guild.id) + cooldown;
+	  const Amount = 7000
+  if (cooldown.has(message.guild.id)) {
+	const expirationTime = cooldown.get(message.guild.id) + Amount;
 	if (now < expirationTime) {
 		const timeLeft = (expirationTime - now)/ 1000;
 
@@ -92,11 +97,13 @@ module.exports = {
   }
 
     
-    timestamps.set(message.guild.id, now);
-setTimeout(() => timestamps.delete(message.guild.id), cooldown);
-    } else {
+    cooldown.set(message.guild.id, now);
+setTimeout(() => cooldown.delete(message.guild.id), cooldown);
+    */
+  
+  } else {
       if(data) { Guild.create({
-        time: cooldown,
+    time:Date.now(),
         guildID: message.guild.id
       })
       ////db.set(`${message.guild.id}.serverPostTime`, Date.now()); // كول داون نشر السيرفر
