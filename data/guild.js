@@ -7,7 +7,7 @@ const Schema = new mongoose.Schema({
     Banner: String,
     Channel: String,
     prefix: { type: String, default: "!"},
-
+   time: String,
 
 })
 

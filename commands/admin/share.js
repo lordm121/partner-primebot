@@ -73,17 +73,23 @@ module.exports = {
     const cooldown = 0//21600000///8.64e7; // اليوم بالثانية
 
     const filter = bot.channels.cache.get(c.Channel)//db.get(`${message.guild.id}.serverPostChannel`));
-    const postTime = db.get(`${message.guild.id}.serverPostTime`);
+   /// const postTime = db.get(`${message.guild.id}.serverPostTime`);
 
 
     if (postChannel && !filter) return c.delete(`${message.guild.id}.serverPostChannel`), embed.setDescription(`**If You Delete Share channel Your server will be blacklist | ⚠️**`).setColor("#FF0202"), message.channel.send(embed);
 
-    if (db.has(`${message.guild.id}.serverPostTime`) && postTime !== null && cooldown - (Date.now() - postTime) > 0) {
+   /* if (c.time) && postTime !== null && cooldown */
+    
+   if(cooldown - (Date.now() - postTime) > 0 ){
       const postServerTime = cooldown - (Date.now() - postTime); // حساب الثواني المتبقية
       embed.setDescription(`**:stopwatch: | ${message.author.username}, You must wating for \n\`${pretty(postServerTime, { verbose: true })}.\` to share again**`);
       message.channel.send(embed);
       return;
     } else {
+      if(c) { Guild.create({
+        time: cooldown,
+        guildID: message.guild.id
+      })
       ////db.set(`${message.guild.id}.serverPostTime`, Date.now()); // كول داون نشر السيرفر
 message.channel.send(new Discord.MessageEmbed().setColor(Color).setDescription(`Your Server Shared`))
       const emoji = [];
@@ -92,9 +98,9 @@ message.channel.send(new Discord.MessageEmbed().setColor(Color).setDescription(`
           emoji.push(emo);
         };
       });
-let data = await Lang.find()
+let data = await Guild.find()
       await data.forEach( async res => {
- await Lang.findOne({
+ await Guild.findOne({
    guildID: res.guildID,
    Channel: res.Channel
  })
