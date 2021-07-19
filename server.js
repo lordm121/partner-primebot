@@ -6,7 +6,7 @@ const db = require('quick.db')
 //const { Color } = require("./config.js");
 const fs = require("fs");
 const request = require("request");
-const prefix = "!";
+const prefix = "p!";
 const { Collection, MessageEmbed } = require("discord.js");
 
 const { inspect } = require("util");
@@ -17,7 +17,7 @@ bot.pro = new I18n({ defaultLocale: "en" });
 
 global.logChannel = bot.channels.cache.get("835968578699264011")
 global.mongoose = require('mongoose')
-mongoose.connect("mongodb+srv://HAMA:test1234@cluster0.fubyc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }).then(() => {
+mongoose.connect("mongodb+srv://Partner:partner1234@cluster0.fwuix.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }).then(() => {
   console.log("Connected to the Mongodb database.");
 }).catch((err) => {
   console.log("Unable to connect to the Mongodb database. Error:" + err);
@@ -60,9 +60,9 @@ bot.on("ready", () => {
 
 bot.on("ready", () => {
     function randomStatus() {
-        let status = [`${prefix} | share your server with partner bot`, `${prefix}help | v1.4.8`]
+        let status = [`${prefix}help | share your server with partner bot`, `${prefix}help | v1.4.8`,`if you want growing your server invite me`,`${prefix}help`]
         let rstatus = Math.floor(Math.random() * status.length);
         bot.user.setActivity(status[rstatus], {type: "PLAYING"});    
     }; setInterval(randomStatus, 3000)
 })
-bot.login("ODUwMTA2NTkxMDUxMzgyNzg0.YLk5dQ.P-qqWydb4tqBn3msWfL1CZX_zBY");
+bot.login("ODM4NTkzMjQwMzI4MDQ0NTU0.YI9W0A.KC9BlcYZQeSSk6QgQNAkFOz36No");
