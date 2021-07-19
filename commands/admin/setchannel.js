@@ -39,13 +39,8 @@ message.channel.send('share channel  have been disabled in this guild!\nTo enabl
 } else if (!data) {
   
   
-  let newData = new schema({ // If no data was found then this is defining the new data to be saved
+  await Guild.findOne({ // If no data was found then this is defining the new data to be saved
     guildID: message.guild.id,
-    Channel: args[1]
-})
-newData.save()
-    
-    message.channel.send(`seteee`)
-
-
-  }}}}
+    Channel: m.id
+}). 
+   }}
