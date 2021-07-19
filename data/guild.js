@@ -9,6 +9,7 @@ const Schema = new mongoose.Schema({
     prefix: { type: String, default: "!"},
    time: String,
 rooms: String,
+  Description: String,
 })
 
 module.exports = mongoose.model ('Guild', Schema)

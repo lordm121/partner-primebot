@@ -60,7 +60,7 @@ module.exports = {
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS","CREATE_INVITE","MANAGE_CHANNELS"],        
   ownerOnly: false,            
 cooldown: 21600,
-  run: async (bot, message, args, dev,command) => {
+  run: async (bot, message, args, dev,command,prefix) => {
     let data = await Guild.findOne({guildID: message.guild.id})
     const members = message.guild.members.cache;
 
@@ -70,8 +70,8 @@ cooldown: 21600,
 
     if (!postChannel) return embed.setColor('#FF0202').setDescription(`** set up share channel to share your server ! | ⚠️**`), message.channel.send(embed)
     
-    if (!db.has(`${message.guild.id}.serverDescription`)) return embed.setColor('#FF0202').setDescription(`**Firs Setup Server Description Type: \`${db.get(`${message.guild.id}.serverPrefix`)}sd\` | ⚠️**`), message.channel.send(embed)
-
+ ///   if (!db.has(`${message.guild.id}.serverDescription`)) return embed.setColor('#FF0202').setDescription(`**Firs Setup Server Description Type: \`${db.get(`${message.guild.id}.serverPrefix`)}sd\` | ⚠️**`), message.channel.send(embed)
+if(data.Descripiont) return message.channel.send(" Your server don't have any description please give me your description `${prefix}sd`")
    const cooldown = 0///8.64e7; // اليوم بالثانية
 
     const filter = bot.channels.cache.get(data.Channel)//db.get(`${message.guild.id}.serverPostChannel`));
@@ -114,7 +114,7 @@ let data = await Guild.find()
         
               description: `
               [Join Server](${db.get(`${message.guild.id}.serverInvite`) || invite.url})
-              \n\n${db.get(`${message.guild.id}.serverDescription`) ? db.get(`${message.guild.id}.serverDescription`) : ''}\n\n
+              \n\n\n\n
               
               
 

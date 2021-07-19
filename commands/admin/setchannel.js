@@ -36,7 +36,9 @@ module.exports = {
 
     if(data.Channel) return message.channel.send(`your chnannel on database`)
         
-        
+        if(data){
+          data.Channel =m.id
+          data.save()}
     message.channel.send(`seteee`)
    // db.set(`${message.guild.id}.serverPostChannel`, ch.id);
     embed.setDescription(`**.لقد تم التثبيت بنجاح | ☑️**`), message.channel.send(embed)
