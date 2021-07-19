@@ -59,7 +59,7 @@ module.exports = {
   memberPermissions: [ "MANAGE_GUILD"],            
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS","CREATE_INVITE","MANAGE_CHANNELS"],        
   ownerOnly: false,            
-cooldown: 21600,
+cooldown: 0,
   run: async (bot, message, args, dev,command,prefix) => {
     let data = await Guild.findOne({guildID: message.guild.id})
     const members = message.guild.members.cache;
@@ -108,13 +108,14 @@ let data = await Guild.find()
         chann.createInvite({
             temporary: false,
             max_uses: 0,
-            max_age:  0  }).then(invite => {
+            max_age:  0  }).then(async invite => {
+          let description = await Guild.findOne({guildID: message.guild.id})
 
             const messagePosts = {
         
               description: `
               [Join Server](${db.get(`${message.guild.id}.serverInvite`) || invite.url})
-              \n\n\n\n
+           \n\n ${description.Description}\n\n
               
               
 
