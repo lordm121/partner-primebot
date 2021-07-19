@@ -12,7 +12,7 @@ module.exports = {
   memberPermissions: ["OWNER_BOT"],
   botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
   ownerOnly: false,
-  cooldown: 2000,
+  cooldown: 0,
   run: async (bot, message,  dev) => {
 if (!devs.includes(message.author.id)) return;
    const args = message.content.split(" ").slice(1).join(" ");

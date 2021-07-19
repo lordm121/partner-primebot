@@ -6,7 +6,7 @@ module.exports = {
     name: "color",
     aliases: ["color"],
     description: "set your emebd message ",
-    usage: [".color #color code"],
+    usage: ["p!color #color code"],
     category: ["admin"],
     enabled: true,
     memberPermissions: ["MANAGE_GUILD"],
@@ -23,7 +23,7 @@ module.exports = {
             var color = args[1].slice(1)
         }else {
             emb.setDescription("**You need to enter a hex color code qwq**")
-            return message.channel.send(`usage: .color #color code`)
+            return message.channel.send(`usage: p!color #color code`)
           let data = await Guild.findOne({ guildID: message.guild.id});
         }if (data) {
         data.Color = args[1]
