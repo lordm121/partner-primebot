@@ -36,7 +36,7 @@ module.exports = {
 
     if(data.Channel) return message.channel.send(`your chnannel on database`)
         
-        if(data){
+        if(data.Channel){
           data.Channel =m.id
           data.save()}
     message.channel.send(`seteee`)
