@@ -29,19 +29,17 @@ module.exports = {
     
     
 
-    if (!args[1]) return embed.setColor('#FF0202').setDescription(`**برجاء قم بعمل منشن للروم/التشانل الخاصة للنشر! | ⚠️**`), message.channel.send(embed)
+   /// if (!args[1]) return embed.setColor('#FF0202').setDescription(`**برجاء قم بعمل منشن للروم/التشانل الخاصة للنشر! | ⚠️**`), message.channel.send(embed)
 if (data) {
-await Guild.findOneAndDelete({ // If data was found then it will delete the data to disable the modlogs
-    guildID: message.guild.id
-})
-
-message.channel.send('share channel  have been disabled in this guild!\nTo enable them use the command \`>setchannel <channel>\`')
-} else if (!data) {
+  data.Channel = m.id
+  data.guildID = message.guild.id
+  data.save()
   
   
-  await Guild.findOne({ // If no data was found then this is defining the new data to be saved
-    guildID: message.guild.id,
-    Channel: m.id
-})}data.save()
 }
-   }}
+      message.channel.send(`Share room changed to ${m}`)
+      if(!data) { Guild.create({
+        Channel: m.id
+      }); }
+      message.channel.send(`share channel setuped in this channel ${m}`)
+   }}}

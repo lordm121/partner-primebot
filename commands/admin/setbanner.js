@@ -22,18 +22,19 @@ let data = await Guild.findOne({guildID: message.guild.id})
     let banner = message.content.split(' ').slice(1).join(' ');
 
     if (!banner) return embed.setColor('#FF0202').setDescription(`** Please send URL of a banner! | ⚠️**`), message.channel.send(embed)
-    /*
-    if (db.has(`${message.guild.id}.serverBanner`) && db.get(`${message.guild.id}.serverBanner`) == banner) {
-      embed.setColor('#FF0202').setDescription(`**This image Already  | ❌**`);
-      message.channel.send(embed)
-      return;
-    };
-*/
-    if(data.Banner) return message.reply(`server banner on listed befor`)
-    if (data){
-      data.Banner = banner
-data.save()
-    }
+    ///let data = await Prime.findOne({ Guild: args[2]});
+      if (data) {
+        data.Banner = banner
+        data.Channel
+        
+        data.save()
+      }
+if(!data) { Prime.create({
+        Guild: args[2],
+        time: time,
+        log: "enable",
+        Permanent: false
+      }); } 
    /// db.set(`${message.guild.id}.serverBanner`, banner);
     embed.setDescription(`**server banner has been setup | ☑️**`), message.channel.send(embed)
 
