@@ -9,7 +9,8 @@ module.exports = {
   botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
   ownerOnly: false,
   guilOwnerOnly: true,
-  cooldown: 10,
+  cooldown: 20,
+  prime: false,
   run: async (bot, message, args, dev) => {
  /// if (!message.guild.member(message.author).hasPermission('ADMINISTRATOR')) return embed.setColor('#FF0202').setDescription(`**You dont have \`ADMINISTRATOR\` Premission| 🤔**`), message.channel.send(embed)
 let data = await Guild.findOne({guildID:message.guild.id})

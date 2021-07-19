@@ -17,6 +17,7 @@ module.exports = {
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],        
   ownerOnly: false,            
   cooldown: 10,
+  prime: false,
   run: async (bot, message, args) => {
    
     

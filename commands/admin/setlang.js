@@ -11,7 +11,8 @@ module.exports = {
     memberPermissions: ["BAN_MEMBERS"],
     botPermissions: ["SEND_MESSAGES", "EMBED_LINKS", "BAN_MEMBERS"],
     ownerOnly: false,
-    cooldown: 6000,
+    cooldown: 30,
+    prime: false,
     run: async (bot, message, args, dev) => {
  //let lang = await Lang.findIne({guildID: message.guild.id})
 

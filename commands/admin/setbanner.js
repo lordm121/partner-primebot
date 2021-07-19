@@ -14,7 +14,8 @@ module.exports = {
   memberPermissions: [ "ADMINISTRATOR","MANAGE_GUILD"],            
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS","MANAGE_GUILD"],        
   ownerOnly: false,            
-  cooldown: 10,
+  cooldown: 15,
+   prime: false,
   run: async (bot, message, args, dev) => {
 ////if (!message.guild.member(message.author).hasPermission('ADMINISTRATOR')) return embed.setDescription(`**لا تمتلك صلاحية \`ADMINISTRATOR\` | 🤔**`), message.channel.send(embed)
 ///if (db.get(`${message.guild.id}.serverPlan`) == 'Free') return embed.setDescription(`**This server \`${db.get(`${message.guild.name}.serverName`)}\` Don't have \`Premium\`  version⚠️**`), message.channel.send(embed)
