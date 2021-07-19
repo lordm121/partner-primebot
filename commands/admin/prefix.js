@@ -12,7 +12,7 @@ module.exports = {
   memberPermissions: [ "ADMINISTRATOR" ],            
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],        
   ownerOnly: false,            
-  cooldown: 10000,
+  cooldown: 60,
   prime: false,
   run: async (bot, message, args, dev, data) => {
         if(!args[1]) return message.channel.send(new Discord.MessageEmbed().setColor("").setDescription(`You muste put provide prefix`))
