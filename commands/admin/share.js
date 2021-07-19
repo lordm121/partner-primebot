@@ -128,7 +128,7 @@ let data = await Guild.find()
 
                              
               
-             color: db.get(`${message.guild.id}.serverColor`), 
+             color: data.Color,////db.get(`${message.guild.id}.serverColor`), 
               author: {
                 name: message.guild.name,
                 icon_url: message.guild.iconURL(),

@@ -10,6 +10,7 @@ const Schema = new mongoose.Schema({
     time: String,
     rooms: String,
   Description: String,
+  Color: String,
 
 })
 
