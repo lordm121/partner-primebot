@@ -26,23 +26,18 @@ let data = await Guild.findOne({guildID:message.guild.id})
     let des = description.includes('@')?description.replace(/@/gi, '-'):description;
    
       if (data) {
-        data.Description= des
+        data.Description = description
         data.guildID = message.guild.id
         data.save()
       }
-    if(!data) { Prime.create({
-        Guild: args[2],
-        time: time,
-        log: "enable",
-        Permanent: falseif(!data) { Prime.create({
-        Guild: args[2],
-        time: time,
-        log: "enable",
-        Permanent: false
-      }); }  
+    if(!data) { Guild.create({
+      Description: description,
+      guildID: message.guild.id
+      
+        
       }); } 
-
-    embed.setDescription(`**server description has been saved on** \`database\`☑️`), message.channel.send(embed)
+message.channel.send(`server description has been saved, description: \n\`${data.Description}\``)
+    ///embed.setDescription(`**server description has been saved on** \`database\`☑️`), message.channel.send(embed)
 
   }
 

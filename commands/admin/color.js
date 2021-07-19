@@ -16,24 +16,25 @@ module.exports = {
     run: async (bot, message, args, dev) => {
 ////if (db.get(`${args}.serverPlan`) == 'Free') return embed.setDescription(`** This command Only for \`Premuim\` version⚠️**`), message.channel.send(embed).then(deleteMessage);
 
-      let data = await Guild.findOneAndUpdate({guildID: message.guild.id})
+   let data = await Guild.findOne({guildID: message.guild.id});
+      // let data = await Guild.findOneAndUpdate({guildID: message.guild.id})
   if (args[1].startsWith('#')) {
             var color = args[1].slice(1)
         } else {
             emb.setDescription("**You need to enter a hex color code qwq**")
-            return message.channel.send(`usage: .color #color code `)
-        }
-      if(data.Color) {
-        data.Color 
-        data.delete
-        
-        return message.channel.send(`you used this color befor${data.Color}`)
-      }
-      if(data){
-        data.Color = args[1]
+            return message.channel.send(`usage: .color #color code`)
+         /// let data = await Prime.findOne({ guildID: message.guild.id});
+      if (data) {
+        data.Color = color
+        data.guild.id = message.guild.id
         data.save()
       }
+          if(!data) { Guild.create({
+        Color: color,
+        guildID: message.guild.id
+      
+      }); } 
       ///db.set(`${message.guild.id}.serverColor`, color)
-        return message.channel.send(emb.setDescription("**Changed color succesfully**"))
+         message.channel.send(emb.setDescription("**Changed color succesfully**"))
      /// db.set(`${message.guild.id}.serverColor`,color)
-    }}
+    }}}
