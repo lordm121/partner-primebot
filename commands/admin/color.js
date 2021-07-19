@@ -23,8 +23,12 @@ module.exports = {
             emb.setDescription("**You need to enter a hex color code qwq**")
             return message.channel.send(`usage: .color #color code `)
         }
-      if(data.Color) return message.channel.send(`you used this color befor${data.Color}`)
-      
+      if(data.Color) {
+        data.Color 
+        data.delete
+        
+        return message.channel.send(`you used this color befor${data.Color}`)
+      }
       if(data){
         data.Color = args[1]
         data.save()
