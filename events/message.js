@@ -1,6 +1,7 @@
 const Discord = require("discord.js")
 /**/
 const data = {};
+const cooldowns = new Discord.Collection();
 module.exports = class {
 async run(message,bot) {
   //const data = {};
@@ -51,23 +52,23 @@ if(!premuim) { Premuim.create({ Guild: message.guild.id});}
 	  if(neededPermissions.length > 0){
 		  return message.channel.send(`You don't have a ${neededPermissions.map((p) => `\`${p}\``).join(", ")} permissions`);
 	 }
-	  if (!bot.cooldowns.has(command.name)) {
-		  bot.cooldowns.set(command.name, new Discord.Collection());
+	  if (!cooldowns.has(command.name)) {
+		cooldowns.set(command.name, new Discord.Collection());
 	  };
 	  const now = Date.now();
-	  const timestamps = bot.cooldowns.get(command.name);
-	  const cooldownAmount = ( 3000); 
-	  if (timestamps.has(message.author.id)) {
-	const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
+	  const timestamps = cooldowns.get(command.name);
+	  const cooldownAmount = ( command.cooldwon || 1)*1000; 
+	  if (timestamps.has(message.guild.id)) {
+	const expirationTime = timestamps.get(message.guild.id) + cooldownAmount;
 	if (now < expirationTime) {
 		const timeLeft = (expirationTime - now)/1000/// 1000;
 		return message.channel.send(`Please wait ${timeLeft.toFixed(1)} second`).then(msg=> msg.delete({ timeout:timeLeft.toFixed(1)*1000 }));
 	}
 	  }
-	  timestamps.set(message.author.id, now);
+	  timestamps.set(message.guild.id, now);
 	  let prefix = guild.prefix;
 	  if (command) command.run(bot, message, args, prefix, data , cmd, command);
-	  setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
+	  setTimeout(() => timestamps.delete(message.guild.id), cooldownAmount);
     
     
     
