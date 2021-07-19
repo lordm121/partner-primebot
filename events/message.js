@@ -57,7 +57,7 @@ if(!premuim) { Premuim.create({ Guild: message.guild.id});}
 	  };
 	  const now = Date.now();
 	  const timestamps = bot.cooldowns.get(command.name);
-	  const cooldownAmount = ( command.cooldown|| 1)*1000; 
+	  const cooldownAmount = ( command.cooldown|| 1) * 1000; 
 	  if (timestamps.has(message.guild.id)) {
 	const expirationTime = timestamps.get(message.guild.id) + cooldownAmount;
 	if (now < expirationTime) {

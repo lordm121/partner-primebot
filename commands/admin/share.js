@@ -59,7 +59,7 @@ module.exports = {
   memberPermissions: [ "MANAGE_GUILD"],            
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS","CREATE_INVITE","MANAGE_CHANNELS"],        
   ownerOnly: false,            
-cooldown: 10000,
+cooldown: 21600,
   run: async (bot, message, args, dev,command) => {
     let data = await Guild.findOne({guildID: message.guild.id})
     const members = message.guild.members.cache;
@@ -73,39 +73,21 @@ cooldown: 10000,
 //   if(!data.Channel) return message.channel.send(`setup channel`)
     if (!db.has(`${message.guild.id}.serverDescription`)) return embed.setColor('#FF0202').setDescription(`**Firs Setup Server Description Type: \`${db.get(`${message.guild.id}.serverPrefix`)}sd\` | ⚠️**`), message.channel.send(embed)
 
-   const cooldown = 21600000///8.64e7; // اليوم بالثانية
+   const cooldown = 0///8.64e7; // اليوم بالثانية
 
     const filter = bot.channels.cache.get(data.Channel)//db.get(`${message.guild.id}.serverPostChannel`));
-   const postTime =  await Guild.findOne({guildID: message.guild.id})////db.get(`${message.guild.id}.serverPostTime`);
+   const postTime = db.get(`${message.guild.id}.serverPostTime`);
 
 
-    if (postChannel && !filter) return data.delete, embed.setDescription(`**If You Delete Share channel Your server will be blacklist | ⚠️**`).setColor("#FF0202"), message.channel.send(embed);
+    if (postChannel && !filter) return db.delete, embed.setDescription(`**If You Delete Share channel Your server will be blacklist | ⚠️**`).setColor("#FF0202"), message.channel.send(embed);
     if (db.has(`${message.guild.id}.serverPostTime`)  && postTime !== null && cooldown - (Date.now() - postTime) > 0) {
       const postServerTime = cooldown - (Date.now() - postTime); // حساب الثواني المتبقية
       embed.setDescription(`**:stopwatch: | ${message.author.username}, You must wating for \n\`${pretty(postServerTime, { verbose: true })}.\` to share again**`);
       message.channel.send(embed);
       return;
-/*
-    const now = Date.now();
-	  const Amount = 7000
-  if (cooldown.has(message.guild.id)) {
-	const expirationTime = cooldown.get(message.guild.id) + Amount;
-	if (now < expirationTime) {
-		const timeLeft = (expirationTime - now)/ 1000;
 
-    return message.channel.send(`Please wait ${timeLeft.toFixed(1)} second`).then(msg=> msg.delete({ timeout:timeLeft.toFixed(1)*1000 }))
-  }
-
-    
-    cooldown.set(message.guild.id, now);
-setTimeout(() => cooldown.delete(message.guild.id), cooldown);
-    */
-  
   } else {
-      if(!data) { Guild.create({
-    time: cooldown,
-        guildID: message.guild.id
-      })
+      
       ////db.set(`${message.guild.id}.serverPostTime`, Date.now()); // كول داون نشر السيرفر
 message.channel.send(new Discord.MessageEmbed().setColor(Color).setDescription(`Your Server Shared`))
       const emoji = [];
@@ -192,7 +174,7 @@ function hook(messagePost, channelsPost, bot,message) {
    }}
 
     
-  }}}
+  }}
 
 
 
