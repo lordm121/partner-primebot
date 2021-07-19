@@ -9,6 +9,18 @@ const request = require("request");
 const prefix = "p!";
 const { Collection, MessageEmbed } = require("discord.js");
 
+
+
+
+const vCodes = require("vcodes.js");
+const dbl = new vCodes("rhrDwFLoqi4ywyYBd1UuYi1hJqnTGmjBijO8wBPgK3YVhMpPzmtR5v1VOeBy3QVUSZVlpWdj8jFo5LsRFoZOQgft87c9ZPCICexrUHtoSo9PPXzQyn2MiEGOWOpInP27", client);
+
+client.on("ready", () => {
+  dbl.serverCount();
+})
+
+
+
 const { inspect } = require("util");
 ///let dev = ["738478465870987425","386188491953799178"];
 const cmd = require("node-cmd");
