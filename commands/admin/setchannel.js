@@ -22,7 +22,7 @@ module.exports = {
     let ch = message.guild.channels.cache.find(c => c.id == m.id)
     if(args[1]){
     
-    let data = await Guild.findOne({guildID: message.guild.id})
+    let data = await Guild.findOneAndUpdate({guildID: message.guild.id})
     
     
     
@@ -36,7 +36,7 @@ module.exports = {
 
     if(data.Channel) return message.channel.send(`your chnannel on database`)
         
-        if(data.Channel){
+        if(data){
           data.Channel =m.id
           data.save()}
     message.channel.send(`seteee`)
