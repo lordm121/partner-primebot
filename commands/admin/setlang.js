@@ -7,9 +7,9 @@ module.exports = {
     description: "You can ban a member, or multiple members using this command",
     usage: ["p!setlang"],
     category: ["Admin"],
-    enabled: false,
-    memberPermissions: ["BAN_MEMBERS"],
-    botPermissions: ["SEND_MESSAGES", "EMBED_LINKS", "BAN_MEMBERS"],
+    enabled: true,
+    memberPermissions: ["MANAGE_GUILD"],
+    botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"]
     ownerOnly: false,
     cooldown: 30,
     prime: false,
