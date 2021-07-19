@@ -42,5 +42,6 @@ message.channel.send('share channel  have been disabled in this guild!\nTo enabl
   await Guild.findOne({ // If no data was found then this is defining the new data to be saved
     guildID: message.guild.id,
     Channel: m.id
-}). 
+})}data.save()
+}
    }}
