@@ -22,25 +22,28 @@ module.exports = {
     let ch = message.guild.channels.cache.find(c => c.id == m.id)
     if(args[1]){
     
-    let data = await Guild.findOneAndUpdate({guildID: message.guild.id})
+    let data = await Guild.findOne({guildID: message.guild.id})
     
     
     
-///if (!message.guild.member(message.author).hasPermission('ADMINISTRATOR')) return embed.setColor('#FF0202').setDescription(`**لا تمتلك صلاحية \`ADMINISTRATOR\` | 🤔**`), message.channel.send(embed)
-
-    ///let message = message.mentions.channels.first();
- //   let ch = message.guild.channels.cache.find(c => c.id == message.id)//// messageSetting.id);
 
     if (!args[1]) return embed.setColor('#FF0202').setDescription(`**برجاء قم بعمل منشن للروم/التشانل الخاصة للنشر! | ⚠️**`), message.channel.send(embed)
+if (data) {
+await Guild.findOneAndDelete({ // If data was found then it will delete the data to disable the modlogs
+    guildID: message.guild.id
+})
 
+message.channel.send('share channel  have been disabled in this guild!\nTo enable them use the command \`>setchannel <channel>\`')
+} else if (!data) {
 
-    if(data.Channel) return message.channel.send(`your chnannel on database`)
-        
-        if(data){
-          data.Channel =m.id
-          data.save()}
+if(data) {Guild.create({ // If no data was found then this is defining the new data to be saved
+    guildName: message.guild.name,
+    guildID: message.guild.id,
+    Channel: m.id
+})}
+
+    
     message.channel.send(`seteee`)
-   // db.set(`${message.guild.id}.serverPostChannel`, ch.id);
-    embed.setDescription(`**.لقد تم التثبيت بنجاح | ☑️**`), message.channel.send(embed)
 
-  }}}
+
+  }}}}
