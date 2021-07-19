@@ -16,7 +16,7 @@ module.exports = {
     run: async (bot, message, args, dev) => {
 ////if (db.get(`${args}.serverPlan`) == 'Free') return embed.setDescription(`** This command Only for \`Premuim\` version⚠️**`), message.channel.send(embed).then(deleteMessage);
 
-      let data = await Guild.findOne({guildID: message.guild.id})
+      let data = await Guild.findOneAndUpdate({guildID: message.guild.id})
   if (args[1].startsWith('#')) {
             var color = args[1].slice(1)
         } else {
