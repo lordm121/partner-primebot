@@ -3,6 +3,8 @@ const fs = require("fs");
 const Discord = require("discord.js");
 ///const { Color } = require("../../config.js");
 const db = require("quick.db")
+const schema = require ('../../data/guild.js')
+
 let embed = new Discord.MessageEmbed()
 module.exports = {
   name: "setchannel",
@@ -35,13 +37,13 @@ await Guild.findOneAndDelete({ // If data was found then it will delete the data
 
 message.channel.send('share channel  have been disabled in this guild!\nTo enable them use the command \`>setchannel <channel>\`')
 } else if (!data) {
-
-if(data) {Guild.create({ // If no data was found then this is defining the new data to be saved
-    guildName: message.guild.name,
+  
+  
+  let newData = new schema({ // If no data was found then this is defining the new data to be saved
     guildID: message.guild.id,
-    Channel: m.id
-})}
-
+    Channel: args[1]
+})
+newData.save()
     
     message.channel.send(`seteee`)
 
