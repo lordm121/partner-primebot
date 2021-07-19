@@ -50,7 +50,7 @@ const pretty = require("pretty-ms");
 let embed = new Discord.MessageEmbed()
 const cdtime = 4
 module.exports = {
-  name: "share",
+  name: "share.js",
   aliases: ["share"],
   description: "share your server .share ",
   usage: ["only .share or prefix+ share"],
@@ -80,7 +80,7 @@ cooldown: 10000,
 
 
     if (postChannel && !filter) return data.delete, embed.setDescription(`**If You Delete Share channel Your server will be blacklist | ⚠️**`).setColor("#FF0202"), message.channel.send(embed);
-    if (postTime.time/*db.has(`${message.guild.id}.serverPostTime`) */ && postTime !== null && cooldown - (Date.now() - postTime) > 0) {
+    if (db.has(`${message.guild.id}.serverPostTime`)  && postTime !== null && cooldown - (Date.now() - postTime) > 0) {
       const postServerTime = cooldown - (Date.now() - postTime); // حساب الثواني المتبقية
       embed.setDescription(`**:stopwatch: | ${message.author.username}, You must wating for \n\`${pretty(postServerTime, { verbose: true })}.\` to share again**`);
       message.channel.send(embed);

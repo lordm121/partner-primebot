@@ -52,12 +52,12 @@ if(!premuim) { Premuim.create({ Guild: message.guild.id});}
 	  if(neededPermissions.length > 0){
 		  return message.channel.send(`You don't have a ${neededPermissions.map((p) => `\`${p}\``).join(", ")} permissions`);
 	 }
-	  if (!cooldowns.has(command.name)) {
-		cooldowns.set(command.name, new Discord.Collection());
+	  if (!bot.cooldowns.has(command.name)) {
+		bot.cooldowns.set(command.name, new Discord.Collection());
 	  };
 	  const now = Date.now();
-	  const timestamps = cooldowns.get(command.name);
-	  const cooldownAmount = ( command.cooldwon || 1)*1000; 
+	  const timestamps = bot.cooldowns.get(command.name);
+	  const cooldownAmount = ( command.cooldown|| 1)*1000; 
 	  if (timestamps.has(message.guild.id)) {
 	const expirationTime = timestamps.get(message.guild.id) + cooldownAmount;
 	if (now < expirationTime) {
