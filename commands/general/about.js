@@ -18,11 +18,11 @@ module.exports = {
 let data = await Guild.findOne({guildID: message.guild.id})
        let embed = new Discord.MessageEmbed()
         .setTitle(`Info`,` ${bot.user.username}`,true)
-        .setColor("")
+        .setColor(Color)
         .setThumbnail(bot.user.displayAvatarURL())
         .addField(`**My Name:**`, `${bot.user.tag}`)
         .addField(`**My ID**`, `${bot.user.id}`)
-        .addField(`**My Prefix**`, `${data`)
+        .addField(`**My Prefix**`, `${data.prefix}`)
         .addField(`**Libary**` , `discord.js`)
         .addField(`**Discord.js Version**`, `${Discord.version}`)
         

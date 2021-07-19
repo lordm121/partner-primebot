@@ -15,7 +15,7 @@ module.exports = {
  .setColor(Color)
  .setThumbnail(`https://cdn.discordapp.com/attachments/818177981884923964/843887454348247100/image0.png`)
  .setTitle("we working at that please waiting, thanks for understanding")
- .setDescription("[ Top.gg ](https://top.gg/) \n - \n [ Discord.ly ](https://discord.ly/)")
+ .setDescription("[ Top.gg ](https://top.gg/838593240328044554) - [infinity botlist](https://infinitybotlist.com/bots/838593240328044554/vote) - [discord.ly](https://discord.ly/partner-bot-5806) - [blade botlist](https://bladebotlist.xyz/bot/838593240328044554/vote)")
  .setFooter(`by : ${message.author.tag}`)
 message.channel.send(embed);
   }

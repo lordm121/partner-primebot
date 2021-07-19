@@ -4,9 +4,9 @@ const { Color } = require("../../config.js");
 
 module.exports = {
   name: "ping",
-  aliases: ['pong'],
+  aliases: ['pong','ping'],
   description: "To show MS",
-  usage: [".pong"],
+  usage: ["p!pong"],
   category: ["General"],
   enabled: true,			
   memberPermissions: [ "SEND_MESSAGES" ],			
@@ -31,7 +31,7 @@ module.exports = {
             .then(msg => {
 
                 let embed = new Discord.MessageEmbed()
-                   .setDescription(`<:ping:828370866537758790> Bot: ${bot.ws.ping}ms \n<:api:836017379330228234> Discord API: ${Date.now() - date}ms \n<:file:836016653908705312> DB: ${ping_db}ms`)
+                   .setDescription(`<:ping:857921644597215264> Bot: ${bot.ws.ping}ms \n<:ram:857921771679383552> Discord API: ${Date.now() - date}ms \n<:file:857921694186602507> DB: ${ping_db}ms`)
                    .setColor(Color)
 
                 return msg.edit({ embed })

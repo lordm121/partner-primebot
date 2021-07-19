@@ -3,10 +3,10 @@ const Discord = require("discord.js")
 const { Color } = require("../../config.js");
 
 module.exports = {
-  name: "invite",
-  aliases: ["invitelink","inv","invite"],
-  description: "Use this command to get the invite link",
-  usage: ["p!invite"],
+  name: "premium",
+  aliases: ["premium"],
+  description: "show all premium features",
+  usage: ["p!premium"],
   category: ["General"],
   enabled: true,
   memberPermissions: ["SEND_MESSAGES"],
@@ -17,8 +17,19 @@ module.exports = {
     
 const embed = new Discord.MessageEmbed()
  .setColor(Color)
- .setTitle("Invite Link")
- .setDescription(`[Partner Bot](https://discord.com/api/oauth2/authorize?client_id=838593240328044554&permissions=67206193&scope=bot)`)
+ .setTitle("premium features")
+ .setDescription(`
+1- share every 6 hours
+
+2- set embed color 
+  
+3- give you premium role on support server
+
+4- fix your any problem quickly than anyone
+
+
+ 
+ `)
  .setFooter(`by : ${message.author.tag}`)
 message.channel.send(embed);
     }
