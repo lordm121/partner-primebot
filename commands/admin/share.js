@@ -46,7 +46,7 @@ const Discord = require("discord.js");
 const { Color } = require("../../config.js");
 const db = require("quick.db")
 const pretty = require("pretty-ms");
-
+const cooldowns = 21600000
 let embed = new Discord.MessageEmbed()
 const cdtime = 4
 module.exports = {
@@ -68,9 +68,8 @@ cooldown: 21600,
 
   const postChannel = bot.channels.cache.get(data.Channel)///db.get(`${message.guild.id}.serverPostChannel`); // الوقت بتاع نشر السيرفر فيه كام ثانية
 
-    ///if (!postChannel) return embed.setColor('#FF0202').setDescription(`** set up share channel to share your server ! | ⚠️**`), message.channel.send(embed);
-
-//   if(!data.Channel) return message.channel.send(`setup channel`)
+    if (!postChannel) return embed.setColor('#FF0202').setDescription(`** set up share channel to share your server ! | ⚠️**`), message.channel.send(embed)
+    
     if (!db.has(`${message.guild.id}.serverDescription`)) return embed.setColor('#FF0202').setDescription(`**Firs Setup Server Description Type: \`${db.get(`${message.guild.id}.serverPrefix`)}sd\` | ⚠️**`), message.channel.send(embed)
 
    const cooldown = 0///8.64e7; // اليوم بالثانية

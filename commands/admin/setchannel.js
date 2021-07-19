@@ -14,7 +14,7 @@ module.exports = {
   memberPermissions: [ "ADMINISTRATOR" ],            
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],        
   ownerOnly: false,            
-  cooldown: 10000,
+  cooldown: 10,
   run: async (bot, message, args) => {
    
     
@@ -22,7 +22,7 @@ module.exports = {
     let ch = message.guild.channels.cache.find(c => c.id == m.id)
     if(args[1]){
     
-    let data = await Guild.findOne({Channel: args[1]})
+    let data = await Guild.findOne({guildID: message.guild.id})
     
     
     
@@ -34,14 +34,7 @@ module.exports = {
     if (!args[1]) return embed.setColor('#FF0202').setDescription(`**برجاء قم بعمل منشن للروم/التشانل الخاصة للنشر! | ⚠️**`), message.channel.send(embed)
 
 
-    if(data){
-      if(data.Channel)
-      return message.channel.send(`your chnannel on database`)
-    }
-      if (!data){ Guild.create({
-      Channel: m.id,
-        guildID: message.guild.id
-      })}
+    if(data.Channel) return message.channel.send(`your chnannel on database`)
         
         
     message.channel.send(`seteee`)
