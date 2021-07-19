@@ -9,7 +9,7 @@ module.exports = {
     category: ["Admin"],
     enabled: true,
     memberPermissions: ["MANAGE_GUILD"],
-    botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"]
+    botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
     ownerOnly: false,
     cooldown: 30,
     prime: false,
