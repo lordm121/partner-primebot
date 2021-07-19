@@ -32,7 +32,8 @@
     "discord.js": "^12.5.3",
     "better-sqlite3": "^7.4.1",
     "quick.db": "^7.1.3",
-    "x73db": "^1.0.0"
+    "x73db": "^1.0.0",
+    "dayjs": "^1.10.6"
   },
   "engines": {
     "node": "14.x"

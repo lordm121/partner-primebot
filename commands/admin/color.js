@@ -13,6 +13,7 @@ module.exports = {
     botPermissions: ["SEND_MESSAGES", "EMBED_LINKS", "MANAGE_MESSAGES"],
     ownerOnly: false,
     cooldown: 10,
+   prime:true,
     run: async (bot, message, args, dev) => {
 ////if (db.get(`${args}.serverPlan`) == 'Free') return embed.setDescription(`** This command Only for \`Premuim\` version⚠️**`), message.channel.send(embed).then(deleteMessage);
 

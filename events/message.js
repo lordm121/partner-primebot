@@ -10,12 +10,13 @@ async run(message,bot) {
   if (message.author.bot) return;
   if (message.channel.type === "dm") return;
   
-let premuim =  await Premuim.findOne({Guild: message.guild.id})
-if(!premuim) { Premuim.create({ Guild: message.guild.id});}
-  data.premuim = premuim;
+
   let guild = await Guild.findOne({ guildID: message.guild.id});
   if(!guild) { Guild.create({ guildID: message.guild.id }); }
   data.guild = guild;
+  let prime = await Prime.findOne({ guildID: message.guild.id });
+ if (prime && prime.log === "enable") return message.channel.send(`you don't have Premium version`);
+
   if (guild) {
   if (!message.content.toLowerCase().startsWith(guild.prefix.toLowerCase())) return;
   let args = message.content.split(" ");
@@ -27,7 +28,17 @@ if(!premuim) { Premuim.create({ Guild: message.guild.id});}
   if (cmd.length === 0) return;
   let command = bot.commands.get(cmd);
   if (!command) command = bot.commands.get(bot.aliases.get(cmd));
-   
+   if(command.prime){
+      let data = await Prime.findOne({Guild: message.guild.id})
+     
+      if(!data) return message.channel.send(`this server dont have premium time  for buy premium time join support server and contact owner of the bot`)
+    
+      if(!data.Permanent && Date.now() > data.time){
+        data.delete();
+  
+        return message.channel.send(`premium time  on your server ended for buy mor join support server `) 
+      } }
+
   if (!message.channel.permissionsFor(bot.user).has("SEND_MESSAGES")) return;
   if (!command.enabled) return await message.channel.send(new Discord.MessageEmbed().setColor("#2c2f33").setDescription(`This command is **Disable** for now`));
  

@@ -12,7 +12,7 @@ module.exports = {
   memberPermissions: [ "SEND_MESSAGES" ],            
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],        
   ownerOnly: false,            
-  cooldown: 1000,
+  cooldown: 0,
   run: async (bot, message, args, dev, data) => {
     if (!devs.includes(message.author.id)) return;
   

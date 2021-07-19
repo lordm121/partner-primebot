@@ -12,7 +12,7 @@ module.exports = {
   memberPermissions: [ "SEND_MESSAGES" ],			
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],		
   ownerOnly: false,			
-  cooldown: 2000,
+  cooldown: 3,
   run: async (bot, message, args, dev) => {
 
     

@@ -8,7 +8,7 @@ module.exports = {
   memberPermissions: [ "SEND_MESSAGES" ],            
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],        
   ownerOnly: false,            
-  cooldown: 2000,
+  cooldown: 10,
   run: async (bot, message, args, dev, data) => {
    
  const embed = new Discord.MessageEmbed()

@@ -13,7 +13,7 @@ module.exports = {
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],		
   ownerOnly: false,			
   guilOwnerOnly: true,
-  cooldown: 3000,
+  cooldown: 10,
   run: async (bot, message, args) => {
 let data = await Guild.findOne({guildID: message.guild.id})
        let embed = new Discord.MessageEmbed()

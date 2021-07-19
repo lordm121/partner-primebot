@@ -26,8 +26,8 @@ global.Guild = require("./data/guild.js");
 
 ///global.User = require("./data/user.js");
 global.Lang = require("./data/lang.js");
-global.Premuim = require("./data/premuim.js")
-///global.Owner = require("./data/owner.js");
+////global.Premuim = require("./data/premuim.js")
+global.Prime = require("./data/prime.js");
 bot.commands = new Collection();
 bot.aliases = new Collection();
 bot.cooldowns = new Collection();
