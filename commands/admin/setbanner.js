@@ -25,18 +25,16 @@ let data = await Guild.findOne({guildID: message.guild.id})
     ///let data = await Prime.findOne({ Guild: args[2]});
       if (data) {
         data.Banner = banner
-        data.Channel
-        
+        data.guildID = message.guild.id   
         data.save()
       }
+    
 if(!data) { Prime.create({
-        Guild: args[2],
-        time: time,
-        log: "enable",
-        Permanent: false
+        guildID:message.guild.id,
+        Banner: banner
+          
       }); } 
-   /// db.set(`${message.guild.id}.serverBanner`, banner);
-    embed.setDescription(`**server banner has been setup | ☑️**`), message.channel.send(embed)
+  message.channel.send(`server banner has been saved : banner url:${banner}`)
 
   },
 };

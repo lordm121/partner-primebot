@@ -24,12 +24,23 @@ let data = await Guild.findOne({guildID:message.guild.id})
     };*/
     
     let des = description.includes('@')?description.replace(/@/gi, '-'):description;
-   /// db.set(`${message.guild.id}.serverDescription`, des);
-if(data.Description) return message.reply(`Your server description already on list`)
-    if(data){
-      data.Description = des
-data.save()
-    }
+   
+      if (data) {
+        data.Description= des
+        data.guildID = message.guild.id
+        data.save()
+      }
+    if(!data) { Prime.create({
+        Guild: args[2],
+        time: time,
+        log: "enable",
+        Permanent: falseif(!data) { Prime.create({
+        Guild: args[2],
+        time: time,
+        log: "enable",
+        Permanent: false
+      }); }  
+      }); } 
 
     embed.setDescription(`**server description has been saved on** \`database\`☑️`), message.channel.send(embed)
 

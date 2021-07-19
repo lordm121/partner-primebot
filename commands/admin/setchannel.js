@@ -37,7 +37,7 @@ if (data) {
   
   
 }
-      message.channel.send(`Share room changed to ${m}`)
+      
       if(!data) { Guild.create({
         Channel: m.id
       }); }

@@ -12,23 +12,15 @@ module.exports = {
     memberPermissions: ["MANAGE_GUILD","ADMINISTRATOR"],
     botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
     ownerOnly: false,
-    cooldown: 6000,
+    cooldown: 10,
     run: async (client, message, args, dev) => {
       
-  let des= db.get(`${message.guild.id}.serverDescription`)
-  let channel = db.get(`${message.guild.id}.serverPostChannel`)
-  let color = db.get(`${message.guild.id}.serverColor`)
-  let banner = db.get(`${message.guild.id}.serverBanner`)
-           embed .setTitle(` Preview [${message.guild.name}]`)
-           embed .setColor(Color)
- 
-        .setDescription(`
-\`Description\`: \n **${des} **
-\`share channel\`:**<#${channel}>**
-\`server banner\`: **${banner}**
-\`embed Color code\` : **${color}**
-\`server region\`:globe_with_meridians:: ${message.guild.region}
-
-    `)
-        return message.channel.send(embed)
+  let data = await Guild.findOne({guildID: message.guild.id})
+        message.channel.send(` your share design
+\`Description\`: \n **${data.Description} **
+\`share channel\`:**<#${data.Channel}>**
+\`server banner\`: **${data.Banner}**
+\`Embed Color\`: **${data.Color}**
+`)
+      
     }}
