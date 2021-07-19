@@ -8,13 +8,13 @@ const schema = require ('../../data/guild.js')
 let embed = new Discord.MessageEmbed()
 module.exports = {
   name: "setchannel",
-  aliases: ["channel"],
+  aliases: ["channel","setchannel"],
   description: "Change the prefix of the bot",
-  usage: ["s!prefix [Prefix]"],
-  category: ["Moderation"],
+  usage: ["p!setchannel <#channel>"],
+  category: ["Admin"],
   enabled: true,            
   memberPermissions: [ "ADMINISTRATOR" ],            
-  botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],        
+  botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS","MANAGE_GUILD" ],        
   ownerOnly: false,            
   cooldown: 10,
   prime: false,
