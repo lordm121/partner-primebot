@@ -59,7 +59,7 @@ module.exports = {
   memberPermissions: [ "MANAGE_GUILD"],            
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS","CREATE_INVITE","MANAGE_CHANNELS"],        
   ownerOnly: false,            
-cooldown: 0,
+cooldown: 21600,
   run: async (bot, message, args, dev,command,prefix) => {
     let data = await Guild.findOne({guildID: message.guild.id})
     const members = message.guild.members.cache;
