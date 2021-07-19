@@ -7,9 +7,10 @@ const Schema = new mongoose.Schema({
     Banner: String,
     Channel: String,
     prefix: { type: String, default: "!"},
-   time: String,
-rooms: String,
+    time: String,
+    rooms: String,
   Description: String,
+
 })
 
 module.exports = mongoose.model ('Guild', Schema)

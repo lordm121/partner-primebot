@@ -14,11 +14,11 @@ module.exports = {
   memberPermissions: [ "ADMINISTRATOR","MANAGE_GUILD"],            
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS","MANAGE_GUILD"],        
   ownerOnly: false,            
-  cooldown: 10000,
-  run: async (bot, message, args, dev, data) => {
+  cooldown: 10,
+  run: async (bot, message, args, dev) => {
 ////if (!message.guild.member(message.author).hasPermission('ADMINISTRATOR')) return embed.setDescription(`**لا تمتلك صلاحية \`ADMINISTRATOR\` | 🤔**`), message.channel.send(embed)
 ///if (db.get(`${message.guild.id}.serverPlan`) == 'Free') return embed.setDescription(`**This server \`${db.get(`${message.guild.name}.serverName`)}\` Don't have \`Premium\`  version⚠️**`), message.channel.send(embed)
-let data = await Guild.findOne({
+let data = await Guild.findOne({guildID: message.guild.id})
     let banner = message.content.split(' ').slice(1).join(' ');
 
     if (!banner) return embed.setColor('#FF0202').setDescription(`** Please send URL of a banner! | ⚠️**`), message.channel.send(embed)
@@ -29,8 +29,12 @@ let data = await Guild.findOne({
       return;
     };
 */
-    
-    db.set(`${message.guild.id}.serverBanner`, banner);
+    if(data.Banner) return message.reply(`server banner on listed befor`)
+    if (data){
+      data.Banner = banner
+data.save()
+    }
+   /// db.set(`${message.guild.id}.serverBanner`, banner);
     embed.setDescription(`**server banner has been setup | ☑️**`), message.channel.send(embed)
 
   },

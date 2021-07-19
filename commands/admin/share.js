@@ -109,13 +109,13 @@ let data = await Guild.find()
             temporary: false,
             max_uses: 0,
             max_age:  0  }).then(async invite => {
-          let description = await Guild.findOne({guildID: message.guild.id})
+          let data = await Guild.findOne({guildID: message.guild.id})
 
             const messagePosts = {
         
               description: `
               [Join Server](${db.get(`${message.guild.id}.serverInvite`) || invite.url})
-           \n\n ${description.Description}\n\n
+           \n\n ${data.Description || "no description set"}\n\n
               
               
 
@@ -138,7 +138,7 @@ let data = await Guild.find()
                 icon_url: message.author.avatarURL(),
               },
               image: {
-                url: db.get(`${message.guild.id}.serverBanner`),
+                url: (data.Banner)////db.get(`${message.guild.id}.serverBanner`),
               },
               thumbnail: {
                 url: message.guild.iconURL({ dynamic: true }),
