@@ -6,7 +6,7 @@ module.exports = {
     name: "preview",
     aliases: ["prev","preview"],
     description: "show all configuration befor bump your server",
-    usage: [".preview"],
+    usage: ["p!preview"],
     category: ["Admin"],
     enabled: true,
     memberPermissions: ["MANAGE_GUILD","ADMINISTRATOR"],
@@ -17,10 +17,10 @@ module.exports = {
       
   let data = await Guild.findOne({guildID: message.guild.id})
         message.channel.send(` your share design
-\`Description\`: \n **${data.Description} **
-\`share channel\`:**<#${data.Channel}>**
-\`server banner\`: **${data.Banner}**
-\`Embed Color\`: **${data.Color}**
+\`Description\`: \n **${data.Description || "no have description"} **
+\`share channel\`:**<#${data.Channel || "noe have share channel"}>**
+\`server banner\`: **${data.Banner || "no have banner"}**
+\`Embed Color\`: **${data.Color || "no have embed color"}**
 `)
       
     }}

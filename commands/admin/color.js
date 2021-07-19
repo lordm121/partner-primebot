@@ -20,21 +20,19 @@ module.exports = {
       // let data = await Guild.findOneAndUpdate({guildID: message.guild.id})
   if (args[1].startsWith('#')) {
             var color = args[1].slice(1)
-        } else {
+        }else {
             emb.setDescription("**You need to enter a hex color code qwq**")
             return message.channel.send(`usage: .color #color code`)
-         /// let data = await Prime.findOne({ guildID: message.guild.id});
-      if (data) {
-        data.Color = color
-        data.guild.id = message.guild.id
+          let data = await Guild.findOne({ guildID: message.guild.id});
+        }if (data) {
+        data.Color = args[1]
+        data.guildID = message.guild.id
         data.save()
       }
           if(!data) { Guild.create({
-        Color: color,
+        Color: args[1],
         guildID: message.guild.id
       
       }); } 
-      ///db.set(`${message.guild.id}.serverColor`, color)
-         message.channel.send(emb.setDescription("**Changed color succesfully**"))
-     /// db.set(`${message.guild.id}.serverColor`,color)
-    }}}
+          message.channel.send(`color  of the embed share message saved to this color code:\n\`${data.Color}\``)
+    }}
