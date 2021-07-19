@@ -6,7 +6,7 @@ const Schema = new mongoose.Schema({
     guildName: String,
     Banner: String,
     Channel: String,
-    prefix: { type: String, default: "!"},
+    prefix: { type: String, default: "p!"},
     time: String,
     rooms: String,
   Description: String,
