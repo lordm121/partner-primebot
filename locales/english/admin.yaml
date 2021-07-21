@@ -1,6 +1,6 @@
 color_description: "You need to enter a hex color code qwq"
 sec_color: "Your embed color has been saved"
-err_description: `**Please setup server Description! | ⚠️**`
-sec_description: `server description has been saved, description: \n${data.Description}`
-err_prefix: `please your prfix less than 5word`
-sec_prefix: `prefix has benn changed to ${args[1]}`
+err_description: "Please setup server Description! | ⚠️"
+sec_description: `server description has been saved"
+err_prefix: "please your prfix less than 5word"
+sec_prefix: "prefix has benn changed to %{args[1]}"
