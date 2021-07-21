@@ -22,3 +22,4 @@ module.exports = {
       message.channel.send(`prime bot in this server end in ${time}`)
 
     }}}}
+}
