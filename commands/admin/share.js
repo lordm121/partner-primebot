@@ -46,7 +46,8 @@ const Discord = require("discord.js");
 const { Color } = require("../../config.js");
 const db = require("quick.db")
 const pretty = require("pretty-ms");
-const cooldowns = 21600000
+const ms = require("ms")
+const day = require("dayjs")
 let embed = new Discord.MessageEmbed()
 const cdtime = 4
 module.exports = {
@@ -59,7 +60,7 @@ module.exports = {
   memberPermissions: [ "MANAGE_GUILD"],            
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS","CREATE_INVITE","MANAGE_CHANNELS"],        
   ownerOnly: false,            
-cooldown: 21600,
+cooldown: 5,
   run: async (bot, message, args, dev,command,prefix) => {
     let data = await Guild.findOne({guildID: message.guild.id})
     const members = message.guild.members.cache;
@@ -70,38 +71,38 @@ cooldown: 21600,
 
     if (!postChannel) return embed.setColor('#FF0202').setDescription(`** set up share channel to share your server ! | ⚠️**`), message.channel.send(embed)
     
- ///   if (!db.has(`${message.guild.id}.serverDescription`)) return embed.setColor('#FF0202').setDescription(`**Firs Setup Server Description Type: \`${db.get(`${message.guild.id}.serverPrefix`)}sd\` | ⚠️**`), message.channel.send(embed)
+ ///   
 if(data.Descripiont) return message.channel.send(" Your server don't have any description please give me your description `${prefix}sd`")
-   const cooldown = 0///8.64e7; // اليوم بالثانية
+   //const cooldown = 8اليوم بالثانية
 
-    const filter = bot.channels.cache.get(data.Channel)//db.get(`${message.guild.id}.serverPostChannel`));
-   const postTime = db.get(`${message.guild.id}.serverPostTime`);
+    const filter = bot.channels.cache.get(data.Channel)
+   let cooldown = 43200000;
+  	let lastDaily = data.bump;
+  	if (cooldown - (Date.now() - lastDaily) > 0) {
+      let time = data.bump
+      const remaining = pretty(Math.round((cooldown) - (Date.now() - lastDaily)), { verbose: true, unitCount: 3, secondsDecimalDigits: 0 })
+  message.channel.send(`You must wait **${remaining}** before you can use this command again`)
+    
+ 
+    	///return await message.channel.send(`  :stopwatch: | ${message.author.username}, You must wating for \n${time}\` to share again**   `);
+    let timeObj = ms(cooldown - (Date.now() - lastDaily)); 
 
 
-    if (postChannel && !filter) return db.delete, embed.setDescription(`**If You Delete Share channel Your server will be blacklist | ⚠️**`).setColor("#FF0202"), message.channel.send(embed);
-    if (db.has(`${message.guild.id}.serverPostTime`)  && postTime !== null && cooldown - (Date.now() - postTime) > 0) {
-      const postServerTime = cooldown - (Date.now() - postTime); // حساب الثواني المتبقية
-      embed.setDescription(`**:stopwatch: | ${message.author.username}, You must wating for \n\`${pretty(postServerTime, { verbose: true })}.\` to share again**`);
-      message.channel.send(embed);
-      return;
-
-  } else {
-      
-      ////db.set(`${message.guild.id}.serverPostTime`, Date.now()); // كول داون نشر السيرفر
-message.channel.send(new Discord.MessageEmbed().setColor(Color).setDescription(`Your Server Shared`))
-      const emoji = [];
-      message.guild.emojis.cache.some(emo => {
-        if (emoji.length < 6) {
-          emoji.push(emo);
-        };
-      });
-let data = await Guild.find()
-      await data.forEach( async res => {
+} else {
+  
+  let lord= await Guild.findOne({guildID: message.guild.id})
+  
+message.channel.send(`Your server shared for sure please see this channel <#${lord.Channel}>`)
+  let data = await Guild.find()
+      await data.forEach( async (res) => {
  await Guild.findOne({
    guildID: res.guildID,
    Channel: res.Channel
  })
     
+        
+        
+        
         const channelsPost = bot.channels.cache.find(ch => ch.id == res.Channel)////db.get(`${res.ID}.serverPostChannel`));
         if (channelsPost) {
           const chann = bot.channels.cache.find(ch => ch.id == res.Channel)////db.get(`${message.guild.id}.serverPostChannel`));
@@ -153,7 +154,27 @@ let data = await Guild.find()
           }).catch(err => console.log(err));
         } else {
           console.log(`Not found channel in server ${db.get(`${res.ID}.serverName`)}`);
-        };
+        }
+      let findServerr = await Guild.findOne({ guildID: message.guild.id });
+            let lastDailyy = findServerr.bump;
+            if (cooldown - (Date.now() - lastDailyy) > 0)return gmessage.delete().then(await message.channel.send('This command is used only once every 30 minutes.', { channel: message.channel }));
+		     /// message.delete().then( message.channel.send(`shared`) )
+		          await Guild.updateOne({ 
+			    	guildID: message.guild.id 
+			      }, { 
+			    	$set: { 
+			    		bump: new Date().getTime()
+			    	}
+			   	  })
+		          await Guild.updateOne({ 
+			    	guildID: message.guild.id 
+			      }, { 
+			    	$inc: { 
+			    		bumps: 1
+			    	}
+			   	  })
+			    return;    
+        
       });
     };
   
@@ -175,7 +196,3 @@ function hook(messagePost, channelsPost, bot,message) {
 
     
   }}
-
-
-
-
