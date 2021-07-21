@@ -70,7 +70,7 @@ bot.on("ready", () => {
   console.log(`welcome`)
 });
 
-bot.on("ready",async () => {
+bot.on("ready",async (message) => {
 let data = await Guild.findOne({guildID: message.guild.id})
     function randomStatus() {
         let status = [`${data.prefix}help | share your server with partner bot`, `${data.prefix}help | v1.4.8`,`invite me to growing your server`,`${data.prefix}help`]
