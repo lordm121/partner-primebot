@@ -22,9 +22,10 @@ module.exports = {
   if (args[1].startsWith('#')) {
             var color = args[1].slice(1)
         }else {
-            emb.setDescription("**You need to enter a hex color code qwq**")
+let data = await Guild.findOne({ guildID: message.guild.id});
+            emb.setDescription(bot.pro.get(data.lang,"admin","color_description")
             return message.channel.send(`usage: p!color #color code`)
-          let data = await Guild.findOne({ guildID: message.guild.id});
+          
         }if (data) {
         data.Color = args[1]
         data.guildID = message.guild.id
@@ -35,5 +36,5 @@ module.exports = {
         guildID: message.guild.id
       
       }); } 
-          message.channel.send(`color  of the embed share message saved to this color code:\n\`${data.Color}\``)
+          message.channel.send(bot.pro.get(data.lang,"admin","sec_color")
     }}
