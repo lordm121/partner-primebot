@@ -71,7 +71,7 @@ bot.on("ready", () => {
 });
 
 bot.on("ready",async () => {
-let data = await findOne({guildID: message.guild.id})
+let data = await Guild.findOne({guildID: message.guild.id})
     function randomStatus() {
         let status = [`${data.prefix}help | share your server with partner bot`, `${data.prefix}help | v1.4.8`,`invite me to growing your server`,`${data.prefix}help`]
         let rstatus = Math.floor(Math.random() * status.length);
