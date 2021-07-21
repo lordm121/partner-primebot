@@ -6,7 +6,7 @@ const db = require('quick.db')
 //const { Color } = require("./config.js");
 const fs = require("fs");
 const request = require("request");
-let data = await Guild.findOne({guildID: message.guild.id})
+let data =  Guild.findOne({guildID: message.guild.id})
 const prefix = data.prefix
 const { Collection, MessageEmbed } = require("discord.js");
 
