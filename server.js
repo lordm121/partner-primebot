@@ -11,13 +11,38 @@ const { Collection, MessageEmbed } = require("discord.js");
 
 
 
-
+////Vcode.js
 const vCodes = require("vcodes.js");
 const dbl = new vCodes("rhrDwFLoqi4ywyYBd1UuYi1hJqnTGmjBijO8wBPgK3YVhMpPzmtR5v1VOeBy3QVUSZVlpWdj8jFo5LsRFoZOQgft87c9ZPCICexrUHtoSo9PPXzQyn2MiEGOWOpInP27", bot);
 
 bot.on("ready", () => {
   dbl.serverCount();
 })
+/////Top.ggg
+const { AutoPoster } = require('topgg-autoposter')
+
+const ap = AutoPoster('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgzODU5MzI0MDMyODA0NDU1NCIsImJvdCI6dHJ1ZSwiaWF0IjoxNjI2OTA4Njc0fQ.3jziBUhG-5Fmtpd1xh3fVagR7jQSagoRojp0qazPR9M', bot)
+
+ap.on('posted', () => {
+  console.log('Posted stats to Top.gg!')
+})
+//////Top.ggg webhook
+
+const Topgg = require("@top-gg/sdk")
+////const express = require("express")
+
+const app = express()
+
+const webhook = new Topgg.Webhook("hamalordup")
+
+app.post("/dblwebhook", webhook.listener(vote => {
+  // vote will be your vote object, e.g
+  console.log(vote.user) // 395526710101278721 < user who voted\
+
+  // You can also throw an error to the listener callback in order to resend the webhook after a few seconds
+}))
+
+app.listen(80)
 
 
 
