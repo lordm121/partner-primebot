@@ -71,8 +71,9 @@ bot.on("ready", () => {
 });
 
 bot.on("ready", () => {
+let data = await findOne({guildID: message.guild.id})
     function randomStatus() {
-        let status = [`${prefix}help | share your server with partner bot`, `${prefix}help | v1.4.8`,`if you want growing your server invite me`,`${prefix}help`]
+        let status = [`${data.prefix}help | share your server with partner bot`, `${data.prefix}help | v1.4.8`,`invite me to growing your server`,`${data.prefix}help`]
         let rstatus = Math.floor(Math.random() * status.length);
         bot.user.setActivity(status[rstatus], {type: "PLAYING"});    
     }; setInterval(randomStatus, 3000)
