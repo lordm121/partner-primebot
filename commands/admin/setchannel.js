@@ -9,9 +9,9 @@ let embed = new Discord.MessageEmbed()
 module.exports = {
   name: "setchannel",
   aliases: ["channel","setchannel"],
-  description: "Change the prefix of the bot",
+  description: "Set up share channel",
   usage: ["p!setchannel <#channel>"],
-  category: ["Admin"],
+  category: ["admin"],
   enabled: true,            
   memberPermissions: [ "ADMINISTRATOR" ],            
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS","MANAGE_GUILD" ],        
@@ -42,5 +42,5 @@ if (data) {
       if(!data) { Guild.create({
         Channel: m.id
       }); }
-      message.channel.send(`share channel setuped in this channel ${m}`)
+      message.channel.send(bot.pro.get(data.lang,"admin","sec_channel"))
    }}}
