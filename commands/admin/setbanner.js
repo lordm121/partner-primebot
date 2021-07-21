@@ -8,8 +8,8 @@ module.exports = {
   name: "setbanner",
   aliases: ["banner","setbanner"],
   description: "set a banner to share message",
-  usage: [".setbanner"],
-  category: ["Admin"],
+  usage: ["p!setbanner"],
+  category: ["admin"],
   enabled: true,            
   memberPermissions: [ "ADMINISTRATOR","MANAGE_GUILD"],            
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS","MANAGE_GUILD"],        
@@ -22,7 +22,7 @@ module.exports = {
 let data = await Guild.findOne({guildID: message.guild.id})
     let banner = message.content.split(' ').slice(1).join(' ');
 
-    if (!banner) return embed.setColor('#FF0202').setDescription(`** Please send URL of a banner! | ⚠️**`), message.channel.send(embed)
+    if (!banner) return embed.setColor('#FF0202').setDescription(bot.pro.get(data.lang, "admin","err_banner")), message.channel.send(embed)
     ///let data = await Prime.findOne({ Guild: args[2]});
       if (data) {
         data.Banner = banner
@@ -35,7 +35,7 @@ if(!data) { Prime.create({
         Banner: banner
           
       }); } 
-  message.channel.send(`server banner has been saved : banner url:${banner}`)
+  message.channel.send(bot.pro.get(data.lang,"admin","sec_banner"))
 
   },
 };
