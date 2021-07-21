@@ -1,0 +1,10 @@
+color_description: "يجب إدخال رمز لون"
+sec_color: "تم حفظ لون التضمين"
+err_description: "الرجاء إعداد وصف الخادم!"
+sec_description: "تم حفظ وصف الخادم"
+err_prefix: "يرجى prfix الخاص بك أقل من 5 كلمة"
+sec_prefix: "تم تغيير prefix"
+err_banner: "** URL banner الرجاء إدخال عنوان  **"
+sec_banner: "**تم حفظ شعار الخادم**"
+sec_channel: "تم تعيين قناة المشاركة"
+
