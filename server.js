@@ -6,7 +6,8 @@ const db = require('quick.db')
 //const { Color } = require("./config.js");
 const fs = require("fs");
 const request = require("request");
-const prefix = "p!";
+let data = await Guild.findOne({guildID: message.guild.id})
+const prefix = data.prefix
 const { Collection, MessageEmbed } = require("discord.js");
 
 
@@ -71,9 +72,8 @@ bot.on("ready", () => {
 });
 
 bot.on("ready",async (message) => {
-let data = await Guild.findOne({guildID: message.guild.id})
     function randomStatus() {
-        let status = [`${data.prefix}help | share your server with partner bot`, `${data.prefix}help | v1.4.8`,`invite me to growing your server`,`${data.prefix}help`]
+        let status = [`${prefix}help | share your server with partner bot`, `${prefix}help | v1.4.8`,`invite me to growing your server`,`${prefix}help`]
         let rstatus = Math.floor(Math.random() * status.length);
         bot.user.setActivity(status[rstatus], {type: "PLAYING"});    
     }; setInterval(randomStatus, 3000)
