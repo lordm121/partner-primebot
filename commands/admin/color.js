@@ -23,7 +23,7 @@ module.exports = {
             var color = args[1].slice(1)
         }else {
 let data = await Guild.findOne({ guildID: message.guild.id});
-            emb.setDescription(bot.pro.get(data.lang,"admin","color_description"))
+            emb.setDescription(bot.pro.get(data.lang, "admin","color_description"))
             return message.channel.send(`usage: p!color #color code`)
           
         }if (data) {
@@ -36,5 +36,5 @@ let data = await Guild.findOne({ guildID: message.guild.id});
         guildID: message.guild.id
       
       }); } 
-          message.channel.send(bot.pro.get(data.lang,"admin","sec_color"))
+          message.channel.send(bot.pro.get(data.lang, "admin","sec_color"))
     }}
