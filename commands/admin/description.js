@@ -11,9 +11,9 @@ module.exports = {
   guilOwnerOnly: true,
   cooldown: 20,
   prime: false,
-  run: async (bot, message, args, dev) => {
+  run: async (bot, message, args, dev, data) => {
  /// if (!message.guild.member(message.author).hasPermission('ADMINISTRATOR')) return embed.setColor('#FF0202').setDescription(`**You dont have \`ADMINISTRATOR\` Premission| 🤔**`), message.channel.send(embed)
-let data = await Guild.findOne({guildID:message.guild.id})
+let guild = await Guild.findOne({guildID:message.guild.id})
     let description = message.content.split(' ').slice(1).join(' ');
 
     if (!description) return message.channel.send(bot.pro.get(data.lang, "admin","err_description"))
@@ -26,12 +26,12 @@ let data = await Guild.findOne({guildID:message.guild.id})
     
     let des = description.includes('@')?description.replace(/@/gi, '-'):description;
    
-      if (data) {
-        data.Description = description
-        data.guildID = message.guild.id
-        data.save()
+      if (guild) {
+        guild.Description = description
+        guild.guildID = message.guild.id
+        guild.save()
       }
-    if(!data) { Guild.create({
+    if(!guild) { Guild.create({
       Description: description,
       guildID: message.guild.id
       
