@@ -16,8 +16,7 @@ module.exports = {
 let data = await Guild.findOne({guildID:message.guild.id})
     let description = message.content.split(' ').slice(1).join(' ');
 
-    if (!description) return embed.setColor('#FF0202').setDescription(bot.pro.get(data.lang, "admin","err_description"))
-               message.channel.send(embed)
+    if (!description) return message.channel.send(bot.pro.get(data.lang, "admin","err_description"))
 
   /*  if (db.has(`${message.guild.id}.serverDescription`) && db.get(`${message.guild.id}.serverDescription`) == description) {
       embed.setColor('#FF0202').setDescription(`**Server description already on** \`database\` ❌`);
