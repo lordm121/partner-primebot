@@ -42,5 +42,5 @@ if (data) {
       if(!data) { Guild.create({
         Channel: m.id
       }); }
-      message.channel.send(bot.pro.get(data.lang,"admin","sec_channel"))
+      message.channel.send(bot.pro.get(data.lang, "admin","sec_channel"))
    }}}
