@@ -14,10 +14,10 @@ module.exports = {
     ownerOnly: false,
     cooldown: 10,
    prime:true,
-    run: async (bot, message, args, dev) => {
+    run: async (bot, message, args, dev, data) => {
 ////if (db.get(`${args}.serverPlan`) == 'Free') return embed.setDescription(`** This command Only for \`Premuim\` version⚠️**`), message.channel.send(embed).then(deleteMessage);
 
-   let data = await Guild.findOne({guildID: message.guild.id});
+   let guild = await Guild.findOne({guildID: message.guild.id});
       // let data = await Guild.findOneAndUpdate({guildID: message.guild.id})
   if (args[1].startsWith('#')) {
             var color = args[1].slice(1)
@@ -26,12 +26,12 @@ let data = await Guild.findOne({ guildID: message.guild.id});
             emb.setDescription(bot.pro.get(data.lang, "admin","color_description"))
             return message.channel.send(`usage: p!color #color code`)
           
-        }if (data) {
-        data.Color = args[1]
-        data.guildID = message.guild.id
-        data.save()
+        }if (guild) {
+        guild.Color = args[1]
+        guild.guildID = message.guild.id
+        guild.save()
       }
-          if(!data) { Guild.create({
+          if(!guild) { Guild.create({
         Color: args[1],
         guildID: message.guild.id
       
