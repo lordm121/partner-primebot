@@ -16,21 +16,21 @@ module.exports = {
   ownerOnly: false,            
   cooldown: 15,
    prime: false,
-  run: async (bot, message, args, dev) => {
+  run: async (bot, message, args, dev,data) => {
 ////if (!message.guild.member(message.author).hasPermission('ADMINISTRATOR')) return embed.setDescription(`**لا تمتلك صلاحية \`ADMINISTRATOR\` | 🤔**`), message.channel.send(embed)
 ///if (db.get(`${message.guild.id}.serverPlan`) == 'Free') return embed.setDescription(`**This server \`${db.get(`${message.guild.name}.serverName`)}\` Don't have \`Premium\`  version⚠️**`), message.channel.send(embed)
-let data = await Guild.findOne({guildID: message.guild.id})
+let dataa = await Guild.findOne({guildID: message.guild.id})
     let banner = message.content.split(' ').slice(1).join(' ');
 
     if (!banner) return embed.setColor('#FF0202').setDescription(bot.pro.get(data.lang, "admin","err_banner")), message.channel.send(embed)
     ///let data = await Prime.findOne({ Guild: args[2]});
-      if (data) {
-        data.Banner = banner
-        data.guildID = message.guild.id   
-        data.save()
+      if (dataa) {
+        dataa.Banner = banner
+        dataa.guildID = message.guild.id   
+        dataa.save()
       }
     
-if(!data) { Prime.create({
+if(!dataa) { Prime.create({
         guildID:message.guild.id,
         Banner: banner
           
