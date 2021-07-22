@@ -35,7 +35,7 @@ if(!data) { Prime.create({
         Banner: banner
           
       }); } 
-  message.channel.send(bot.pro.get(data.lang,"admin","sec_banner"))
+  message.channel.send(bot.pro.get(data.lang, "admin","sec_banner"))
 
   },
 };
