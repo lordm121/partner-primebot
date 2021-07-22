@@ -18,7 +18,7 @@ module.exports = {
 const embed = new Discord.MessageEmbed()
  .setColor(Color)
  .setTitle("premium features")
- .setDescription(bot.pro.get(data.lang,"general","premium_info"))
+ .setDescription(bot.pro.get(data.lang, "general","premium_info"))
  .setFooter(`by : ${message.author.tag}`)
 message.channel.send(embed);
     }
