@@ -23,7 +23,6 @@ module.exports = {
       let i0 = 0;
       let i1 = 10;
       let page = 1;
-const owner = message.guild.owner.name
 
       let description =
         `Total Servers - ${bot.guilds.cache.size}\n\n` +
@@ -75,7 +74,7 @@ const owner = message.guild.owner.name
               .sort((a, b) => b.memberCount - a.memberCount)
               .map(r => r)
               .map(
-                (r, i) => `**${i + 1}** - ${r.name} | ${r.owner.id} Members\nID - ${r.id} | `)
+                (r, i) => `**${i + 1}** - ${r.name} |Members\nID - ${r.id} | `)
               .slice(i0, i1)
               .join("\n\n");
 
