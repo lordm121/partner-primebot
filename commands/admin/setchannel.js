@@ -31,7 +31,7 @@ module.exports = {
     
 
     if (!args[1]) return embed.setColor('#FF0202').setDescription(`**Please mention channel to setup share channel usage: p!setchannel <#channel>**`), message.channel.send(embed)
-if (daata) {
+if (dataa) {
   dataa.Channel = m.id
   dataa.guildID = message.guild.id
   dataa.save()
@@ -39,7 +39,7 @@ if (daata) {
   
 }
       
-      if(!daata) { Guild.create({
+      if(!dataa) { Guild.create({
         Channel: m.id
       }); }
       message.channel.send(bot.pro.get(data.lang, "admin","sec_channel"))
