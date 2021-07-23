@@ -27,7 +27,7 @@ module.exports = {
       let description =
         `Total Servers - ${bot.guilds.cache.size}\n\n` +
         bot.guilds.cache
-          .sort((a, b) => b.memberCount - a.memberCount)
+          .sort((a, b) => b.memberCount - a.memberCount - b.owner.name)
           .map(r => r)
           .map((r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} Members\nID - ${r.id}`)
           .slice(0, 10)
