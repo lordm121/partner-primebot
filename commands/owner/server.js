@@ -72,10 +72,10 @@ const owner = message.guild.owner.name
           description =
             `Total Servers - ${bot.guilds.cache.size}\n\n` +
             bot.guilds.cache
-              .sort((a, b) => b.owner.id - a.memberCount)
+              .sort((a, b) => b.memberCount - a.memberCount)
               .map(r => r)
               .map(
-                (r, i) => `**${i + 1}** - ${r.name} | ${r.owner.id} Members\nID - ${r.id} | ${r.owners.id} - ${r.id}`)
+                (r, i) => `**${i + 1}** - ${r.name} | ${r.owner.id} Members\nID - ${r.id} | `)
               .slice(i0, i1)
               .join("\n\n");
 
