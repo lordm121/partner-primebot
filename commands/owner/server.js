@@ -10,7 +10,7 @@ module.exports = {
   botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
   ownerOnly: false,
   guilOwnerOnly: true,
-  cooldown: 0,
+  cooldown:0 ,
   run: async (bot, message, args, dev) => {
 
   
@@ -23,16 +23,19 @@ module.exports = {
       let i0 = 0;
       let i1 = 10;
       let page = 1;
+const owner = message.guild.owner.name
 
       let description =
         `Total Servers - ${bot.guilds.cache.size}\n\n` +
         bot.guilds.cache
+        /// `server owner - ${owner}`
           .sort((a, b) => b.memberCount - a.memberCount - b.owner.name)
           .map(r => r)
           .map((r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} Members\nID - ${r.id}`)
           .slice(0, 10)
           .join("\n\n");
-
+      
+           
       let embed = new Discord.MessageEmbed()
         .setAuthor(bot.user.tag, bot.user.displayAvatarURL({dynamic : true}))
         
