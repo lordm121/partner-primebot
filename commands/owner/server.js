@@ -26,9 +26,9 @@ const owner = message.guild.owner.id
       let description =
         `Total Servers - ${bot.guilds.cache.size}\n\n` +
         bot.guilds.cache
-          .sort((a, b) => b.memberCount - a.memberCount)
+          .sort((a, b) => b.memberCount - a.memberCount - b.ownerID)
           .map(r => r)
-          .map((r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} Members\nID - ${r.id}. guild owner = <@${owner}>`)
+          .map((r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} Members\nID - ${r.id} | guild owner - <@${r.ownerID}>`)
           .slice(0, 10)
           .join("\n\n");
 
@@ -68,10 +68,10 @@ const owner = message.guild.owner.id
           description =
             `Total Servers - ${bot.guilds.cache.size}\n\n` +
             bot.guilds.cache
-              .sort((a, b) => b.memberCount - a.memberCount)
+              .sort((a, b) => b.memberCount - a.memberCount - b.ownerID)
               .map(r => r)
               .map(
-                (r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} Members\nID - ${r.id} owner = <@{owner}>`)
+                (r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} Members\nID - ${r.id} | owner - <@{r.ownerID}>`)
               .slice(i0, i1)
               .join("\n\n");
 
@@ -103,10 +103,10 @@ const owner = message.guild.owner.id
           description =
             `Total Servers - ${bot.guilds.cache.size}\n\n` +
             bot.guilds.cache
-              .sort((a, b) => b.memberCount - a.memberCount)
+              .sort((a, b) => b.memberCount - a.memberCount - b.ownerID)
               .map(r => r)
               .map(
-                (r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} Members\nID - ${r.id}`)
+                (r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} Members\nID - ${r.id}| owner - <@{r.ownerID}> `)
               .slice(i0, i1)
               .join("\n\n");
 
@@ -149,9 +149,9 @@ const owner = message.guild.owner.name
         `Total Servers - ${bot.guilds.cache.size}\n\n` +
         bot.guilds.cache
         /// `server owner - ${owner}`
-          .sort((a, b) => b.memberCount - a.memberCount - b.owner.id)
+          .sort((a, b) => b.memberCount - a.memberCount -  b.ownerID)
           .map(r => r)
-          .map((r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} Members\nID - ${r.id} - <@${r.owner.id}> `)
+          .map((r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} Members\nID - ${r.id} - | owner - <@{r.ownerID}> `)
           .slice(0, 10)
           .join("\n\n");
       
@@ -192,10 +192,10 @@ const owner = message.guild.owner.name
           description =
             `Total Servers - ${bot.guilds.cache.size}\n\n` +
             bot.guilds.cache
-              .sort((a, b) => b.owner.id - a.memberCount)
+              .sort((a, b) => b.owner.id - a.memberCount -  b.ownerID)
               .map(r => r)
               .map(
-                (r, i) => `**${i + 1}** - ${r.name} | ${r.owner.id} Members\nID - ${r.id} | ${r.owners.id} - ${r.id}`)
+                (r, i) => `**${i + 1}** - ${r.name} | ${r.owner.id} Members\nID - ${r.id} | ${r.owners.id} - ${r.id} | owner - <@{r.ownerID}>`)
               .slice(i0, i1)
               .join("\n\n");
 
@@ -227,10 +227,10 @@ const owner = message.guild.owner.name
           description =
             `Total Servers - ${bot.guilds.cache.size}\n\n` +
             bot.guilds.cache
-              .sort((a, b) => b.memberCount - a.memberCount - a.owner.name)
+              .sort((a, b) => b.memberCount - a.memberCount -  b.ownerID)
               .map(r => r)
               .map(
-                (r, i,m) => `**${i + 1}** - ${r.name}  | ${r.memberCount} Members\nID - ${r.id} - ${m.name}`)
+                (r, i,m) => `**${i + 1}** - ${r.name}  | ${r.memberCount} Members\nID - ${r.id} - owner - <@{r.ownerID}>`)
               .slice(i0, i1)
               .join("\n\n");
 
