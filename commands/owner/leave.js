@@ -1,7 +1,7 @@
 const fs = require("fs");
 const { Color } = require("../../config.js");
 const Discord = require("discord.js");
-const ownerid = "738478465870987425";
+const ownerid = "768944616724103170";
 
 module.exports = {
   name: "leave",
