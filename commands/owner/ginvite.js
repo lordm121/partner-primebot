@@ -17,9 +17,9 @@ module.exports = {
 
         if (!args[0]) return message.channel.send("Enter Guild Name or Guild ID of where you want Invite Link.")
 
-        if(args[0]){
+        if(args[1]){
             let fetched = bot.guilds.cache.find(g => g.name === args.join(" "));
-            let found = bot.guilds.cache.get(args[0]);
+            let found = bot.guilds.cache.get(args[1]);
             if(!found) {
                 if(fetched) {
                     guild = fetched;
