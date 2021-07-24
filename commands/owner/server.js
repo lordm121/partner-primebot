@@ -25,9 +25,9 @@ module.exports = {
      let description =
         `Total Servers - ${bot.guilds.cache.size}\n\n` +
         bot.guilds.cache
-          .sort((a, b) => b.memberCount - a.memberCount - b.ownerID)
+          .sort((a, b) => b.memberCount - a.memberCount)
           .map(r => r)
-          .map((r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} Members\nID - ${r.id}. guild owner = <@${r.ownerID}>`)
+          .map((r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} Members\nID - ${r.id}`)
           .slice(0, 10)
           .join("\n\n");
 
@@ -67,10 +67,10 @@ module.exports = {
           description =
             `Total Servers - ${bot.guilds.cache.size}\n\n` +
             bot.guilds.cache
-              .sort((a, b) => b.memberCount - a.memberCount -  b.ownerID)
+              .sort((a, b) => b.memberCount - a.memberCount)
               .map(r => r)
               .map(
-                (r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} Members\nID - ${r.id} | owner - <@${r.ownerID}>`)
+                (r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} Members\nID - ${r.id} |`)
               .slice(i0, i1)
               .join("\n\n");
 
@@ -102,10 +102,10 @@ module.exports = {
           description =
             `Total Servers - ${bot.guilds.cache.size}\n\n` +
             bot.guilds.cache
-              .sort((a, b) => b.memberCount - a.memberCount -  b.ownerID)
+              .sort((a, b) => b.memberCount - a.memberCount )
               .map(r => r)
               .map(
-                (r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} Members\nID - ${r.id} - owner - <@${r.ownerID}>`)
+                (r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} Members\nID - ${r.id} `)
               .slice(i0, i1)
               .join("\n\n");
 
