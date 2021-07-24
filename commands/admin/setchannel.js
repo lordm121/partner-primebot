@@ -2,8 +2,8 @@
 const fs = require("fs");
 const Discord = require("discord.js");
 ///const { Color } = require("../../config.js");
-const db = require("quick.db")
-const schema = require ('../../data/guild.js')
+///const db = require("quick.db")
+///const schema = require ('../../data/guild.js')
 
 let embed = new Discord.MessageEmbed()
 module.exports = {
@@ -18,7 +18,7 @@ module.exports = {
   ownerOnly: false,            
   cooldown: 10,
   prime: false,
-  run: async (bot, message, args,data) => {
+  run: async (bot, message, args, data) => {
    
     
     let m = message.mentions.channels.first()
