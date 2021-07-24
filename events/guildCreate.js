@@ -1,13 +1,7 @@
 const Discord = require("discord.js")
 module.exports = class {
 async run(guild, bot) {
-  if(guild.memberCount < 99 ){
-
-    guild.owner.send(`  name ( ${guild.name} ) bot need 100 members guild  ( ${guild.memberCount}) `)//by lord
-
-   guild.leave();
-
-  }
+  
 		const thanksEmbed = new Discord.MessageEmbed()			
                         .setAuthor("Thank you for adding me to your guild !")
 			.setDescription("To configure me,\n type **.help** and look at the **Share** commands!.")
