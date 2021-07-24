@@ -9,7 +9,7 @@ module.exports = {
   memberPermissions: [ "SEND_MESSAGES" ],
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],
   ownerOnly: true,
-  cooldown: 6000,
+  cooldown: 0,
   run: async (bot, message, args) => {
     if (message.author.id == ownerid) {
       if (!message.guild.me.hasPermission("SEND_MESSAGES"))
@@ -24,7 +24,7 @@ module.exports = {
       let description = bot.guilds.cache
           .sort((a, b) => b.memberCount - a.memberCount)
           .map(r => r)
-          .map((r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} Members\nID - ${r.id}`)
+          .map((r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} Members\nID - ${r.id} - server owner ${r.owner}`)
           .slice(0, 10)
           .join("\n");
 
