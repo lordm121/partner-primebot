@@ -1,20 +1,18 @@
+const fs = require("fs");
+const { Color } = require("../../config.js");
 const Discord = require("discord.js");
 const ownerid = "768944616724103170";
 
-
 module.exports = {
-  name: "server",
-  aliases: ["slt"],
+  name: "slt",
   enabled: true,
-  memberPermissions: ["SEND_MESSAGES"],
-  botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
-  ownerOnly: false,
-  guilOwnerOnly: true,
-  cooldown:0 ,
-  run: async (bot, message, args, dev) => {
-    
+  memberPermissions: [ "SEND_MESSAGES" ],
+  botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],
+  ownerOnly: true,
+  cooldown: 6000,
+  run: async (bot, message, args) => {
     if (message.author.id == ownerid) {
-      if (!message.guild.me.hasPermission("ADMINISTRATOR"))
+      if (!message.guild.me.hasPermission("SEND_MESSAGES"))
         return message.channel
           .send("I Dont Have Permissions")
           .then(msg => msg.delete({ timeout: 5000 }));
@@ -22,34 +20,31 @@ module.exports = {
       let i0 = 0;
       let i1 = 10;
       let page = 1;
-     let description =
-        `Total Servers - ${bot.guilds.cache.size}\n\n` +
-        bot.guilds.cache
+
+      let description = bot.guilds.cache
           .sort((a, b) => b.memberCount - a.memberCount)
           .map(r => r)
           .map((r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} Members\nID - ${r.id}`)
           .slice(0, 10)
-          .join("\n\n");
+          .join("\n");
 
       let embed = new Discord.MessageEmbed()
-        .setAuthor(bot.user.tag, bot.user.displayAvatarURL({dynamic : true}))
-        
-        .setColor("00FFFF")
-        .setFooter(`Page - ${page}/${Math.ceil(bot.guilds.cache.size / 10)}`)
+        .setColor(Color)
+        .setTitle(`Page - ${page}/${Math.ceil(bot.guilds.cache.size / 10)}`)
         .setDescription(description);
 
       let msg = await message.channel.send(embed);
 
-      await msg.react("⬅");
-      await msg.react("➡");
-      await msg.react("❌");
+      await msg.react("⬅️");
+      await msg.react("➡️");
+      await msg.react("🚫");
 
       let collector = msg.createReactionCollector(
         (reaction, user) => user.id === message.author.id
       );
 
       collector.on("collect", async (reaction, user) => {
-        if (reaction._emoji.name === "⬅") {
+        if (reaction._emoji.name === "⬅️") {
           // Updates variables
           i0 = i0 - 10;
           i1 = i1 - 10;
@@ -70,13 +65,14 @@ module.exports = {
               .sort((a, b) => b.memberCount - a.memberCount)
               .map(r => r)
               .map(
-                (r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} Members\nID - ${r.id} |`)
+                (r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} Members\nID - ${r.id}\nServer Owner - ${r.owner}`
+              )
               .slice(i0, i1)
-              .join("\n\n");
+              .join("\n");
 
           // Update the embed with new informations
           embed
-            .setFooter(
+            .setTitle(
               `Page - ${page}/${Math.round(bot.guilds.cache.size / 10 + 1)}`
             )
             .setDescription(description);
@@ -85,7 +81,7 @@ module.exports = {
           msg.edit(embed);
         }
 
-        if (reaction._emoji.name === "➡") {
+        if (reaction._emoji.name === "➡️") {
           // Updates variables
           i0 = i0 + 10;
           i1 = i1 + 10;
@@ -102,16 +98,17 @@ module.exports = {
           description =
             `Total Servers - ${bot.guilds.cache.size}\n\n` +
             bot.guilds.cache
-              .sort((a, b) => b.memberCount - a.memberCount )
+              .sort((a, b) => b.memberCount - a.memberCount)
               .map(r => r)
               .map(
-                (r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} Members\nID - ${r.id} `)
+                (r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} Members\nID - ${r.id}\n Server Owner - ${r.owner}`
+              )
               .slice(i0, i1)
-              .join("\n\n");
+              .join("\n");
 
           // Update the embed with new informations
           embed
-            .setFooter(
+            .setTitle(
               `Page - ${page}/${Math.round(bot.guilds.cache.size / 10 + 1)}`
             )
             .setDescription(description);
@@ -120,7 +117,7 @@ module.exports = {
           msg.edit(embed);
         }
 
-        if (reaction._emoji.name === "❌") {
+        if (reaction._emoji.name === "🚫") {
           return msg.delete();
         }
 
@@ -130,7 +127,5 @@ module.exports = {
     } else {
       return;
     }
-    
-
   }
-  }
+};
