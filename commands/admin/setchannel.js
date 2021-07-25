@@ -42,5 +42,5 @@ if (dataa) {
       if(!dataa) { Guild.create({
         Channel: m.id
       }); }
-      message.channel.send(`share channel has been set-up in this channel <#${dataa.Channel}>)
+      message.channel.send(`share channel has been set-up in this channel <#${dataa.Channel}>`)
    }}}
