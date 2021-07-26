@@ -34,7 +34,7 @@ module.exports = {
           if (!args[2]) return message.reply(`please specify guild id`)
           if(!bot.guilds.cache.has(args[2])) return message.reply(`your guild id is invalid`)
           let money = author.money
-          if(money < 100) return message.channel.send(`you cant buy because your money not enough to buy \n your money: \`$${x}\`
+          if(money < 100000) return message.channel.send(`you cant buy because your money not enough to buy \n your money: \`$${x}\`
           money required: \`$100000\``)
           const dev = bot.users.cache.get("768944616724103170")
           const  m = new Discord.MessageEmbed()
@@ -72,7 +72,7 @@ module.exports = {
             if(money < 200000) {
               
                 const purchaseError2 = new Discord.MessageEmbed()
-                .setDescription(`You Don\'t Have Enough Money to buy prime bot\n your money\`$${money}\``)
+                .setDescription(`You Don\'t Have Enough Money to buy prime bot\n your money\`$${money}\`\n required: \`$200000\``)
                 .setColor("BLUE")
         
                 return message.channel.send(purchaseError2)
