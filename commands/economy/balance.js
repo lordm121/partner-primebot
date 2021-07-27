@@ -4,7 +4,7 @@ const { Color } = require("../../config.js");
 
 module.exports = {
   name: "balance",
-  aliases: ['credits','credit','balance'],
+  aliases: ["balance","credit","b","credits"],
   description: "To show your balance",
   usage: ["p! balance"],
   category: ["General"],
