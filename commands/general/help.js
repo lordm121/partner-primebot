@@ -28,7 +28,7 @@ module.exports = {
      .addField("⚙️ Admin", "`share`,`setchannel`,`setcolor`,`setprefix`,`setdescription`,`setbanner`,`preview`")
   .addField("💸 Economy","`balance`,`daily`,`sendcredit`,`buy`")
      
- return message.lineReplyNoMention(embed);
+ return message.channel.send(embed);
  } else {
       let  command = args[1]
       if (bot.commands.has(command) || 
