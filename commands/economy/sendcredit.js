@@ -1,7 +1,7 @@
 const fs = require("fs");
 const Discord = require("discord.js");
 module.exports = {
-  name: "sendcredits",
+  name: "sendcredit",
   aliases: ["credit","credits"],
   description: "To send credit",
   usage: ["credits @user @amount"], 
