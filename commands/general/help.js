@@ -24,7 +24,7 @@ let embed = new Discord.MessageEmbed()
          .addField
 ("ℹ️ General", "`invite`, `support`, `about`, `ping`, `vote(soon)`, `premium`,")
      .addField("⚙️ Admin", "`share`,`setchannel`,`setcolor`,`setprefix`,`setdescription`,`setbanner`,`preview`")
-  .ddField("💸 Economy","`balance`,`daily`,`sendcredit`"
+  .ddField("💸 Economy","`balance`,`daily`,`sendcredit`,`buy`"
      
   message.channel.send(embed)
 
