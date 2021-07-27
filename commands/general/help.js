@@ -1,22 +1,24 @@
 const fs = require("fs");
 const Discord = require("discord.js");
-const { Color } = require("../../config.js")
-const { MessageEmbed } = require("discord.js")
+const { Color} = require("../../config.js");
 module.exports = {
   name: "help",
-  cmdHelp: "Get help embed",
-  cmdUsage: "p!help",
-  cmdCatagory: "General",
-  aliases: ["help","command","commands"],
+  aliases: ["commands"],
+  description: "To show you all command of the bot",
+  usage: ["p!help","p!help <command>"],
+  category: ["General"],
   enabled: true,            
   memberPermissions: [ "SEND_MESSAGES" ],            
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],        
   ownerOnly: false,            
-  cooldown: 15,
+  cooldown: 1000,
   run: async (bot, message, args, dev, data) => {
+   
     if (!args[1]) {
-let embed = new Discord.MessageEmbed()
-         .setColor(Color)
+  let embed = new Discord.MessageEmbed()
+     .setColor(Color)
+     
+.setColor(Color)
          .setTitle(bot.pro.get(data.lang, "general","help_embed"))
          .setDescription(`
     [ Top.gg ](https://top.gg/838593240328044554) [discord.ly](https://discord.ly/partner-bot-5806) - [ Invite ](https://discord.com/api/oauth2/authorize?client_id=${bot.user.id}&permissions=67206193&scope=bot) - [ Support ](https://discord.gg/aW6TnhGeSS) - if you want know how to setup Partner bot [click her](https://cdn.discordapp.com/attachments/847495685716443246/856250092025282561/VivaCut_video_1624207856278_HD.mp4)
@@ -26,33 +28,26 @@ let embed = new Discord.MessageEmbed()
      .addField("⚙️ Admin", "`share`,`setchannel`,`setcolor`,`setprefix`,`setdescription`,`setbanner`,`preview`")
   .addField("💸 Economy","`balance`,`daily`,`sendcredit`,`buy`")
      
-  message.channel.send(embed)
-
+ return message.lineReplyNoMention(embed);
+ } else {
+      let  command = args[1]
+      if (bot.commands.has(command) || 
+      bot.aliases.has(command)) {  
       
-    } else {
-      let command = bot.commands.get(args[1]);
-      if (!command) command = bot.commands.get(bot.aliases.get(args[1]));
-      if (command) {
-        if (!command.cmdUsage) {
-          command.cmdUsage = "No usage for this command"
+      command = bot.commands.get(command) || bot.aliases.get(command);
+        let ccmd = "<:disable:840230135046471711> Disabled"
+        if ( command.enabled ) {
+        ccmd = "<:enable:840230134899671060> Enabled"
         }
-        if (!command.cmdHelp) {
-          command.cmdHelp = "No help for this command"
+      let embed = new Discord.MessageEmbed()
+      .setColor(Color) 
+      .setThumbnail(message.author.avatarURL())
+      .setTitle("**Help**")
+      .setDescription(command.description || command.name + " this command don't have a description")
+      .addField("**Usage**", "" + command.usage.join(", ") + "" )
+      .addField("**Category**", "" + command.category.join(", ") + "" )
+      .addField("**Command is**", ccmd);
+      message.channel.send(embed)
         }
-        if (!command.cmdCatagory) {
-          command.cmdCatagory = "Null"
-        }
-        let embed = new MessageEmbed()
-          .setColor(Color)
-          .setTitle("Command Help")
-          .setDescription(`
-**Help:** ${command.cmdHelp}
-**Usage:** ${command.cmdUsage}
-**Category:** ${command.cmdCatagory}`)
-        message.channel.send(embed);
-      } else {
-        return message.channel.send(`We don't have command by this name **${args[0]}**`)
-      }
     }
-  }
-}
+  }};
