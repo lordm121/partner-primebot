@@ -14,7 +14,7 @@ module.exports = {
   ownerOnly: false,			
   cooldown: 15,
   run: async (bot, message, args) => {
-    let data = await Economy.findOne({userId: message.author.id})
+    let data = await User.findOne({userID: message.author.id, guildID: message.guild.id})
     let user  = message.mentions.users.first() || message.author
 
         let bal = data.money///await db.fetch(`money_${message.guild.id}_${user.id}`)
