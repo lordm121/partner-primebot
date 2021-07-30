@@ -26,7 +26,8 @@ module.exports = {
          .addField
 ("ℹ️ General", "`invite`, `support`, `about`, `ping`, `vote(soon)`, `premium`,")
      .addField("⚙️ Admin", "`share`,`setchannel`,`setcolor`,`setprefix`,`setdescription`,`setbanner`,`preview`")
-  .addField("💸 Economy","`balance`,`daily`,`sendcredit`,`buy`")
+  .addField("💸 Economy","`balance`,`daily`,`sendcredit`")
+.addField("🔮 Premium","`auto`,`buy(to buy a premium)`")
      
  return message.channel.send(embed);
  } else {
