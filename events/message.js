@@ -40,7 +40,7 @@ let user = await User.findOne({ guildID: message.guild.id, userID: message.autho
      
       if(!data) return message.channel.send(`this server dont have premium time  for buy premium time join support server and contact owner of the bot`)
     
-      if(!data.Permanent && Date.now() > 0){
+      if(!data.Permanent && Date.now() > data.time){
         data.delete();
   
         return message.channel.send(`premium time  on your server ended for buy mor join support server `) 
