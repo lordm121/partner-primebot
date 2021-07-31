@@ -111,7 +111,9 @@ message.channel.send(`Your server shared for sure please see this channel <#${lo
             max_uses: 0,
             max_age:  0  }).then(async invite => {
           let data = await Guild.findOne({guildID: message.guild.id})
-
+let premium = prime.prime
+        
+         
             const messagePosts = {
         
               description: `
@@ -119,8 +121,8 @@ message.channel.send(`Your server shared for sure please see this channel <#${lo
            \n\n ${data.Description || "no description set"}\n\n
               
               
-
-• Verification Level:  ${verificationLevels[message.guild.verificationLevel]}
+•:Server Type: ${premium||"Normal"}
+•:Verification Level:  ${verificationLevels[message.guild.verificationLevel]}
 •:earth_africa:Region:  ${regions[message.guild.region]}
 •:busts_in_silhouette:Member Count:  ${message.guild.memberCount} | •:bust_in_silhouette:Humans:  ${members.filter(member => !member.user.bot).size} | •:robot:Bots:  ${members.filter(member => member.user.bot).size}
 •:sparkles:Boost Count: ${message.guild.premiumSubscriptionCount || '0'}
