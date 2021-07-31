@@ -79,13 +79,13 @@ if(!postChannel) return message.channel.send(`Please set up share channel: use:\
     const filter = bot.channels.cache.get(data.Channel)
   ///  if (postChannel && !filter) return data.delete(), embed.setDescription(`**إذا قمت بحذف الروم مرة اخري سوف يتم حظر السيرفر! | ⚠️**`).setColor("#FF0202"), message.channel.send(embed)
 
-   let cooldown = 21600000
+   let cooldown = 600000
   	let lastDaily = data.bump 
   	if (cooldown - (Date.now() - lastDaily) > 0) {
       let time = data.bump
       
       const remaining = pretty(Math.round((cooldown) - (Date.now() - lastDaily)), { verbose: true, unitCount: 3, secondsDecimalDigits: 0 })
-  message.channel.send(`share command automatically working you must waiting for  ${remaining}`)
+  message.channel.send(`share command automatically working you must waiting for  12 hours to bum your server`)
     
    // let timeObj = ms(cooldown - (Date.now() - lastDaily)); 
 
