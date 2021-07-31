@@ -77,7 +77,7 @@ if(!postChannel) return message.channel.send(`Please set up share channel: use:\
    //اليوم بالثانية
 
     const filter = bot.channels.cache.get(data.Channel)
-    if (postChannel && !filter) return data.delete(), embed.setDescription(`**إذا قمت بحذف الروم مرة اخري سوف يتم حظر السيرفر! | ⚠️**`).setColor("#FF0202"), message.channel.send(embed)
+  ///  if (postChannel && !filter) return data.delete(), embed.setDescription(`**إذا قمت بحذف الروم مرة اخري سوف يتم حظر السيرفر! | ⚠️**`).setColor("#FF0202"), message.channel.send(embed)
 
    let cooldown = 21600000
   	let lastDaily = data.bump 
