@@ -8,7 +8,7 @@ module.exports = {
   memberPermissions: [ "SEND_MESSAGES" ],			
   botPermissions: [ "SEND_MESSAGES" ],		
   ownerOnly: true,			
-  cooldown: 1000,
+  cooldown: 10,
   prime: false,
   run: async (bot, message, args, dev) => {
         if (args[1]==="time") {
