@@ -3,13 +3,13 @@ const moment = require("moment-timezone");
 const parseInt = require("ms")
 const day = require("dayjs")
 module.exports = {
-  name: "add-prime",
+  name: "prime",
   aliases: ["p"],
   enabled: true,			
   memberPermissions: [ "SEND_MESSAGES" ],			
   botPermissions: [ "SEND_MESSAGES" ],		
   ownerOnly: true,			
-  cooldown: 1000,
+  cooldown: 0,
   prime: false,
   run: async (bot, message, args, dev) => {
     ///if (!args[1]) return message.reply(`Please specify a guild id`);
