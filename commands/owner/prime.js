@@ -50,12 +50,14 @@ module.exports = {
       let data = await Prime.findOne({ Guild: args[2]});
       if (data) {
         data.time = 0;
+         data.prime = "Premium"
         data.log = "enable";
         data.save()
       }
       if(!data) { Prime.create({
         Guild: args[2],
         time: time,
+        prime: "Premium",
         log: "enable",
         Permanent: false
       }); } 
