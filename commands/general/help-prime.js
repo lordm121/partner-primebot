@@ -3,8 +3,8 @@ const Discord = require("discord.js")
 const { Color } = require("../../config.js");
 
 module.exports = {
-  name: "buy-prime",
-  aliases: ["buy","prime buy","buy prime","help prime"],
+  name: "help-prime",
+  aliases: ["buy","prime buy","buy prime","help prime","helpprime","helprime],
   description: "show all premium features",
   usage: ["p!buy prime"],
   category: ["General"],
