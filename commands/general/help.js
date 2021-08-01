@@ -24,10 +24,10 @@ module.exports = {
     [ Top.gg ](https://top.gg/838593240328044554) [discord.ly](https://discord.ly/partner-bot-5806) - [ Invite ](https://discord.com/api/oauth2/authorize?client_id=${bot.user.id}&permissions=67206193&scope=bot) - [ Support ](https://discord.gg/aW6TnhGeSS) - if you want know how to setup Partner bot [click her](https://cdn.discordapp.com/attachments/847495685716443246/856250092025282561/VivaCut_video_1624207856278_HD.mp4)
     `)
          .addField
-("ℹ️ General", "`invite`, `support`, `about`, `ping`, `vote(soon)`, `premium`,")
+("ℹ️ General", "`invite`,`help prime`,`support`, `about`, `ping`, `vote(soon)`, `premium`,")
      .addField("⚙️ Admin", "`share`,`setchannel`,`setcolor`,`setprefix`,`setdescription`,`setbanner`,`preview`")
   .addField("💸 Economy","`balance`,`daily`,`sendcredit`")
-.addField("🔮 Premium","`auto`,`buy-prime(to buy a premium)`")
+.addField("🔮 Premium","`auto`")
      
  return message.channel.send(embed);
  } else {
