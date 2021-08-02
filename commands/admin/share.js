@@ -111,7 +111,7 @@ message.channel.send(`Your server shared for sure please see this channel <#${lo
             max_uses: 0,
             max_age:  0  }).then(async invite => {
           let data = await Guild.findOne({guildID: message.guild.id})
-let prime = await Prime.findeOne({Guild: message.guild.id})
+let prime = await Prime.findOne({Guild: message.guild.id})
 let premium = prime.prime
         
          
