@@ -16,8 +16,8 @@ module.exports = {
     ///if(!member) return message.reply(` please mention owner of the bot `)
   
     
-    let author = await User.findOne({ guildID: message.guild.id, userID: message.author.id });
-    let loc = await User.findOne({ guildID: message.guild.id, userID: "768944616724103170" });
+    let author = await User.findOne({ userID: message.author.id });
+    let loc = await User.findOne({userID: "768944616724103170" });
    /// if(!loc) return bot.nodb(member.id)
             
         if(!args[1]) {
