@@ -14,7 +14,7 @@ module.exports = {
   cooldown: 15,
   run: async (client, message, args, dev,dev2) => {
   
-      let data = await User.findOne({ guildID: message.guild.id, userID: message.author.id });
+      let data = await User.findOne({ userID: message.author.id });
       if(data.time !== null && 43200000 - (Date.now() - data.time) > 0) return message.reply(` You need wait ${ms(43200000 - (Date.now() - data.time))} to daily again`)
 
       let DR = Math.floor(Math.random() * 500) + 200
