@@ -17,8 +17,8 @@ module.exports = {
     if(!args[2]) return message.reply(` Type credit!`)
     if(args[2] < 1) return message.reply(` You can't send 0 credit!`)
 
-    let author = await User.findOne({ guildID: message.guild.id, userID: message.author.id });
-    let loc = await User.findOne({ guildID: message.guild.id, userID: member.id });
+    let author = await User.findOne({ userID: message.author.id });
+    let loc = await User.findOne({userID: member.id });
     if(!loc) return bot.nodb(member.user)
             
     if(author.money < args[2]) return message.reply(` You don't have this amount credit!`)
