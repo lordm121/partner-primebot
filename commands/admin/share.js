@@ -111,7 +111,7 @@ let data = await Servers.find()
         
         
         
-        const channelsPost = bot.channels.cache.find(ch => ch.id == res.Channel)////db.get(`${res.ID}.serverPostChannel`));
+        const channelsPost = bot.channels.cache.find(ch => ch.id == res.channelID)////db.get(`${res.ID}.serverPostChannel`));
         if (channelsPost) {
          /* const chann = bot.channels.cache.find(ch => ch.id == res.Channel)////db.get(`${message.guild.id}.serverPostChannel`));
         chann.createInvite({
