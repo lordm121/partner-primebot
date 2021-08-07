@@ -65,6 +65,7 @@ global.Guild = require("./data/guild.js");
 global.Lang = require("./data/lang.js");
 global.User = require("./data/user.js")
 global.Prime = require("./data/prime.js");
+global.Servers = require("./data/servers/server.js")
 bot.commands = new Collection();
 bot.aliases = new Collection();
 bot.cooldowns = new Collection();
