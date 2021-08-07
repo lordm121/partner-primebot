@@ -128,13 +128,13 @@ let premium = prime.prime
             const messagePosts = {
         
               description: `
-              [Join Server](${db.get(`${message.guild.id}.serverInvite`) || invite.url})
+              [Join Server](${b.invitelink || invite.url})
            \n\n ${b.longDesc || "no description set"}\n\n
               
               
 •:Server: ${premium||"Normal"}
 •:pushpin: Type: ${b.tags}
-•:paperclips: Website: ${b.link}
+•:paperclips: [Website](${b.link})
 •Short Description: ${b.shortDesc}
 •:Verification Level:  ${verificationLevels[message.guild.verificationLevel]}
 •:earth_africa:Region:  ${regions[message.guild.region]}
