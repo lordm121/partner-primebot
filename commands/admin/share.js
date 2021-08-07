@@ -174,7 +174,7 @@ let premium = prime.prime
         }
       let findServerr = await Guild.findOne({ guildID: message.guild.id });
             let lastDailyy = findServerr.bump;
-            if (cooldown - (Date.now() - lastDailyy) > 0)return gmessage.delete().then(await message.channel.send('This command is used only once every 30 minutes.', { channel: message.channel }));
+            if (cooldown - (Date.now() - lastDailyy) > 0)return;///message.delete().then(await message.channel.send('This command is used only once every 30 minutes.', { channel: message.channel }));
 		     /// message.delete().then( message.channel.send(`shared`) )
 		          await Guild.updateOne({ 
 			    	guildID: message.guild.id 
