@@ -43,8 +43,9 @@ module.exports = {
       let embed = new Discord.MessageEmbed()
       .setColor(Color) 
       .setThumbnail(message.author.avatarURL())
-      .setTitle("**Help**")
+      .setTitle(`**If you a new user Please go to dashboard and setup [dashboard](https://www.partner-bot.tk)**`)
       .setDescription(command.description || command.name + " this command don't have a description")
+       .addField(`[DASHBOARD](https://www.partner-bot.tk)`)
       .addField("**Usage**", "" + command.usage.join(", ") + "" )
       .addField("**Category**", "" + command.category.join(", ") + "" )
       .addField("**Command is**", ccmd);
