@@ -69,7 +69,7 @@ cooldown: 5,
 
   ///const postChannel = bot.channels.cache.get()///db.get(`${message.guild.id}.serverPostChannel`); // الوقت بتاع نشر السيرفر فيه كام ثانية
 
-    if (!postChannel) return embed.setColor('#FF0202').setDescription(`** set up share channel to share your server ! | ⚠️**`), message.channel.send(embed)
+   /// if (!postChannel) return embed.setColor('#FF0202').setDescription(`** set up share channel to share your server ! | ⚠️**`), message.channel.send(embed)
     
  ///   
 let x = await Servers.findOne({serverID: message.guild.id})
