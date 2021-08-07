@@ -72,8 +72,9 @@ cooldown: 5,
    /// if (!postChannel) return embed.setColor('#FF0202').setDescription(`** set up share channel to share your server ! | ⚠️**`), message.channel.send(embed)
     
  ///   
-let x = await Servers.findOne({serverID: message.guild.id})
-if(!x.longDesc) return message.channel.send("you must setup your server on website https://www.partner-bot.tk")
+
+ ///await Servers.findOne({serverID: message.guild.id})
+///if(!x.longDesc) return message.channel.send("you must setup your server on website https://www.partner-bot.tk")
    //const cooldown = 8اليوم بالثانية
 
     const filter = bot.channels.cache.get(data.Channel)
