@@ -93,36 +93,48 @@ if(data.Descripiont) return message.channel.send(" Your server don't have any de
   let lord= await Guild.findOne({guildID: message.guild.id})
   
 message.channel.send(`Your server shared for sure please see this channel <#${lord.Channel}>`)
-  let data = await Guild.find()
+  /*let data = await Guild.find()
       await data.forEach( async (res) => {
  await Guild.findOne({
    guildID: res.guildID,
    Channel: res.Channel
  })
-    
+    */
+let data = await Servers.find()
+      await data.forEach(async (res) => {
+      await Servers.findOne({
+       serverID: res.serverID,
+       channelID: res.channelID
+            })
         
         
         
         const channelsPost = bot.channels.cache.find(ch => ch.id == res.Channel)////db.get(`${res.ID}.serverPostChannel`));
         if (channelsPost) {
-          const chann = bot.channels.cache.find(ch => ch.id == res.Channel)////db.get(`${message.guild.id}.serverPostChannel`));
+         /* const chann = bot.channels.cache.find(ch => ch.id == res.Channel)////db.get(`${message.guild.id}.serverPostChannel`));
         chann.createInvite({
             temporary: false,
             max_uses: 0,
-            max_age:  0  }).then(async invite => {
+            max_age:  0  })*/
+
+const p = await message.channel.createInvite({ maxAge: 0 }).then(async invite => {
           let data = await Guild.findOne({guildID: message.guild.id})
 let prime = await Prime.findOne({Guild: message.guild.id})
 let premium = prime.prime
-        
+        let b = await Servers.findOne({serverID: res.serverID})
+    
          
             const messagePosts = {
         
               description: `
               [Join Server](${db.get(`${message.guild.id}.serverInvite`) || invite.url})
-           \n\n ${data.Description || "no description set"}\n\n
+           \n\n ${b.longDesc || "no description set"}\n\n
               
               
-•:Server Type: ${premium||"Normal"}
+•:Server: ${premium||"Normal"}
+•:pushpin: Type: ${b.tags}
+•:paperclips: Website: ${b.link}
+•Short Description: ${b.shortDesc}
 •:Verification Level:  ${verificationLevels[message.guild.verificationLevel]}
 •:earth_africa:Region:  ${regions[message.guild.region]}
 •:busts_in_silhouette:Member Count:  ${message.guild.memberCount} | •:bust_in_silhouette:Humans:  ${members.filter(member => !member.user.bot).size} | •:robot:Bots:  ${members.filter(member => member.user.bot).size}
