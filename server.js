@@ -98,7 +98,7 @@ bot.on("ready", () => {
 
 bot.on("ready",async (message) => {
     function randomStatus() {
-        let status = [`${prefix}help | share your server with partner bot`, `${prefix}help | v1.4.8`,`invite me to growing your server`,`${prefix}help`]
+        let status = [`${prefix}help | share your server `, `${prefix}help | v1.8.0`,`www.partner-bot.tk`,`${prefix}help ||www.partner-bot.tk`]
         let rstatus = Math.floor(Math.random() * status.length);
         bot.user.setActivity(status[rstatus], {type: "PLAYING"});    
     }; setInterval(randomStatus, 3000)
