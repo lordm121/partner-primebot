@@ -5,7 +5,7 @@ const { Color } = require("../../config.js");
 module.exports = {
   name: "help",
   aliases: ["buy","prime buy","buy prime","help prime","helpprime","helprime"],
-  description: "",
+  description: "show all premium features",
   usage: ["p!buy prime"],
   category: ["General"],
   enabled: true,
