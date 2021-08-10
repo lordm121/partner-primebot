@@ -44,12 +44,13 @@ const regions = {
 };
 const Discord = require("discord.js");
 const { Color } = require("../../config.js");
-const db = require("quick.db")
+//const db = require("quick.db")
 const pretty = require("pretty-ms");
 const ms = require("ms")
 const day = require("dayjs")
 let embed = new Discord.MessageEmbed()
 const cdtime = 4
+const db = require("../../data/servers/server.js")
 module.exports = {
   name: "share.js",
   aliases: ["share"],
@@ -60,25 +61,21 @@ module.exports = {
   memberPermissions: [ "MANAGE_GUILD"],            
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS","CREATE_INVITE","MANAGE_CHANNELS"],        
   ownerOnly: false,            
-cooldown: 5,
+cooldown: 0,
   run: async (bot, message, args, dev,command,prefix) => {
     let data = await Guild.findOne({guildID: message.guild.id})
     const members = message.guild.members.cache;
-
+    let server = await Servers.findOne({serverID: message.guild.id})
 		const channels = message.guild.channels.cache;
 
-  ///const postChannel = bot.channels.cache.get()///db.get(`${message.guild.id}.serverPostChannel`); // الوقت بتاع نشر السيرفر فيه كام ثانية
+  /////const postChannel = bot.channels.cache.get(server.channelID)///db.get(`${message.guild.id}.serverPostChannel`); // الوقت بتاع نشر السيرفر فيه كام ثانية
 
-   /// if (!postChannel) return embed.setColor('#FF0202').setDescription(`** set up share channel to share your server ! | ⚠️**`), message.channel.send(embed)
-    
+   if (!server) message.channel.send("Please setup your server Go to DASHBOARD-https://www.partner-bot.tk")
+
  ///   
 
- ///await Servers.findOne({serverID: message.guild.id})
-///if(!x.longDesc) return message.channel.send("you must setup your server on website https://www.partner-bot.tk")
-   //const cooldown = 8اليوم بالثانية
-
-    const filter = bot.channels.cache.get(data.Channel)
-   let cooldown = 43200000;
+ 
+   let cooldown = 0///43200000;
   	let lastDaily = data.bump;
   	if (cooldown - (Date.now() - lastDaily) > 0) {
       let time = data.bump
@@ -86,22 +83,16 @@ cooldown: 5,
   message.channel.send(`You must wait **${remaining}** before you can use this command again`)
     
  
-    	///return await message.channel.send(`  :stopwatch: | ${message.author.username}, You must wating for \n${time}\` to share again**   `);
+    
     let timeObj = ms(cooldown - (Date.now() - lastDaily)); 
 
 
 } else {
   
-  let lord= await Guild.findOne({guildID: message.guild.id})
+  let lord= await Servers.findOne({serverID: message.guild.id})
   
-message.channel.send(`Your server shared for sure please see this channel <#${lord.Channel}>`)
-  /*let data = await Guild.find()
-      await data.forEach( async (res) => {
- await Guild.findOne({
-   guildID: res.guildID,
-   Channel: res.Channel
- })
-    */
+message.channel.send(`Your server shared for sure please see this channel <#${lord.channelID}>`)
+  
 let data = await Servers.find()
       await data.forEach(async (res) => {
       await Servers.findOne({
@@ -113,24 +104,28 @@ let data = await Servers.find()
         
         const channelsPost = bot.channels.cache.find(ch => ch.id == res.channelID)////db.get(`${res.ID}.serverPostChannel`));
         if (channelsPost) {
-         /* const chann = bot.channels.cache.find(ch => ch.id == res.Channel)////db.get(`${message.guild.id}.serverPostChannel`));
-        chann.createInvite({
-            temporary: false,
-            max_uses: 0,
-            max_age:  0  })*/
+         
 
 const p = await message.channel.createInvite({ maxAge: 0 }).then(async invite => {
-          let data = await Guild.findOne({guildID: message.guild.id})
+
+  /////////////////
+  
+  
+let data = await Guild.findOne({guildID: message.guild.id})
+
+
 let prime = await Prime.findOne({Guild: message.guild.id})
 let premium = prime.prime
-        let b = await Servers.findOne({serverID: res.serverID})
-    
+       
+
+let b = await Servers.findOne({serverID: res.serverID})
+let m = b.colors
          
             const messagePosts = {
         
               description: `
               [Join Server](${b.invitelink || invite.url})
-           \n\n ${b.longDesc || "no description set"}\n\n
+           \n\n ${b.longDesc || "Welcome to our server"}\n\n
               
               
 •:Server: ${premium||"Normal"}
@@ -146,7 +141,7 @@ let premium = prime.prime
 
                              
               
-             color: data.Color,////db.get(`${message.guild.id}.serverColor`), 
+             color: m,
               author: {
                 name: message.guild.name,
                 icon_url: message.guild.iconURL(),
@@ -156,7 +151,7 @@ let premium = prime.prime
                 icon_url: message.author.avatarURL(),
               },
               image: {
-                url: (data.Banner)////db.get(`${message.guild.id}.serverBanner`),
+                url: (data.Banner)
               },
               thumbnail: {
                 url: message.guild.iconURL({ dynamic: true }),
@@ -164,7 +159,7 @@ let premium = prime.prime
               timestamp: new Date(),
             };
             
-//channelsPost.send(db.get(`${message.guild.id}.serverInvite`) || invite.url)
+
             if (channelsPost && messagePosts) {
               hook(messagePosts, channelsPost, bot);
             };
@@ -174,8 +169,7 @@ let premium = prime.prime
         }
       let findServerr = await Guild.findOne({ guildID: message.guild.id });
             let lastDailyy = findServerr.bump;
-            if (cooldown - (Date.now() - lastDailyy) > 0)return;///message.delete().then(await message.channel.send('This command is used only once every 30 minutes.', { channel: message.channel }));
-		     /// message.delete().then( message.channel.send(`shared`) )
+            if (cooldown - (Date.now() - lastDailyy) > 0)return;
 		          await Guild.updateOne({ 
 			    	guildID: message.guild.id 
 			      }, { 
