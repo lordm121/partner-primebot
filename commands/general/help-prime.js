@@ -3,7 +3,7 @@ const Discord = require("discord.js")
 const { Color } = require("../../config.js");
 
 module.exports = {
-  name: "help-prime",
+  name: "prime",
   aliases: ["buy","prime buy","buy prime","help prime","helpprime","helprime"],
   description: "show all premium features",
   usage: ["p!buy prime"],
@@ -14,7 +14,8 @@ module.exports = {
   ownerOnly: false,
   cooldown: 10,
   run: async (bot, message, args, dev, data) => {
-    
+        if (args[1]  === "info") {
+
 const embed = new Discord.MessageEmbed()
  .setColor(Color)
  .setTitle("premium features")
@@ -32,4 +33,5 @@ p!buy 3month <guildID>
  .setFooter(`by : ${message.author.tag}`)
 message.channel.send(embed);
     }
+}
 }
