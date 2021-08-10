@@ -98,7 +98,7 @@ bot.on("ready", () => {
 
 bot.on("ready",async (message) => {
     function randomStatus() {
-        let status = [`${prefix}help | share your server `, `${www.partner-bot.tk`]
+        let status = [`${prefix}help | share your server `, `www.partner-bot.tk`]
         let rstatus = Math.floor(Math.random() * status.length);
         bot.user.setActivity(status[rstatus], {type: "idle"});    
     }; setInterval(randomStatus, 3000)
