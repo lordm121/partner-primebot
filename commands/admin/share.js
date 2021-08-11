@@ -75,7 +75,7 @@ cooldown: 0,
  ///   
 
  
-   let cooldown = 0///43200000;
+   let cooldown = 43200000;
   	let lastDaily = data.bump;
   	if (cooldown - (Date.now() - lastDaily) > 0) {
       let time = data.bump
