@@ -95,12 +95,11 @@ init();
 bot.on("ready", () => {
   console.log(`welcome`)
 });
-bot.on('ready',async () => {
-    console.log(": Bot successfully connected as "+client.user.tag+".");
-   ///// let botsSchema = require("./src/database/models/botlist/bots.js");
- /////   const bots = await botsSchema.find();
-let server = bot.guilds.cache.size
-    bot.user.setPresence({ activity: { type: 'WATCHING', name: `www.partner-bot.tk || ${server}: servers`}, status: "dnd" });
-});
+bot.on("ready", async () => {
+  console.log(`bot now is ready!`);
+  await bot.user.setStatus("idle");
+  await bot.user.setActivity(`${prefix}help`, { type: "COMPETING" });
+ 
+ });
 
 bot.login("ODM4NTkzMjQwMzI4MDQ0NTU0.YI9W0A.bc6sPBzFmiQBWIR2Wgbuof1fkn8");
