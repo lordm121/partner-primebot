@@ -98,7 +98,7 @@ bot.on("ready", () => {
 bot.on("ready", async () => {
   console.log(`bot now is ready!`);
   await bot.user.setStatus("idle");
-  await bot.user.setActivity(`${prefix}help`,`www.partner-bot.tk`, { type: "WATCHING" });
+  await bot.user.setActivity(`${prefix}help || www.partner-bot.tk`, { type: "COMPETING" });
  
  });
 
