@@ -99,4 +99,4 @@ bot.on("ready", async () => {
  
  });
 
-bot.login("ODM4NTkzMjQwMzI4MDQ0NTU0.YI9W0A.bc6sPBzFmiQBWIR2Wgbuof1fkn8");
+///bot.login("ODM4NTkzMjQwMzI4MDQ0NTU0.YI9W0A.bc6sPBzFmiQBWIR2Wgbuof1fkn8");
