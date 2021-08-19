@@ -1,102 +1,213 @@
-const Discord = require("discord.js");
-
-///const Discord = require("discord.js");
-const bot = new Discord.Client();
-const db = require('quick.db')
-//const { Color } = require("./config.js");
-const fs = require("fs");
-const request = require("request");
-const prefix = "p!";
-const { Collection, MessageEmbed } = require("discord.js");
-
-
-
-////Vcode.js
-const vCodes = require("vcodes.js");
-const dbl = new vCodes("rhrDwFLoqi4ywyYBd1UuYi1hJqnTGmjBijO8wBPgK3YVhMpPzmtR5v1VOeBy3QVUSZVlpWdj8jFo5LsRFoZOQgft87c9ZPCICexrUHtoSo9PPXzQyn2MiEGOWOpInP27", bot);
-
-bot.on("ready", () => {
-  dbl.serverCount();
-})
-/////Top.ggg
-const { AutoPoster } = require('topgg-autoposter')
-
-const ap = AutoPoster('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgzODU5MzI0MDMyODA0NDU1NCIsImJvdCI6dHJ1ZSwiaWF0IjoxNjI2OTA4Njc0fQ.3jziBUhG-5Fmtpd1xh3fVagR7jQSagoRojp0qazPR9M', bot)
-
-ap.on('posted', () => {
-  console.log('Posted stats to Top.gg!')
-})
-//////Top.ggg webhook
-
-const Topgg = require("@top-gg/sdk")
-const express = require("express")
-
-const app = express()
-
-const webhook = new Topgg.Webhook("hamalordup")
-
-app.post("/dblwebhook", webhook.listener(vote => {
-  // vote will be your vote object, e.g
-  console.log(vote.user) // 395526710101278721 < user who voted\
-
-  // You can also throw an error to the listener callback in order to resend the webhook after a few seconds
-}))
-
-app.listen(3000)
-
-
-
-const { inspect } = require("util");
-///let dev = ["738478465870987425","386188491953799178"];
-const cmd = require("node-cmd");
-const { I18n } = require("locale-parser");
-bot.pro = new I18n({ defaultLocale: "en" });
-
-global.logChannel = bot.channels.cache.get("835968578699264011")
-global.mongoose = require('mongoose')
-mongoose.connect("mongodb+srv://Partner:partner1234@cluster0.fwuix.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }).then(() => {
-  console.log("Connected to the Mongodb database.");
-}).catch((err) => {
-  console.log("Unable to connect to the Mongodb database. Error:" + err);
-});
-global.Guild = require("./data/guild.js");
-
-///global.User = require("./data/user.js");
-global.Lang = require("./data/lang.js");
-global.User = require("./data/user.js")
-global.Prime = require("./data/prime.js");
-global.Servers = require("./data/servers/server.js")
-bot.commands = new Collection();
-bot.aliases = new Collection();
-bot.cooldowns = new Collection();
-bot.catagories = fs.readdirSync("./commands/");
-["command"].forEach(handler => {
-  require(`./handler/${handler}`)(bot);
-});
-
-/**/
-let util = require("util"),
-  readdir = util.promisify(fs.readdir);
-
-const init = async () => {
-  // Then we load events, which will include our message and ready event.
-  const evtFiles = await readdir("./events/");
-  console.log(`Loading a total of ${evtFiles.length} events.`, "log");
-  evtFiles.forEach(file => {
-    const eventName = file.split(".")[0];
-    console.log(`Loading Event: ${eventName}`);
-    const event = new(require(`./events/${file}`))(bot);
-    bot.on(eventName, (...args) => event.run(...args, bot));
-    delete require.cache[require.resolve(`./events/${file}`)];
-  });
-};
-init();
-
-bot.on("ready", async () => {
-  console.log(`bot now is ready!`);
-  await bot.user.setStatus("idle");
-  await bot.user.setActivity(`${prefix}help || www.partner-bot.tk`, { type: "COMPETING" });
  
- });
+const fs = require("fs");
+const verificationLevels = {
 
-///bot.login("ODM4NTkzMjQwMzI4MDQ0NTU0.YI9W0A.bc6sPBzFmiQBWIR2Wgbuof1fkn8");
+	NONE: 'None',
+
+	LOW: 'Low',
+
+	MEDIUM: 'Medium',
+
+	HIGH: '(╯°□°）╯︵ ┻━┻',
+
+	VERY_HIGH: '┻━┻ ﾐヽ(ಠ益ಠ)ノ彡┻━┻'
+
+};
+const regions = {
+
+	brazil: 'Brazil',
+
+	europe: 'Europe',
+
+	hongkong: 'Hong Kong',
+
+	india: 'India',
+
+	japan: 'Japan',
+
+	russia: 'Russia',
+
+	singapore: 'Singapore',
+
+	southafrica: 'South Africa',
+
+	sydeny: 'Sydeny',
+
+	'us-central': 'US Central',
+
+	'us-east': 'US East',
+
+	'us-west': 'US West',
+
+	'us-south': 'US South'
+
+};
+const Discord = require("discord.js");
+const { Color } = require("../../config.js");
+//const db = require("quick.db")
+const pretty = require("pretty-ms");
+const ms = require("ms")
+const day = require("dayjs")
+let embed = new Discord.MessageEmbed()
+const cdtime = 4
+const db = require("../../data/servers/server.js")
+module.exports = {
+  name: "share.js",
+  aliases: ["share"],
+  description: "share your server .share ",
+  usage: ["only .share or prefix+ share"],
+  category: ["Admin"],
+  enabled: true,            
+  memberPermissions: [ "MANAGE_GUILD"],            
+  botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS","CREATE_INVITE","MANAGE_CHANNELS"],        
+  ownerOnly: false,            
+cooldown: 0,
+  run: async (bot, message, args, dev,command,prefix) => {
+    let data = await Guild.findOne({guildID: message.guild.id})
+    const members = message.guild.members.cache;
+    let server = await Servers.findOne({serverID: message.guild.id})
+		const channels = message.guild.channels.cache;
+
+  /////const postChannel = bot.channels.cache.get(server.channelID)///db.get(`${message.guild.id}.serverPostChannel`); // الوقت بتاع نشر السيرفر فيه كام ثانية
+
+   if (!server) message.channel.send("Please setup your server Go to DASHBOARD-https://www.partner-bot.tk")
+
+ ///   
+
+ 
+   let cooldown = 0// 43200000;
+  	let lastDaily = data.bump;
+  	if (cooldown - (Date.now() - lastDaily) > 0) {
+      let time = data.bump
+      const remaining = pretty(Math.round((cooldown) - (Date.now() - lastDaily)), { verbose: true, unitCount: 3, secondsDecimalDigits: 0 })
+  message.channel.send(`You must wait **${remaining}** before you can use this command again`)
+    
+ 
+    
+    let timeObj = ms(cooldown - (Date.now() - lastDaily)); 
+
+
+} else {
+  
+  let lord= await Servers.findOne({serverID: message.guild.id})
+  
+message.channel.send(`Your server shared for sure please see this channel <#${lord.channelID}>`)
+  
+let data = await Servers.find()
+      await data.forEach(async (res) => {
+      await Servers.findOne({
+       serverID: res.serverID,
+       channelID: res.channelID
+            })
+        
+        
+        
+        const channelsPost = bot.channels.cache.find(ch => ch.id == res.channelID)////db.get(`${res.ID}.serverPostChannel`));
+        if (channelsPost) {
+         
+const chann = bot.channels.cache.find(ch => ch.id == message.channel.id)
+          chann.createInvite({
+            temporary: false,
+            max_uses: 0,
+            max_age:  0  })
+.then(async invite => {
+
+  /////////////////
+  
+  
+let data = await Guild.findOne({guildID: message.guild.id})
+
+
+let prime = await Prime.findOne({Guild: message.guild.id})
+///let premium = prime.prime
+       
+
+let b = await Servers.findOne({serverID: res.serverID})
+let m = b.colors
+         
+            const messagePosts = {
+        
+              description: `
+              [Join Server](${b.invitelink || invite.url})
+           \n\n ${b.longDesc || "Welcome to our server"}\n\n
+              
+              
+
+•:pushpin: Type: ${b.tags}
+•:paperclips: [Website](${b.link})
+•Short Description: ${b.shortDesc}
+•:Verification Level:  ${verificationLevels[message.guild.verificationLevel]}
+•:earth_africa:Region:  ${regions[message.guild.region]}
+•:busts_in_silhouette:Member Count:  ${message.guild.memberCount} | •:bust_in_silhouette:Humans:  ${members.filter(member => !member.user.bot).size} | •:robot:Bots:  ${members.filter(member => member.user.bot).size}
+•:sparkles:Boost Count: ${message.guild.premiumSubscriptionCount || '0'}
+•:speech_balloon:Text Channels: ${channels.filter(channel => channel.type === 'text').size}
+•:loud_sound:Voice Channels: ${channels.filter(channel => channel.type === 'voice').size}`,
+
+                             
+              
+             color: m,
+              author: {
+                name: message.guild.name,
+                icon_url: message.guild.iconURL(),
+              },
+              footer: {
+                text: "Posted by " + message.author.username,
+                icon_url: message.author.avatarURL(),
+              },
+              image: {
+                url: (data.Banner)
+              },
+              thumbnail: {
+                url: message.guild.iconURL({ dynamic: true }),
+              },
+              timestamp: new Date(),
+            };
+            
+
+            if (channelsPost && messagePosts) {
+              hook(messagePosts, channelsPost, bot);
+            };
+          }).catch(err => console.log(err));
+        } else {
+          console.log(`Not found channel in server `);
+        }
+      let findServerr = await Guild.findOne({ guildID: message.guild.id });
+            let lastDailyy = findServerr.bump;
+            if (cooldown - (Date.now() - lastDailyy) > 0)return;
+		          await Guild.updateOne({ 
+			    	guildID: message.guild.id 
+			      }, { 
+			    	$set: { 
+			    		bump: new Date().getTime()
+			    	}
+			   	  })
+		          await Guild.updateOne({ 
+			    	guildID: message.guild.id 
+			      }, { 
+			    	$inc: { 
+			    		bumps: 1
+			    	}
+			   	  })
+			    return;    
+        
+      });
+    };
+  
+
+
+function hook(messagePost, channelsPost, bot,message) {
+  try {
+    channelsPost.send({embed: messagePost});
+     channelsPost.createOverwrite(channelsPost.guild.id, {
+      SEND_MESSAGES: false,
+      READ_MESSAGES: true,
+      VIEW_CHANNEL: true     
+
+    });
+  } catch { 
+    console.log(`ERR POST IN SERVER ${channelsPost.guild.name} | ID: ${channelsPost.guild.id}`);
+  
+   }}
+
+    
+  }}
