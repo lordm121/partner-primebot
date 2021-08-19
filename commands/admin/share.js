@@ -50,7 +50,7 @@ const ms = require("ms")
 const day = require("dayjs")
 let embed = new Discord.MessageEmbed()
 const cdtime = 4
-const db = require("../../data/servers/server.js")
+///const db = require("../../data/servers/server.js")
 module.exports = {
   name: "share.js",
   aliases: ["share"],
