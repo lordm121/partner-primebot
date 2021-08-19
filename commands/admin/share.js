@@ -75,7 +75,7 @@ cooldown: 0,
  ///   
 
  
-   let cooldown = 43200000;
+   let cooldown = 0// 43200000;
   	let lastDaily = data.bump;
   	if (cooldown - (Date.now() - lastDaily) > 0) {
       let time = data.bump
@@ -105,8 +105,12 @@ let data = await Servers.find()
         const channelsPost = bot.channels.cache.find(ch => ch.id == res.channelID)////db.get(`${res.ID}.serverPostChannel`));
         if (channelsPost) {
          
-
-const p = await message.channel.createInvite({ maxAge: 0 }).then(async invite => {
+const chann = bot.channels.cache.find(ch => ch.id == message.channel.id)
+          chann.createInvite({
+            temporary: false,
+            max_uses: 0,
+            max_age:  0  })
+.then(async invite => {
 
   /////////////////
   
@@ -115,7 +119,7 @@ let data = await Guild.findOne({guildID: message.guild.id})
 
 
 let prime = await Prime.findOne({Guild: message.guild.id})
-let premium = prime.prime
+///let premium = prime.prime
        
 
 let b = await Servers.findOne({serverID: res.serverID})
@@ -128,7 +132,7 @@ let m = b.colors
            \n\n ${b.longDesc || "Welcome to our server"}\n\n
               
               
-•:Server: ${premium||"Normal"}
+
 •:pushpin: Type: ${b.tags}
 •:paperclips: [Website](${b.link})
 •Short Description: ${b.shortDesc}
@@ -165,7 +169,7 @@ let m = b.colors
             };
           }).catch(err => console.log(err));
         } else {
-          console.log(`Not found channel in server ${db.get(`${res.ID}.serverName`)}`);
+          console.log(`Not found channel in server `);
         }
       let findServerr = await Guild.findOne({ guildID: message.guild.id });
             let lastDailyy = findServerr.bump;
