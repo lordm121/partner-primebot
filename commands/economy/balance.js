@@ -18,8 +18,7 @@ module.exports = {
     let member = message.guild.member(message.mentions.users.first())
     if (member) {
       
-  let autho = await User.findOne({ guildID: message.guild.id, userID: member.id });    
-  message.channel.send("<@"+member.id+"> **💳 balance is** `"+autho.money+"`");
+ 
   
     }
     if (!member) {
