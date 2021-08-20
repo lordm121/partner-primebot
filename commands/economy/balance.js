@@ -23,7 +23,10 @@ module.exports = {
     }
     if (!member) {
   let author = await User.findOne({ guildID: message.guild.id, userID: message.author.id });    
-  message.channel.send("🏦 Your credits balance is `$"+author.money+"`");
+  message.channel.send(new Discord.MessageEmbed()
+         .setTitle(`:bank: ${user.username}\'s Balance`)
+         .setColor("BLUE")
+         .addField('Cash', `You Currently have \$${author.money} in Cash`));
       }
 }
 }
