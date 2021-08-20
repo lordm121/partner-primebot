@@ -13,25 +13,21 @@ module.exports = {
   run: async (bot, message, args, dev,dev2) => {
   if (!args[2]) return;
     let member = message.guild.member(message.mentions.users.first())
-    if(!member) return message.reply(` Mention someone!`)
-    if(!args[2]) return message.reply(` Type credit!`)
-    if(args[2] < 1) return message.reply(` You can't send 0 credit!`)
+    if(!member) return message.channel.send(`Mention someone!`)
+    if(!args[2]) return message.channel.send(`Type credit!`)
+    if(args[2] < 1) return message.channel.send(`You can't send 0 credit!`)
 
     let author = await User.findOne({ userID: message.author.id });
-    let loc = await User.findOne({userID: member.id });
+    let loc = await User.findOne({ guildID: message.guild.id, userID: member.id });
     if(!loc) return bot.nodb(member.user)
             
-    if(author.money < args[2]) return message.reply(` You don't have this amount credit!`)
-    if(author.userID == member.id) return message.reply(` You can't send credit to yourself!`)
-    if(member.user.bot) return message.reply(` You can send credit to the bot!`)
-
-// let embed = new Discord.MessageEmbed()
-    ///.setColor("#E4B400")
-    ///.setDescription(`**${message.author.username}** send credit to **${member.user.username}** amount ${args[2]}`)
+    if(author.money < args[2]) return message.channel.send(`You don't have this amount credit!`)
+    if(author.userID == member.id) return message.channel.send(`You can't send credit to yourself!`)
+    if(member.user.bot) return message.channel.send(`You can send credit to the bot!`)
+    
     author.money -= Math.floor(parseInt(args[2]));
     loc.money += Math.floor(parseInt(args[2]));
     author.save();
     loc.save()
-    message.channel.send(`**${message.author.username}** send credit to **${member.user.username}** amount \`$${args[2]}\``)
-    member.send(`You received \`$${args[2]} From ${message.author.username}`)
+    message.channel.send(`**${message.author.username}** send credit to **${member.user.username}** amount \`${args[2]}\``)
     }};
