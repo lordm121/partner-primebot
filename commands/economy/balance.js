@@ -14,14 +14,13 @@ module.exports = {
   ownerOnly: false,			
   cooldown: 15,
   run: async (bot, message, args) => {
-    let data = await User.findOne({userID: message.author.id})
+    let data = await User.findOne({ userID: message.author.id })
     let user  = message.mentions.users.first() || message.author
 
-        let bal = data.money///await db.fetch(`money_${message.guild.id}_${user.id}`)
-        let bankBalance = data.Bank////await db.fetch(`bank_${message.guild.id}_${user.id}`)
+        let bal = data.money
+       
 
         if(bal === null) bal = 0;
-        if(bankBalance === null) bankBalance = 0;
 
         const balEmbed = new Discord.MessageEmbed()
         .setTitle(`:bank: ${user.username}\'s Balance`)
