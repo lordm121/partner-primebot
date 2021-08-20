@@ -16,11 +16,7 @@ module.exports = {
   run: async (bot, message, args) => {
     if (args[2]) return;
     let member = message.guild.member(message.mentions.users.first())
-    if (member) {
-      
  
-  
-    }
     if (!member) {
   let author = await User.findOne({ guildID: message.guild.id, userID: message.author.id });    
   message.channel.send(new Discord.MessageEmbed()
