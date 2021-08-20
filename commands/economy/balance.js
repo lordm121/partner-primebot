@@ -14,23 +14,17 @@ module.exports = {
   ownerOnly: false,			
   cooldown: 15,
   run: async (bot, message, args) => {
-    let data = await User.findOne({ userID: message.author.id })
-    let user  = message.mentions.users.first() || message.author
-
-        let bal = data.money
-       
-
-        if(bal === null) bal = 0;
-
-        const balEmbed = new Discord.MessageEmbed()
-        .setTitle(`:bank: ${user.username}\'s Balance`)
-        .setColor("BLUE")
-        .addField('Cash', `You Currently have \$${bal} in Cash`)
-        
-
-        message.channel.send(balEmbed)
-    
-    
-///    data.save()
+    if (args[2]) return;
+    let member = message.guild.member(message.mentions.users.first())
+    if (member) {
+      
+  let autho = await User.findOne({ guildID: message.guild.id, userID: member.id });    
+  message.channel.send("<@"+member.id+"> **💳 balance is** `"+autho.money+"`");
+  
+    }
+    if (!member) {
+  let author = await User.findOne({ guildID: message.guild.id, userID: message.author.id });    
+  message.channel.send("🏦 Your credits balance is `$"+author.money+"`");
+      }
 }
 }
