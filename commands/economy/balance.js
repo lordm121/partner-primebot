@@ -14,7 +14,7 @@ module.exports = {
   ownerOnly: false,			
   cooldown: 0,
   run: async (bot, message, args) => {
-    if (!args[1]) return;
+    
     let member = message.mentions.users.first() || message.author;
   
   
