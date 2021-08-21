@@ -19,7 +19,7 @@ module.exports = {
   
   
 let author = await User.findOne({ userID: member.id });    
- message.channel.send(`💰${user.username} currently have `\$${author.money}\``)
+ message.channel.send(`💰${user.username} currently have \`$${author.money}\``)
 /* message.channel.send(new Discord.MessageEmbed()
          .setTitle(`:bank: ${user.username}\'s Balance`)
          .setColor("BLUE")
