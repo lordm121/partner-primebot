@@ -18,7 +18,7 @@ module.exports = {
     let member = message.guild.member(message.mentions.users.first()) || message.author
  
     if (member) {
-  let author = await User.findOne({ guildID: message.guild.id, userID: message.author.id });    
+  let author = await User.findOne({ userID: message.author.id });    
   message.channel.send(new Discord.MessageEmbed()
          .setTitle(`:bank: ${user.username}\'s Balance`)
          .setColor("BLUE")
