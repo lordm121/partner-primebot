@@ -9,7 +9,7 @@ module.exports = {
   memberPermissions: [ "SEND_MESSAGES" ],			
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],		
   ownerOnly: false,			
-  cooldown: 6000,
+  cooldown: 10,
   run: async (client, message, args, dev,dev2) => {
   if (args[2]) return;
     let member = message.guild.member(message.mentions.users.first())
