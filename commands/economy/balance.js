@@ -12,12 +12,12 @@ module.exports = {
   memberPermissions: [ "SEND_MESSAGES" ],			
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],		
   ownerOnly: false,			
-  cooldown: 15,
+  cooldown: 0,
   run: async (bot, message, args) => {
-    if (args[2]) return;
-    let member = message.guild.member(message.mentions.users.first())
+    if (!args[1]) return;
+    let member = message.guild.member(message.mentions.users.first()) || message.author
  
-    if (!member) {
+    if (member) {
   let author = await User.findOne({ guildID: message.guild.id, userID: message.author.id });    
   message.channel.send(new Discord.MessageEmbed()
          .setTitle(`:bank: ${user.username}\'s Balance`)
