@@ -17,11 +17,13 @@ module.exports = {
     if (!args[1]) return;
     let member = message.mentions.users.first() || message.author;
   
-  let author = await User.findOne({ userID: member.id });    
-  message.channel.send(new Discord.MessageEmbed()
+  
+let author = await User.findOne({ userID: member.id });    
+ message.channel.send(`💰${user.username} currently have `\$${author.money}\``)
+/* message.channel.send(new Discord.MessageEmbed()
          .setTitle(`:bank: ${user.username}\'s Balance`)
          .setColor("BLUE")
          .addField('Cash', `You Currently have \$${author.money} in Cash`));
-      
+      */
 }
 }
