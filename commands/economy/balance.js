@@ -12,7 +12,7 @@ module.exports = {
   memberPermissions: [ "SEND_MESSAGES" ],			
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],		
   ownerOnly: false,			
-  cooldown: 0,
+  cooldown: 15,
   run: async (bot, message, args) => {
     
     let member = message.mentions.users.first() || message.author;
