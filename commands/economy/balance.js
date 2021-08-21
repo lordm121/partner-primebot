@@ -17,12 +17,12 @@ module.exports = {
     if (!args[1]) return;
     let member = message.guild.member(message.mentions.users.first()) || message.author
  
-    if (member) {
+  
   let author = await User.findOne({ userID: message.author.id });    
   message.channel.send(new Discord.MessageEmbed()
          .setTitle(`:bank: ${user.username}\'s Balance`)
          .setColor("BLUE")
          .addField('Cash', `You Currently have \$${author.money} in Cash`));
-      }
+      
 }
 }
