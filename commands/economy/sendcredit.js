@@ -5,7 +5,7 @@ module.exports = {
   aliases: ["credit","credits"],
   description: "To send credit",
   usage: ["credits @user @amount"], 
-  enabled: true,			
+  enabled: false,			
   memberPermissions: [ "SEND_MESSAGES" ],			
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],		
   ownerOnly: false,			
