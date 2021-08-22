@@ -5,7 +5,7 @@ let embed = new Discord.MessageEmbed()
 module.exports = {
   name: "buy",
   aliases: ["buy"],
-  enabled: true,
+  enabled: false,
   memberPermissions: ["SEND_MESSAGES"],
   botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
   ownerOnly: false,
