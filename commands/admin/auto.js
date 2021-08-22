@@ -56,7 +56,7 @@ module.exports = {
   description: "share your server with prime time ",
   usage: ["p!auto"],
   category: ["Admin"],
-  enabled: true,            
+  enabled: false,            
   memberPermissions: [ "MANAGE_GUILD"],            
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS","CREATE_INVITE","MANAGE_CHANNELS"],        
   ownerOnly: false,            
