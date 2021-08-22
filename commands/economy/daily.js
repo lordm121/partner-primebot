@@ -7,7 +7,7 @@ module.exports = {
   aliases: ["getmony"],
   description: "To get your daily", 
   usage: ["daily"], 
-  enabled: true,			
+  enabled: false,			
   memberPermissions: [ "SEND_MESSAGES" ],			
   botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],		
   ownerOnly: false,			
