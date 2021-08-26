@@ -24,7 +24,7 @@ module.exports = {
       let description = bot.guilds.cache
           .sort((a, b) => b.memberCount - a.memberCount)
           .map(r => r)
-          .map((r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} Members\nID - ${r.id} -\nserver owner ${r.owner.username}`)
+          .map((r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} Members\nID - ${r.id} -\nserver owner ${r.owner}`)
           .slice(0, 10)
           .join("\n");
 
@@ -65,7 +65,7 @@ module.exports = {
               .sort((a, b) => b.memberCount - a.memberCount)
               .map(r => r)
               .map(
-                (r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} Members\nID - ${r.id}\n\nServer Owner - ${r.owner.username}`
+                (r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} Members\nID - ${r.id}\n\nServer Owner - ${r.owner}`
               )
               .slice(i0, i1)
               .join("\n");
@@ -101,7 +101,7 @@ module.exports = {
               .sort((a, b) => b.memberCount - a.memberCount)
               .map(r => r)
               .map(
-                (r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} Members\nID - ${r.id}\n\n Server Owner - ${r.owner.usernamw}`
+                (r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} Members\nID - ${r.id}\n\n Server Owner - ${r.owner}`
               )
               .slice(i0, i1)
               .join("\n");
