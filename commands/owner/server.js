@@ -25,7 +25,7 @@ module.exports = {
           .sort((a, b) => b.memberCount - a.memberCount)
           .map(r => r)
           .map((r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} Members\nID - ${r.id} -
-\n\nserver owner ${r.ownerID}`)
+\n\nserver owner <@${r.ownerID}>`)
           .slice(0, 10)
           .join("\n");
 
@@ -66,7 +66,7 @@ module.exports = {
               .sort((a, b) => b.memberCount - a.memberCount)
               .map(r => r)
               .map(
-                (r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} Members\nID - ${r.id}\n\nServer Owner - ${r.ownerID}`
+                (r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} Members\nID - ${r.id}\n\nServer Owner - <@${r.ownerID}>`
               )
               .slice(i0, i1)
               .join("\n");
@@ -102,7 +102,7 @@ module.exports = {
               .sort((a, b) => b.memberCount - a.memberCount)
               .map(r => r)
               .map(
-                (r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} Members\nID - ${r.id}\n\n Server Owner - ${r.ownerID}`
+                (r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} Members\nID - ${r.id}\n\n Server Owner - <@${r.ownerID}>`
               )
               .slice(i0, i1)
               .join("\n");
