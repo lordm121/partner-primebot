@@ -20,6 +20,6 @@ const embed = new Discord.MessageEmbed()
  .setTitle("premium features")
  .setDescription(bot.pro.get(data.lang, "general","premium_info"))
  .setFooter(`by : ${message.author.tag}`)
-message.channel.send(embed);
+message.channel.send({embeds:[embed]});
     }
 }
