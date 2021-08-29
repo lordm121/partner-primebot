@@ -29,20 +29,20 @@ module.exports = {
   //    m = time.getMinutes()
 
         
-      message.channel.send(`prime bot in this server end in ${time}`)// ${Y}/${M}/${D} \`${H}:${M}\`
+      message.channel.send({content:`prime bot in this server end in ${time}`})// ${Y}/${M}/${D} \`${H}:${M}\`
     
           } else {
-            message.channel.send("this server don't have a prime bot") 
+            message.channel.send({content:`this server don't have a prime bot`}) 
           }
         }
       if (!data) {
-          message.channel.send("this server don't have a prime bot")
+          message.channel.send({content:`this server don't have a prime bot`})
         }
     } else
       
       if (args[1]=== "add") {
-     if (!args[2]) return message.reply(`please specify guild id`)
-       if(!bot.guilds.cache.has(args[2])) return message.reply(`your guild id is invalid`)
+     if (!args[2]) return message.reply({content:`please specify guild id`})
+       if(!bot.guilds.cache.has(args[2])) return message.reply({content:`your guild id is invalid`})
     // let time = parseInt(args[3]);
    //  let total = time * 86400000;    
     let time = day(args[3]).valueOf();;
@@ -70,10 +70,10 @@ module.exports = {
        //      H = time0.getHours(),
       //       m = time0.getMinutes()
         
-      message.channel.send(`prime bot in this server ${time0}`)// ${Y}/${M}/${D} \`${H}:${M}\` `)
+      message.channel.send({content:`prime bot in this server ${time0}`})// ${Y}/${M}/${D} \`${H}:${M}\` `)
       
       }else if (args[1]==="remove"){
-      if (!args[2]) return message.reply(`pleade give me a guild id`)
+      if (!args[2]) return message.reply({content:`pleade give me a guild id`})
         
         let data = await Prime.findOne({ Guild: args[2]})
       
@@ -82,7 +82,7 @@ module.exports = {
           data.log = "enable";
           data.delete()
         }
-  message.channel.send(`prime bot on server removed`)
+  message.channel.send({content:`prime bot on server removed`})
       }
   
   }
