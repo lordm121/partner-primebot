@@ -6,12 +6,12 @@ async run(guild, bot) {
 		       .setDescription("If you have a report join this server https://discord.gg/aW6TnhGeSS")
 		       .setColor("#2c2f33")
                        .setTimestamp();
-		guild.owner.send(thanksEmbed).catch(() => {});
+		guild.owner.send({embeds:[thanksEmbed]}).catch(() => {});
     
 	
 		const text = "❎ **__Leaving Old Guild__** \n **Guild Name**: "+guild.name+" \n **Guild Owner Name**: " + `${guild.owner.user.username}` + " \n **Guild Owner ID**: " + `${guild.owner.id}` + " \n **Guild Bots Size** ("+guild.members.cache.filter((m) => m.user.bot).size+" bots)";
 		const logsEmbed = new Discord.MessageEmbed()
 			.setColor("#2c2f33")
 			.setDescription(text);
-		bot.channels.cache.get("851392408847515678").send(logsEmbed);     
+		bot.channels.cache.get("851392408847515678").send({embeds:[logsEmbed]});     
 }};
