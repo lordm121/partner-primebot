@@ -70,7 +70,7 @@ cooldown: 0,
 
   /////const postChannel = bot.channels.cache.get(server.channelID)///db.get(`${message.guild.id}.serverPostChannel`); // الوقت بتاع نشر السيرفر فيه كام ثانية
 
-   if (!server) message.channel.send("Please setup your server Go to DASHBOARD-https://www.partner-bot.tk")
+   if (!server) message.channel.send({content:`Please setup your server Go to DASHBOARD - https://www.partner-bot.tk`})
 
  ///   
 
@@ -80,7 +80,7 @@ cooldown: 0,
   	if (cooldown - (Date.now() - lastDaily) > 0) {
       let time = data.bump
       const remaining = pretty(Math.round((cooldown) - (Date.now() - lastDaily)), { verbose: true, unitCount: 3, secondsDecimalDigits: 0 })
-  message.channel.send(`You must wait **${remaining}** before you can use this command again`)
+  message.channel.send({content:`You must wait **${remaining}** before you can use this command again`})
     
  
     
@@ -91,7 +91,7 @@ cooldown: 0,
   
   let lord= await Servers.findOne({serverID: message.guild.id})
   
-message.channel.send(`Your server shared for sure please see this channel <#${lord.channelID}>`)
+message.channel.send({content:`Your server shared for sure please see this channel <#${lord.channelID}> `})
   
 let data = await Servers.find()
       await data.forEach(async (res) => {
@@ -197,7 +197,7 @@ let m = b.colors
 
 function hook(messagePost, channelsPost, bot,message) {
   try {
-    channelsPost.send({embed: messagePost});
+    channelsPost.send({embeds: [messagePost]});
      channelsPost.createOverwrite(channelsPost.guild.id, {
       SEND_MESSAGES: false,
       READ_MESSAGES: true,
