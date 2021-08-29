@@ -22,12 +22,12 @@ module.exports = {
          .setTitle(bot.pro.get(data.lang, "general","help_embed"))
          .setDescription(`
     [ Top.gg ](https://top.gg/838593240328044554) [ discord.ly ](https://discord.ly/partner-bot-5806) - [ Invite ](https://discord.com/api/oauth2/authorize?client_id=${bot.user.id}&permissions=67206193&scope=bot) - [ Support ](https://discord.gg/aW6TnhGeSS)\nif you want know how to setup [ <@838593240328044554> ]\n[Click here](https://cdn.discordapp.com/attachments/847495685716443246/856250092025282561/VivaCut_video_1624207856278_HD.mp4)\n\nMy dashboard [Click here](https://www.partner-bot.tk) this is a beta version`)
-  .addField("ℹ️ General", "`invite`,`help prime`,`support`, `about`, `ping`, `vote`,`reset`, `premium`,")
-  .addField("⚙️ Admin", "`share`,`setchannel`,`setcolor`,`setprefix`,`setdescription`,`setbanner`,`preview`")
+  .addField("ℹ️ General", "`invite`,`help prime`,`support`, `about`, `ping`, `vote`, `premium`,")
+  .addField("⚙️ Admin", "`share`,`setprefix`,`preview`")
   .addField("💸 Economy","`balance`,`daily`,`sendcredit`")
-  .addField("🔮 Premium","`auto`")
+  
      
- return message.channel.send(embed);
+ return message.channel.send({embeds:[embed]});
  } else {
       let  command = args[1]
       if (bot.commands.has(command) || 
@@ -47,7 +47,7 @@ module.exports = {
       .addField("**Usage**", "" + command.usage.join(", ") + "" )
       .addField("**Category**", "" + command.category.join(", ") + "" )
       .addField("**Command is**", ccmd);
-      message.channel.send(embed)
+      message.channel.send({embeds:[embed]})
         }
     }
   }};
