@@ -17,11 +17,11 @@ module.exports = {
     ///let db = await Servers.findOne({serverID: message.guild.id})
     const resetID = message.content.split(" ").slice(1).join(" ");
 ///let db = await Servers.findOne({serverID: resetID})
-    if (!resetID) return message.channel.send(`specify a guild id`)// embed.setDescription(`**برجاء ادخال ايدي السيرفر**`)
+    if (!resetID) return message.channel.send({content: `specify a guild id`})// embed.setDescription(`**برجاء ادخال ايدي السيرفر**`)
     let data = await Servers.findOne({serverID: resetID})
     let server = bot.guilds.cache.get(resetID);
 
-    if (!server) return message.channel.send(`bro your guild id is invalid`)///embed.setDescription(`**لم اتمكن من إجاد هذا السيرفر**`), message.channel.send(embed)
+    if (!server) return message.channel.send({content:`bro your guild id is invalid`})///embed.setDescription(`**لم اتمكن من إجاد هذا السيرفر**`), message.channel.send(embed)
 
   //if (server) return message.channel.send(`hi`)///embed.setDescription(`**...جاري إعادة تعيين بيانات سيرفر \**`), message.channel.send(embed)
     data.serverID= resetID
@@ -30,7 +30,7 @@ module.exports = {
     data.serverID=resetID,
                
             data.save()
-    message.channel.send(`removed from database`)
+    message.channel.send({content: `removed from database`})
   },1000)
   }
     
