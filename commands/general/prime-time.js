@@ -19,7 +19,7 @@ module.exports = {
        if(!data.time) return message.channel.send(`your srrver don't have prime bot `)   
 
         
-      message.channel.send(`prime bot in this server end in ${time}`)
+      message.channel.send({content:`prime bot in this server end in ${time}`})
 
     }}}}
 }
