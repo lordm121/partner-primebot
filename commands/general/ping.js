@@ -27,14 +27,14 @@ module.exports = {
             .setColor(Color)
             .setDescription('Pong?')
 
-        return message.channel.send({ embed: pong })
+        return message.channel.send({ embeds: [pong] })
             .then(msg => {
 
                 let embed = new Discord.MessageEmbed()
                    .setDescription(`<:ping:857921644597215264> Bot: ${bot.ws.ping}ms \n<:ram:857921771679383552> Discord API: ${Date.now() - date}ms \n<:file:857921694186602507> DB: ${ping_db}ms`)
                    .setColor(Color)
 
-                return msg.edit({ embed })
+                return msg.edit({ embeds: [embed]})
 
             })
     }
