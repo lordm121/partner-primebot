@@ -18,11 +18,11 @@ module.exports = {
     run: async (client, message, args, dev) => {
       
   let data = await Guild.findOne({guildID: message.guild.id})
-        message.channel.send(` your share design
+        message.channel.send({content:` your share design
 \`Description\`: \n **${data.Description || "no have description"} **
 \`share channel\`:**<#${data.Channel || "noe have share channel"}>**
 \`server banner\`: **${data.Banner || "no have banner"}**
 \`Embed Color\`: **${data.Color || "no have embed color"}**
-`)
+`})
       
     }}
