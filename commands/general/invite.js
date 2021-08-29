@@ -20,6 +20,6 @@ const embed = new Discord.MessageEmbed()
  .setTitle(bot.pro.get(data.lang, "general","invite_link"))
  .setDescription(`[Partner Bot](https://discord.com/api/oauth2/authorize?client_id=838593240328044554&permissions=67206193&scope=bot)`)
  .setFooter(`by : ${message.author.tag}`)
-message.channel.send(embed);
+message.channel.send({embeds: [embed]});
     }
 }
