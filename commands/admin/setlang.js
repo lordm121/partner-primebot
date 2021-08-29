@@ -7,7 +7,7 @@ module.exports = {
     description: "You can ban a member, or multiple members using this command",
     usage: ["p!setlang"],
     category: ["Admin"],
-    enabled: true,
+    enabled: false,
     memberPermissions: ["MANAGE_GUILD"],
     botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
     ownerOnly: false,
@@ -21,14 +21,13 @@ module.exports = {
       let data = await Lang.findOne({ guildID: message.guild.id })
       if (args[1].toLowerCase() === "english" || args[1].toLowerCase() === "kurdish" || args[1].toLowerCase() === "arabic" || args[1].toLowerCase() === "french" || args[1].toLowerCase() === "germany") {
         data.language = args[1].toLowerCase();
-        message.channel.send(new Discord.MessageEmbed().setColor(Color).setDescription(`
-          language your server has been changed to **${data.language}**`
-        ));
+        message.channel.send({content:
+          `language your server has been changed to **${data.language}**`
+        });
       data.save();
       } else if (args[1] === "list") {
-        message.channel.send(new Discord.MessageEmbed().setColor(Color).setDescription(`Language list is :\n **english** ,**kurdish** ,**arabic** ,**french**`));
+        message.channel.send({content:`Language list is :\n **english** ,**kurdish** ,**arabic** ,**french**`});
       } else {
-        message.channel.send(new Discord.MessageEmbed().setColor(Color).setDescription(`
-          Please Type\n \`p!lang english\` \n \`p!lang kurdish\` \n \`p!lang arabic\` \n \`p!lang french\``
-        ));
+        message.channel.send({content:` Please Type\n \`p!lang english\` \n \`p!lang kurdish\` \n \`p!lang arabic\` \n \`p!lang french\``
+                             });
      }}}
