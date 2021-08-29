@@ -23,7 +23,7 @@ module.exports = {
         let embed = new Discord.MessageEmbed()
         .setColor("")
         .setDescription(bot.pro.get(data.lang, "admin","sec_prefix"))
-        message.channel.send(embed)
+        message.channel.send({embeds: [embed]})
         dataa.prefix = args[1];
         dataa.save();
     }};
