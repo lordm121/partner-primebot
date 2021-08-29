@@ -13,17 +13,11 @@ module.exports = {
   run: async (bot, message, args) => {
     if (message.author.id == ownerid) {
 let args = message.content.split(" ")[1];
-if (!args) message.channel.send(new Discord.MessageEmbed()
-.setColor(Color)
-.setDescrpition(`Please type server id`))
+if (!args) message.channel.send({content:`Please type server id`})
 let Guild = bot.guilds.cache.get(args);
-if (!Guild) return message.channel.send(new Discord.MessageEmbed()
-.setColor(Color)
-.setDescription(`Invalid server id`));
+if (!Guild) return message.channel.send({content:`Invalid server id`});
 Guild.leave();
-message.channel.send(new Discord.MessageEmbed()
-.setColor(Color)
-.setDescription(`Done Leave **${Guild.name}**`))
+message.channel.send({content:`Done Leave **${Guild.name}**`})
 
   }
 }
