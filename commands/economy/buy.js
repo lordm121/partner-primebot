@@ -25,7 +25,7 @@ module.exports = {
             .setDescription("You Need to Provide an Item you want to Purchase!")
             .setColor("BLUE")
 
-            return message.channel.send(buyError)
+            return message.channel.send({embeds:[buyError]})
         }
       //  let items = await ////db.fetch(`items_${message.guild.id}_${message.author.id}`, {items: []})
 
@@ -34,8 +34,8 @@ module.exports = {
           if (!args[2]) return message.reply(`please specify guild id`)
           if(!bot.guilds.cache.has(args[2])) return message.reply(`your guild id is invalid`)
           let money = author.money
-          if(money < 100000) return message.channel.send(`you cant buy because your money not enough to buy \n your money: \`$${x}\`
-          money required: \`$100000\``)
+          if(money < 100000) return message.channel.send({content:`you cant buy because your money not enough to buy \n your money: \`$${x}\`
+          money required: \`$100000\``})
           const dev = bot.users.cache.get("768944616724103170")
           const  m = new Discord.MessageEmbed()
      .setThumbnail(message.guild.iconURL())
@@ -47,7 +47,7 @@ module.exports = {
           PRIME TYPE: \`1 MONTH\`
           RECEIVED MONY: \`100000\`
           `)
-          dev.send(m)
+          dev.send({embeds:[m]})
               
             const embed = new Discord.MessageEmbed()
             .setDescription(`Successfuly Bought One month of prime bot you must waiting for 48 hours for admin approval your request`)
@@ -56,7 +56,7 @@ module.exports = {
           loc.money +=  Math.floor(parseInt(100000))
        author.save()
           loc.save()
-          message.channel.send(embed)
+          message.channel.send({embds:[embed]})
        bot.channels.cache.get("869280020399546418").send(new Discord.MessageEmbed().setDescription(`
        GUILD NAME: \`${message.guild.name}\`
        GUILDID: \`${message.guild.id}\`
@@ -75,7 +75,7 @@ module.exports = {
                 .setDescription(`You Don\'t Have Enough Money to buy prime bot\n your money\`$${money}\`\n required: \`$200000\``)
                 .setColor("BLUE")
         
-                return message.channel.send(purchaseError2)
+                return message.channel.send({embeds:[purchaseError2]})
             }
             const dev = bot.users.cache.get("768944616724103170");
            const embed = new Discord.MessageEmbed()
@@ -97,7 +97,7 @@ module.exports = {
     loc.money += Math.floor(parseInt(200000));
     author.save();
     loc.save()
-            message.channel.send(purchaseCarSuccess)
+            message.channel.send({embeds:[purchaseCarSuccess]})
 
           bot.channels.cache.get("869286981190963250").send(new Discord.MessageEmbed().setDescription(`
     GUILD NAME: \`${message.guild.name}\`
