@@ -13,21 +13,21 @@ module.exports = {
   run: async (bot, message, args, dev,dev2) => {
   if (!args[2]) return;
     let member = message.guild.member(message.mentions.users.first())
-    if(!member) return message.channel.send(`Mention someone!`)
-    if(!args[2]) return message.channel.send(`Type credit!`)
-    if(args[2] < 1) return message.channel.send(`You can't send 0 credit!`)
+    if(!member) return message.channel.send({content:`Mention someone!`})
+    if(!args[2]) return message.channel.send({content:`Type credit!`})
+    if(args[2] < 1) return message.channel.send({content:`You can't send 0 credit!`})
 
     let author = await User.findOne({ userID: message.author.id });
     let loc = await User.findOne({ userID: member.id });
     if(!loc) return bot.nodb(member.user)
             
-    if(author.money < args[2]) return message.channel.send(`You don't have this amount credit!`)
-    if(author.userID == member.id) return message.channel.send(`You can't send credit to yourself!`)
-    if(member.user.bot) return message.channel.send(`You can send credit to the bot!`)
+    if(author.money < args[2]) return message.channel.send({content:`You don't have this amount credit!`})
+    if(author.userID == member.id) return message.channel.send({content:`You can't send credit to yourself!`})
+    if(member.user.bot) return message.channel.send({content:`You can send credit to the bot!`})
     
     author.money -= Math.floor(parseInt(args[2]));
     loc.money += Math.floor(parseInt(args[2]));
     author.save();
     loc.save()
-    message.channel.send(`**${message.author.username}** send credit to **${member.user.username}** amount \`${args[2]}\``)
+    message.channel.send({content:`**${message.author.username}** send credit to **${member.user.username}** amount \`${args[2]}\``})
     }};
