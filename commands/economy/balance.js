@@ -16,11 +16,11 @@ module.exports = {
     if (member) {
       
   let autho = await User.findOne({ userID: member.id });    
-  message.channel.send("<@"+member.id+"> Your credits balance is `"+autho.money+"`");
+  message.channel.send({content:"<@"+member.id+"> Your credits balance is `"+autho.money+"`"});
   
     }
     if (!member) {
   let author = await User.findOne({ userID: message.author.id });    
-  message.reply(" Your credits balance is `"+author.money+"`");
+  message.reply({content:" Your credits balance is `"+author.money+"`"});
       }
   }};
