@@ -30,6 +30,6 @@ p!buy 3month <guildID>
 
 )
  .setFooter(`by : ${message.author.tag}`)
-message.channel.send(embed);
+message.channel.send({embeds: [embed]});
     }
 }
