@@ -8,12 +8,12 @@ module.exports = {
     description: "set your emebd message ",
     usage: ["p!color #color code"],
     category: ["admin"],
-    enabled: true,
+    enabled: false,
     memberPermissions: ["MANAGE_GUILD"],
     botPermissions: ["SEND_MESSAGES", "EMBED_LINKS", "MANAGE_MESSAGES"],
     ownerOnly: false,
     cooldown: 10,
-   prime:true,
+   prime:false,
     run: async (bot, message, args, dev, data) => {
 ////if (db.get(`${args}.serverPlan`) == 'Free') return embed.setDescription(`** This command Only for \`Premuim\` version⚠️**`), message.channel.send(embed).then(deleteMessage);
 
@@ -24,7 +24,7 @@ module.exports = {
         }else {
 let data = await Guild.findOne({ guildID: message.guild.id});
             emb.setDescription(bot.pro.get(data.lang, "admin","color_description"))
-            return message.channel.send(`usage: p!color #color code`)
+            return message.channel.send({content:`usage: p!color #color code`})
           
         }if (guild) {
         guild.Color = args[1]
@@ -36,5 +36,5 @@ let data = await Guild.findOne({ guildID: message.guild.id});
         guildID: message.guild.id
       
       }); } 
-          message.channel.send(bot.pro.get(data.lang, "admin","sec_color"))
+          message.channel.send({content:bot.pro.get(data.lang, "admin","sec_color")})
     }}
