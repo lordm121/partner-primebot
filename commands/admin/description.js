@@ -4,7 +4,7 @@ let embed = new Discord.MessageEmbed()
 module.exports = {
   name: "description.js",
   aliases: ["sd","description","set-description","setdescription"],
-  enabled: true,
+  enabled: false,
   memberPermissions: ["SEND_MESSAGES"],
   botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
   ownerOnly: false,
@@ -18,11 +18,7 @@ let guild = await Guild.findOne({guildID:message.guild.id})
 
     if (!description) return message.channel.send(bot.pro.get(data.lang, "admin","err_description"))
 
-  /*  if (db.has(`${message.guild.id}.serverDescription`) && db.get(`${message.guild.id}.serverDescription`) == description) {
-      embed.setColor('#FF0202').setDescription(`**Server description already on** \`database\` ❌`);
-      message.channel.send(embed)
-      return;
-    };*/
+  
     
     let des = description.includes('@')?description.replace(/@/gi, '-'):description;
    
