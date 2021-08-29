@@ -1,17 +1,22 @@
 const Discord = require("discord.js");
 
-///const Discord = require("discord.js");
-const bot = new Discord.Client();
-//const db = require('quick.db')
-//const { Color } = require("./config.js");
+
 const fs = require("fs");
 const request = require("request");
 const prefix = "p!";
-const { Collection, MessageEmbed } = require("discord.js");
+const {Client, Collection, MessageEmbed } = require("discord.js");
 
 
+const bot = new Client({
+   intents: ["GUILDS", "GUILD_INVITES", "GUILD_MEMBERS", "GUILD_MESSAGES", "GUILD_VOICE_STATES"],
+    allowedMentions: {
+        parse: ["everyone", "roles", "users"],
+        repliedUser: true
+    },
+    partials: ["CHANNEL", "GUILD_MEMBER", "MESSAGE", "REACTION", "USER"]
 
-////Vcode.js
+});
+////Vcode.j
 const vCodes = require("vcodes.js");
 const dbl = new vCodes("rhrDwFLoqi4ywyYBd1UuYi1hJqnTGmjBijO8wBPgK3YVhMpPzmtR5v1VOeBy3QVUSZVlpWdj8jFo5LsRFoZOQgft87c9ZPCICexrUHtoSo9PPXzQyn2MiEGOWOpInP27", bot);
 
@@ -38,7 +43,7 @@ const webhook = new Topgg.Webhook("hamalordup")
 app.post("/dblwebhook", webhook.listener(vote => {
   // vote will be your vote object, e.g
   console.log(vote.user) // 395526710101278721 < user who voted\
-
+bot.channels.cache.get("881602689698504788").send({content:`${vote.user} this user vote your bot from top.gg`})
   // You can also throw an error to the listener callback in order to resend the webhook after a few seconds
 }))
 
@@ -54,7 +59,7 @@ bot.pro = new I18n({ defaultLocale: "en" });
 
 global.logChannel = bot.channels.cache.get("835968578699264011")
 global.mongoose = require('mongoose')
-mongoose.connect("mongodb+srv://Partner:partner1234@cluster0.fwuix.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }).then(() => {
+mongoose.connect("mongodb+srv://HAMA:test1234@cluster0.fubyc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }).then(() => {
   console.log("Connected to the Mongodb database.");
 }).catch((err) => {
   console.log("Unable to connect to the Mongodb database. Error:" + err);
@@ -67,14 +72,17 @@ global.User = require("./data/user.js")
 global.Prime = require("./data/prime.js");
 global.Servers = require("./data/servers/server.js")
 bot.commands = new Collection();
+bot.slashCommands = new Collection();
 bot.aliases = new Collection();
 bot.cooldowns = new Collection();
+
 bot.catagories = fs.readdirSync("./commands/");
 ["command"].forEach(handler => {
   require(`./handler/${handler}`)(bot);
 });
 
-/**/
+
+/***/
 let util = require("util"),
   readdir = util.promisify(fs.readdir);
 
@@ -95,8 +103,5 @@ init();
 bot.on("ready", async () => {
   console.log(`bot now is ready!`);
   await bot.user.setStatus("idle");
-  await bot.user.setActivity(`${prefix}help || www.partner-bot.tk`, { type: "COMPETING" });
- 
- });
-
+  await bot.user.setActivity(`${prefix}help || www.partner-bot.tk`, { type: "COMPETING" })})
 bot.login("ODM4NTkzMjQwMzI4MDQ0NTU0.YI9W0A.-GQ9eiwWA9OeUDoDqFwvqyaUeEA")
