@@ -18,7 +18,7 @@ async run(message,bot) {
   if(!lang) { Lang.create({ guildID: message.guild.id });} 
   data.lang = lang.language
   let prime = await Prime.findOne({ guildID: message.guild.id });
- if (prime && prime.log === "enable") return message.channel.send(`you don't have Premium version`);
+ if (prime && prime.log === "enable") return message.channel.send({content:`you don't have Premium version`});
 let user = await User.findOne({userID: message.author.id });
   if(!user) { User.create({userID: message.author.id})}
    data.user = user
@@ -41,17 +41,16 @@ let user = await User.findOne({userID: message.author.id });
    if(command.prime){
       let data = await Prime.findOne({Guild: message.guild.id})
      
-      if(!data) return message.channel.send(`this server dont have premium time  for buy premium time join support server and contact owner of the bot`)
+      if(!data) return message.channel.send({content: `this server dont have premium time  for buy premium time join support server and contact owner of the bot`})
     
       if(!data.Permanent && Date.now() > data.time){
         data.delete();
   
-        return message.channel.send(`premium time  on your server ended for buy mor join support server `) 
+        return message.channel.send({content:`premium time  on your server ended for buy mor join support server `}) 
       } }
 
   if (!message.channel.permissionsFor(bot.user).has("SEND_MESSAGES")) return;
-  if (!command.enabled) return await message.channel.send(new Discord.MessageEmbed().setColor("#2c2f33").setDescription(`This command is **Disable** for now`));
- 
+  if (!command.enabled) return await message.channel.send({content: `This command temporary \`disabled\``})
   let neededPermissions = [];
 	  if(!command.botPermissions.includes("EMBED_LINKS")){
 		  command.botPermissions.push("EMBED_LINKS");
@@ -62,7 +61,7 @@ let user = await User.findOne({userID: message.author.id });
 		  }
 	  });
 	 if(neededPermissions.length > 0){
-		  return message.channel.send(`I don't have a ${neededPermissions.map((p) => `\`${p}\``).join(", ")} permissions`);
+		  return message.channel.send({content:`I don't have a ${neededPermissions.map((p) => `\`${p}\``).join(", ")} permissions`});
 	  }
 	  neededPermissions = [];
 	  command.memberPermissions.forEach((perm) => {
@@ -71,7 +70,7 @@ let user = await User.findOne({userID: message.author.id });
 		  }
 	  });
 	  if(neededPermissions.length > 0){
-		  return message.channel.send(`You don't have a ${neededPermissions.map((p) => `\`${p}\``).join(", ")} permissions`);
+		  return message.channel.send({content:`You don't have a ${neededPermissions.map((p) => `\`${p}\``).join(", ")} permissions`});
 	 }
 	  if (!bot.cooldowns.has(command.name)) {
 		bot.cooldowns.set(command.name, new Discord.Collection());
@@ -83,7 +82,7 @@ let user = await User.findOne({userID: message.author.id });
 	const expirationTime = timestamps.get(message.guild.id) + cooldownAmount;
 	if (now < expirationTime) {
 		const timeLeft = (expirationTime - now)/1000/// 1000;
-		return message.channel.send(`Please wait ${timeLeft.toFixed(1)} second`).then(msg=> msg.delete({ timeout:timeLeft.toFixed(1)*1000 }));
+		return message.channel.send({content:`Please wait ${timeLeft.toFixed(1)} second`}).then(msg=> msg.delete({ timeout:timeLeft.toFixed(1)*1000 }));
 	}
 	  }
 	  timestamps.set(message.guild.id, now);
