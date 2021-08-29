@@ -28,6 +28,6 @@ if (!devs.includes(message.author.id)) return;
   .setColor("")
 .setFooter(`Embed by ${message.author.username}`)
 .setTimestamp()
-  message.channel.send(embed)
+  message.channel.send({embeds:[embed]})
   
   }} 
