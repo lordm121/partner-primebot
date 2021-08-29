@@ -12,11 +12,11 @@ module.exports = {
   cooldown: 0,
   run: async (bot, message, args) => {
     if (message.author.id == ownerid) {
-      if (!message.guild.me.hasPermission("SEND_MESSAGES"))
+      /*if (!message.guild.me.hasPermission("SEND_MESSAGES"))
         return message.channel
-          .send("I Dont Have Permissions")
+          .send({content:"I Dont Have Permissions"})
           .then(msg => msg.delete({ timeout: 5000 }));
-
+*/
       let i0 = 0;
       let i1 = 10;
       let page = 1;
@@ -24,7 +24,7 @@ module.exports = {
       let description = bot.guilds.cache
           .sort((a, b) => b.memberCount - a.memberCount)
           .map(r => r)
-          .map((r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} Members\nID - ${r.id} -\nserver owner ${r.owner}`)
+          .map((r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} Members\nID - ${r.id} - server owner ${r.owner}`)
           .slice(0, 10)
           .join("\n");
 
@@ -33,7 +33,7 @@ module.exports = {
         .setTitle(`Page - ${page}/${Math.ceil(bot.guilds.cache.size / 10)}`)
         .setDescription(description);
 
-      let msg = await message.channel.send(embed);
+      let msg = await message.channel.send({embeds: [embed]});
 
       await msg.react("⬅️");
       await msg.react("➡️");
@@ -65,7 +65,7 @@ module.exports = {
               .sort((a, b) => b.memberCount - a.memberCount)
               .map(r => r)
               .map(
-                (r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} Members\nID - ${r.id}\n\nServer Owner - ${r.owner}`
+                (r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} Members\nID - ${r.id}\nServer Owner - ${r.owner}`
               )
               .slice(i0, i1)
               .join("\n");
@@ -78,7 +78,7 @@ module.exports = {
             .setDescription(description);
 
           // Edit the message
-          msg.edit(embed);
+          msg.edit({embeds: [embed]});
         }
 
         if (reaction._emoji.name === "➡️") {
@@ -101,7 +101,7 @@ module.exports = {
               .sort((a, b) => b.memberCount - a.memberCount)
               .map(r => r)
               .map(
-                (r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} Members\nID - ${r.id}\n\n Server Owner - ${r.owner}`
+                (r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} Members\nID - ${r.id}\n Server Owner - ${r.owner}`
               )
               .slice(i0, i1)
               .join("\n");
@@ -114,7 +114,7 @@ module.exports = {
             .setDescription(description);
 
           // Edit the message
-          msg.edit(embed);
+          msg.edit({embeds: [embed]});
         }
 
         if (reaction._emoji.name === "🚫") {
