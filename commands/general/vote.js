@@ -17,6 +17,6 @@ module.exports = {
  .setTitle("we working at that please waiting, thanks for understanding")
  .setDescription("[ Top.gg ](https://top.gg/838593240328044554) - [infinity botlist](https://infinitybotlist.com/bots/838593240328044554/vote) - [discord.ly](https://discord.ly/partner-bot-5806) - [blade botlist](https://bladebotlist.xyz/bot/838593240328044554/vote)")
  .setFooter(`by : ${message.author.tag}`)
-message.channel.send(embed);
+message.channel.send({embeds:[embed]});
   }
 }
