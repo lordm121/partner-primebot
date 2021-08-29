@@ -7,12 +7,12 @@ async run(guild, bot) {
 			.setDescription("To configure me,\n type **.help** and look at the **Share** commands!.")
 			.setColor("#2c2f33")
                         .setTimestamp();
-		guild.owner.send(thanksEmbed).catch(() => {});
+		guild.owner.send({embeds:[thanksEmbed]}).catch(() => {});
     
 	
 		const text = "✅ **__Joined New Guild__** \n **Guild Name**: "+guild.name+" \n **Guild Owner Name**: " + `${guild.owner.user.username}` + " \n **Guild Owner ID**: " + `${guild.owner.id}` + "\n **Guild Member Size**: "+guild.memberCount+" \n **Guild Bots Size** ("+guild.members.cache.filter((m) => m.user.bot).size+" bots)";
 		const logsEmbed = new Discord.MessageEmbed()
 			.setColor("#2c2f33")
 			.setDescription(text);
-		bot.channels.cache.get("851392343814307840").send(logsEmbed);     
+		bot.channels.cache.get("851392343814307840").send({embeds:[logsEmbed]});     
 }};
