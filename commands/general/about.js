@@ -33,6 +33,6 @@ let data = await Guild.findOne({guildID: message.guild.id})
         .addField(`**Creator**`, `[<@768944616724103170>]`)
         .setFooter(`Requested By ${message.author.username}`)
         
-    message.channel.send(embed);
+    message.channel.send({embeds: [embed]});
 }
 }
