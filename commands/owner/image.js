@@ -1,6 +1,7 @@
+
 const Discord = require("discord.js")
 const devs = "768944616724103170"
-const db = require("quick.db")
+
 let embed = new Discord.MessageEmbed()
 module.exports = {
   name: "image",
@@ -17,7 +18,7 @@ module.exports = {
     if (!devs.includes(message.author.id)) return;
   
   const image = args.join("")
-  message.channel.send(`https://cdn.discordapp.com/attachments/847495702761308230/856117361501667348/PicsArt_06-20-01.24.34.png`)
+  message.channel.send({content:`https://cdn.discordapp.com/attachments/847495702761308230/856117361501667348/PicsArt_06-20-01.24.34.png`})
   
 
   } 
