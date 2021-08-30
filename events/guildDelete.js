@@ -6,7 +6,7 @@ async run(guild, bot) {
 		       .setDescription("If you have a report join this server https://discord.gg/aW6TnhGeSS")
 		       .setColor("#2c2f33")
                        .setTimestamp();
-		guild.owner.send({embeds:[thanksEmbed]}).catch(() => {});
+		guild.owner.send({embeds:[thanksEmbed]})
     
 	
 		const text = "❎ **__Leaving Old Guild__** \n **Guild Name**: "+guild.name+" \n **Guild Owner Name**: " + `${guild.owner.user.username}` + " \n **Guild Owner ID**: " + `${guild.owner.id}` + " \n **Guild Bots Size** ("+guild.members.cache.filter((m) => m.user.bot).size+" bots)";
