@@ -13,7 +13,7 @@ module.exports = {
   ownerOnly: false,            
   cooldown: 10,
 prime:false,
-  run: async (bot, message, args, dev,data) => {
+  run: async (bot, message, args, dev, data) => {
    
     if (!args[1]) {
 ///et data = await Servers.findOne({serverID: message.guild.id})
