@@ -29,5 +29,5 @@ module.exports = {
     loc.money += Math.floor(parseInt(args[2]));
     author.save();
     loc.save()
-    message.channel.send({content:`**${message.author.username}** send credit to **${member.user.username}** amount \`${args[2]}\``})
+    message.channel.send({content:`${message.author.username} send credit to ${member.user.username} amount \`${args[2]}\``})
     }};
