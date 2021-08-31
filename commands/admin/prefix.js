@@ -15,8 +15,8 @@ module.exports = {
   cooldown: 60,
   prime: false,
   run: async (bot, message, args, dev, data) => {
-        if(!args[1]) return message.channel.send(new Discord.MessageEmbed().setColor("").setDescription(`You muste put provide prefix`))
-        if(args[1].length > 5) return message.channel.send(new Discord.MessageEmbed().setColor("").setDescription(bot.pro.get(data.lang, "admin","err_prefix")))
+        if(!args[1]) return message.channel.send({content:`You muste put provide prefix`})
+        if(args[1].length > 5) return message.channel.send({content:bot.pro.get(data.lang, "admin","err_prefix")})
          
         let dataa = await Guild.findOne({ guildID: message.guild.id })
 
