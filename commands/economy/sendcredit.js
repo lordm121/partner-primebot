@@ -23,7 +23,7 @@ module.exports = {
             
     if(author.money < args[2]) return message.channel.send({content:`You don't have this amount credit!`})
     if(author.userID == member.id) return message.channel.send({content:`You can't send credit to yourself!`})
-    if(member.user.bot) return message.channel.send({content:`You can send credit to the client`})
+   /// if(member.user.bot) return message.channel.send({content:`You can send credit to the client`})
     
     author.money -= Math.floor(parseInt(args[2]));
     loc.money += Math.floor(parseInt(args[2]));
