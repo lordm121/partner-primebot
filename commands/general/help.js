@@ -13,10 +13,10 @@ module.exports = {
   ownerOnly: false,            
   cooldown: 10,
 prime:false,
-  run: async (bot, message, args, dev) => {
+  run: async (bot, message, args, dev,data) => {
    
     if (!args[1]) {
-let data = await Servers.findOne({serverID: message.guild.id})
+///et data = await Servers.findOne({serverID: message.guild.id})
   let embed = new Discord.MessageEmbed()
      .setColor(Color)
      
