@@ -12,7 +12,7 @@ module.exports = {
   cooldown: 10,
   run: async (client, message, args, dev,dev2) => {
   if (args[2]) return;
-    let member = message.guild.member(message.mentions.users.first())
+    let member = message.mentions.users.first()
     if (member) {
       
   let autho = await User.findOne({ userID: member.id });    
