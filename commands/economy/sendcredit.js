@@ -12,7 +12,7 @@ module.exports = {
   cooldown: 15,
   run: async (bot, message, args, dev,dev2) => {
   if (!args[2]) return;
-    let member = message.guild.member(message.mentions.users.first())
+    let member = message.mentions.users.first()
     if(!member) return message.channel.send({content:`Mention someone!`})
     if(!args[2]) return message.channel.send({content:`Type credit!`})
     if(args[2] < 1) return message.channel.send({content:`You can't send 0 credit!`})
