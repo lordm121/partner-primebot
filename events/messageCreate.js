@@ -38,7 +38,7 @@ let user = await User.findOne({userID: message.author.id });
   if (cmd.length === 0) return;
   let command = bot.commands.get(cmd);
   if (!command) command = bot.commands.get(bot.aliases.get(cmd));
-   if(command.prime){
+ /*  if(command.prime){
       let data = await Prime.findOne({Guild: message.guild.id})
      
       if(!data) return message.channel.send({content: `this server dont have premium time  for buy premium time join support server and contact owner of the bot`})
@@ -47,7 +47,7 @@ let user = await User.findOne({userID: message.author.id });
         data.delete();
   
         return message.channel.send({content:`premium time  on your server ended for buy mor join support server `}) 
-      } }
+      } }*/
 
   if (!message.channel.permissionsFor(bot.user).has("SEND_MESSAGES")) return;
   if (!command.enabled) return await message.channel.send({content: `This command temporary \`disabled\``})
