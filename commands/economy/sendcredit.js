@@ -19,7 +19,7 @@ module.exports = {
 
     let author = await User.findOne({ userID: message.author.id });
     let loc = await User.findOne({ userID: member.id });
-    if(!loc) return bot.nodb(member.user)
+   // if(!loc) return bot.nodb(member.user)
             
     if(author.money < args[2]) return message.channel.send({content:`You don't have this amount credit!`})
     if(author.userID == member.id) return message.channel.send({content:`You can't send credit to yourself!`})
