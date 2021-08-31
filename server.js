@@ -52,7 +52,7 @@ app.listen(3000)
 
 
 const { inspect } = require("util");
-///let dev = ["738478465870987425","386188491953799178"];
+let dev = ["738478465870987425","386188491953799178"];
 const cmd = require("node-cmd");
 const { I18n } = require("locale-parser");
 bot.pro = new I18n({ defaultLocale: "en" });
@@ -104,4 +104,4 @@ bot.on("ready", async () => {
   console.log(`bot now is ready!`);
   await bot.user.setStatus("idle");
   await bot.user.setActivity(`${prefix}help || www.partner-bot.tk`, { type: "COMPETING" })})
-bot.login("ODM4NTkzMjQwMzI4MDQ0NTU0.YI9W0A.-GQ9eiwWA9OeUDoDqFwvqyaUeEA")
+bot.login("ODQ5Nzg5MDM3MzA4NDExOTY1.YLgRtg.4JLWlL7Z3i90NxXvCfOLhUsYpM0")
