@@ -25,7 +25,7 @@ if (!devs.includes(message.author.id)) return;
   let embed = new Discord.MessageEmbed()
 .setAuthor(message.author.username, message.author.avatarURL())
   .setDescription(`${say}`)
-  .setColor("")
+ 
 .setFooter(`Embed by ${message.author.username}`)
 .setTimestamp()
   message.channel.send({embeds:[embed]})
