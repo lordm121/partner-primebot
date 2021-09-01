@@ -17,6 +17,7 @@ const bot = new Client({
 
 });
 ////Vcode.j
+/*
 const vCodes = require("vcodes.js");
 const dbl = new vCodes("rhrDwFLoqi4ywyYBd1UuYi1hJqnTGmjBijO8wBPgK3YVhMpPzmtR5v1VOeBy3QVUSZVlpWdj8jFo5LsRFoZOQgft87c9ZPCICexrUHtoSo9PPXzQyn2MiEGOWOpInP27", bot);
 
@@ -48,7 +49,7 @@ bot.channels.cache.get("881602689698504788").send({content:`${vote.user} this us
 }))
 
 app.listen(3000)
-
+*/
 
 
 const { inspect } = require("util");
