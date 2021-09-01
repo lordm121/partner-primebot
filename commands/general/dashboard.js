@@ -1,8 +1,8 @@
 const Discord = require("discord.js")
 module.exports = {
-  name: "support",
-  aliases: ["serversupport"],
-  description: "To show server support",
+  name: "dashboard",
+  aliases: ["dashboard","website"],
+  description: "dashboard link",
   usage: ["p!support"],
   category: ["General"],
   enabled: true,
