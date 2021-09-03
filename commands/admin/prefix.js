@@ -16,7 +16,7 @@ module.exports = {
   prime: false,
   run: async (bot, message, args, dev, data) => {
         if(!args[1]) return message.channel.send({content:`You muste put provide prefix`})
-        if(args[1].length > 5) return message.channel.send({content:bot.pro.get(data.lang, "admin","err_prefix")})
+        if(args[1].length > 5) return message.channel.send({content: `please must your prefix under 5 words)})
          
         let dataa = await Guild.findOne({ guildID: message.guild.id })
 
