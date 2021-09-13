@@ -14,10 +14,10 @@ module.exports = {
   ownerOnly: false,
   cooldown: 5,
   run: async (bot, message, args, dev, data,pars) => {
-    
+   Let x = await Servers.findOne({serverID: message.guild.id}) 
 const embed = new Discord.MessageEmbed()
  .setColor(Color)
- .setTitle({content: bot.pro.get(data.lang, "general","invite_link"}))
+ .setTitle(bot.pro.get(x.lang, "general","invite_link"))
  .setDescription(`[Partner Bot](https://discord.com/api/oauth2/authorize?client_id=${bot.user.id}&permissions=67206193&scope=bot)`)
  .setFooter(`by : ${message.author.tag}`)
 message.channel.send({embeds: [embed]});
