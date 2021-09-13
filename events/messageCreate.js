@@ -6,6 +6,8 @@ module.exports = class {
 async run(message,bot) {
   //const data = {};
   
+const { I18n } = require("locale-parser");
+const pars = new I18n({ defaultLocale:"en"});
 
   if (message.author.bot) return;
   if (message.channel.type === "dm") return;
