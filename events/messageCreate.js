@@ -28,7 +28,7 @@ let user = await User.findOne({userID: message.author.id });
   
   
   if (server) {
-  if (!message.content.toLowerCase().startsWith(server.prefix.toLowerCase())) return;
+  if (!message.content.toLowerCase().startsWith(server.prefix)) return;
   let args = message.content.split(" ");
   const argsr = message.content
     .slice(server.prefix.length)
