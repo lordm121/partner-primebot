@@ -13,7 +13,7 @@ module.exports = {
   botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
   ownerOnly: false,
   cooldown: 5,
-  run: async (bot, message, args, dev, data) => {
+  run: async (bot, message, args, dev, data,pars) => {
     
 const embed = new Discord.MessageEmbed()
  .setColor(Color)
