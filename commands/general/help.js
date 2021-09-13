@@ -21,7 +21,7 @@ prime:false,
      .setColor(Color)
      
 .setColor(Color)
-         .setTitle(bot.pro.get(data.server, "general","help_embed"))
+         ///.setTitle(bot.pro.get(data.server, "general","help_embed"))
          .setDescription(`
 - [ Invite ](https://discord.com/api/oauth2/authorize?client_id=${bot.user.id}&permissions=67206193&scope=bot) - [ Support ](https://discord.gg/aW6TnhGeSS)\nif you want to setup \n[Click here](https://cdn.discordapp.com/attachments/847495685716443246/856250092025282561/VivaCut_video_1624207856278_HD.mp4)\n\nMy dashboard [Click here](https://www.partner-bot.tk) this is a beta version`)
   .addField("ℹ️ General", "`invite`,`dashboard`,`support`, `about`, `ping`")
