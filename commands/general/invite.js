@@ -17,7 +17,7 @@ module.exports = {
     
 const embed = new Discord.MessageEmbed()
  .setColor(Color)
- .setTitle(pars.get(data.lang, "general","invite_link"))
+ .setTitle(bot.pro.get(data.lang, "general","invite_link"))
  .setDescription(`[Partner Bot](https://discord.com/api/oauth2/authorize?client_id=${bot.user.id}&permissions=67206193&scope=bot)`)
  .setFooter(`by : ${message.author.tag}`)
 message.channel.send({embeds: [embed]});
