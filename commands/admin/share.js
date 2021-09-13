@@ -145,7 +145,7 @@ let m = b.colors
 
                              
               
-             color: m,
+             color: b.colors,
               author: {
                 name: message.guild.name,
                 icon_url: message.guild.iconURL(),
