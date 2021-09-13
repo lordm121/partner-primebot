@@ -107,7 +107,7 @@ return message.channel.send(`Please wait ${timeleft.toFixed(1)} second`).then(ms
             }}
                                                                                                     
       timetamps.set(message.author.id, now)
-    if(command) command.run(bot, cmd, data,message,args, prefix)
+    if(command) command.run(bot, cmd, data,message,args, prefix,pars)
     
     setTimeout(() => timetamps.delete(message.author.id), Amount)
     */
