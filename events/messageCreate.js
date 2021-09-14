@@ -16,9 +16,9 @@ async run(message,bot) {
   data.guild = guild;
   let lang = await Lang.findOne({ guildID: message.guild.id });
   if(!lang) { Lang.create({ guildID: message.guild.id });} 
-  data.lang = lang
+  data.lang = lang.language
   let prime = await Prime.findOne({ guildID: message.guild.id });
-if (prime && prime.log === "enable") return //message.channel.send({content:`you don't have Premium version`});*/
+if (prime && !prime.log === "enable") return message.channel.send({content:`you don't have Premium version`});*/
 let user = await User.findOne({userID: message.author.id });
   if(!user) { User.create({userID: message.author.id})}
    data.user = user
