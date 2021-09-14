@@ -18,7 +18,7 @@ module.exports = {
         if(!args[1]) return message.channel.send({content:`You muste put provide prefix`})
         if(args[1].length > 5) return message.channel.send({content: `please must your prefix under 5 words`})
          
-        let dataa = await Servers.findOne({ serverID: message.guild.id })
+        let dataa = await Guild.findOne({ guildID: message.guild.id })
 
         let embed = new Discord.MessageEmbed()
         .setColor("BLUE")
