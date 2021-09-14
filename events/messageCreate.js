@@ -23,8 +23,8 @@ let user = await User.findOne({userID: message.author.id });
   if(!user) { User.create({userID: message.author.id})}
    data.user = user
   let server = await Servers.findOne({serverID: message.guild.id})
- /*if(!server){ Servers.create({serverID: message.guild.id})}
- */ data.server= server 
+ if(!server){ Servers.create({serverID: message.guild.id})}
+  data.server= server 
   
   
   if (guild) {
