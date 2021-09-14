@@ -23,15 +23,15 @@ let user = await User.findOne({userID: message.author.id });
   if(!user) { User.create({userID: message.author.id})}
    data.user = user
   let server = await Servers.findOne({serverID: message.guild.id})
- if(!server){ Servers.create({serverID: message.guild.id})}
-  data.server= server 
+ /*if(!server){ Servers.create({serverID: message.guild.id})}
+ */ data.server= server 
   
   
-  if (server) {
-  if (!message.content.toLowerCase().startsWith(server.prefix.toLowerCase())) return;
+  if (guild) {
+  if (!message.content.toLowerCase().startsWith(guild.prefix.toLowerCase())) return;
   let args = message.content.split(" ");
   const argsr = message.content
-    .slice(server.prefix.length)
+    .slice(guild.prefix.length)
     .trim()
     .split(/ +/g);
   const cmd = argsr.shift().toLowerCase();
