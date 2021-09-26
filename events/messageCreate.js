@@ -16,7 +16,7 @@ async run(message,bot) {
   data.guild = guild;
   let lang = await Lang.findOne({ guildID: message.guild.id });
   if(!lang) { Lang.create({ guildID: message.guild.id });} 
-  data.lang = lang
+  data.lang = lang.language
 
 
   let prime = await Prime.findOne({ guildID: message.guild.id });
