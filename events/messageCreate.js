@@ -52,7 +52,7 @@ let user = await User.findOne({userID: message.author.id });
       } }*/
 
   if (!message.channel.permissionsFor(bot.user).has("SEND_MESSAGES")) return;
-  if (command.enabled) return await message.channel.send({content: `This command temporary **Disabled For Now**`})
+  if (!command.enabled) return await message.channel.send({content: `This command temporary **Disabled For Now**`})
   let neededPermissions = [];
 	  if(!command.botPermissions.includes("EMBED_LINKS")){
 		  command.botPermissions.push("EMBED_LINKS");
