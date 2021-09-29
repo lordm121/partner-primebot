@@ -17,7 +17,7 @@ module.exports = {
    ///Let x = await Servers.findOne({serverID: message.guild.id})
 const embed = new Discord.MessageEmbed()
  .setColor(Color)
- .setTitle(bot.pro.get(data.lang, "general","invite_link"))
+ .setTitle(`Invite Linke`)
  .setDescription(`[Partner Bot](https://discord.com/api/oauth2/authorize?client_id=${bot.user.id}&permissions=67206193&scope=bot)`)
  .setFooter(`by : ${message.author.tag}`)
 message.channel.send({embeds: [embed]});
