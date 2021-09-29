@@ -16,7 +16,7 @@ module.exports = {
 let server= await Servers.findOne({serverIDID:message.guild.id})
     let description = message.content.split(' ').slice(1).join(' ');
 
-    if (!description) return message.channel.send(bot.pro.get(data.lang, "admin","err_description"))
+    if (!description) return message.channel.sedn(`Please Setup Description to your server`)///message.channel.send(bot.pro.get(data.lang, "admin","err_description"))
 
   
     
@@ -33,8 +33,8 @@ let server= await Servers.findOne({serverIDID:message.guild.id})
       
         
       }); } 
-message.channel.send(bot.pro.get(data.lang, "admin","sec_description"))
-    ///embed.setDescription(`**server description has been saved on** \`database\`☑️`), message.channel.send(embed)
+///message.channel.send(bot.pro.get(data.lang, "admin","sec_description"))
+    message.channel.send(`**server description has been saved on** \`database\`☑️`)
 
   }
 
