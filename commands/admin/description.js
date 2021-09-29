@@ -22,14 +22,14 @@ let server= await Servers.findOne({serverIDID:message.guild.id})
     
     let des = description.includes('@')?description.replace(/@/gi, '-'):description;
    
-      if (guild) {
-        guild.longDesc = description
-        guild.serverID = message.guild.id
-        guild.save()
+      if (server) {
+        server.longDesc = description
+        server.serverID = message.guild.id
+        server.save()
       }
-    if(!guild) { Guild.create({
-      Description: description,
-      guildID: message.guild.id
+    if(!server) { Servers.create({
+      longDesc: description,
+      serverID: message.guild.id
       
         
       }); } 
