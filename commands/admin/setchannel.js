@@ -25,22 +25,22 @@ module.exports = {
     let ch = message.guild.channels.cache.find(c => c.id == m.id)
     if(args[1]){
     
-    let dataa = await Guild.findOne({guildID: message.guild.id})
+    let dataa = await Servers.findOne({serverID: message.guild.id})
     
     
     
 
     if (!args[1]) return embed.setColor('#FF0202').setDescription(`**Please mention channel to setup share channel usage: p!setchannel <#channel>**`), message.channel.send(embed)
 if (dataa) {
-  dataa.Channel = m.id
-  dataa.guildID = message.guild.id
+  dataa.channelID = m.id
+  dataa.serverID = message.guild.id
   dataa.save()
   
   
 }
       
-      if(!dataa) { Guild.create({
-        Channel: m.id
+      if(!dataa) { Servers.create({
+        channelID: m.id
       }); }
       message.channel.send(`share channel has been set-up in this channel <#${dataa.Channel}>`)
    }}}
