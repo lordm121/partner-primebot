@@ -6,10 +6,10 @@ const Schema = new mongoose.Schema({
     guildName: String,
     Banner: String,
     Channel: String,
-    prefix: { type: String, default: "p!"},
+    prefix: { type: String, default: "p"},
     bump: {type: Date, default: null},
     time: String,
-    rooms: String,
+  
     Description: String,
     Color: String,
 
