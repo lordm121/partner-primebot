@@ -72,5 +72,5 @@ init();
 bot.on("ready", async () => {
   console.log(`bot now is ready!`);
   await bot.user.setStatus("idle");
-  await bot.user.setActivity(`${prefix}help || partner-bot.tk`, { type: "COMPETING" })})
-bot.login("ODQ5Nzg5MDM3MzA4NDExOTY1.YLgRtg.mvxpr_rvSPPCB0zSyTHedB_iLfU")
+  await bot.user.setActivity(`${prefix}help`, { type: "COMPETING" })})
+bot.login("OTIwNDEwMzU2MDM0MTc5MDgy.Ybj88Q.9GFNOaZW8UkAQFAcJQSJbRt6s1c")
